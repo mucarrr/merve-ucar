@@ -1,0 +1,270 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { FaGithub, FaEnvelope, FaCode, FaLaptopCode } from "react-icons/fa";
+import { TypeAnimation } from "react-type-animation";
+
+export default function Hero() {
+  // Tech stack badges with icons
+  const techStack = [
+    { name: "React", delay: 0.2 },
+    { name: "Next.js", delay: 0.3 },
+    { name: "TypeScript", delay: 0.4 },
+    { name: "Node.js", delay: 0.5 },
+    { name: "MongoDB", delay: 0.6 },
+    { name: "Tailwind", delay: 0.7 },
+  ];
+
+  // Floating shapes
+  const shapes = [
+    { size: 100, x: "10%", y: "20%", delay: 0 },
+    { size: 150, x: "80%", y: "15%", delay: 0.5 },
+    { size: 80, x: "15%", y: "70%", delay: 1 },
+    { size: 120, x: "85%", y: "75%", delay: 0.7 },
+    { size: 60, x: "50%", y: "10%", delay: 1.2 },
+  ];
+
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Animated Background Shapes */}
+      <div className="absolute inset-0 -z-10">
+        {shapes.map((shape, index) => (
+          <motion.div
+            key={index}
+            className="absolute rounded-full bg-gradient-to-br from-amber-400/10 to-orange-500/10 backdrop-blur-3xl"
+            style={{
+              width: shape.size,
+              height: shape.size,
+              left: shape.x,
+              top: shape.y,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 15, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 5 + index,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: shape.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Side - Main Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Code-like intro */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="flex items-center gap-2 text-amber-600 dark:text-amber-400 mb-4 font-mono text-sm"
+            >
+              <FaCode />
+              <span>{'<developer>'}</span>
+            </motion.div>
+
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+              <span className="text-gray-900 dark:text-white">Merhaba, Ben</span>
+              <br />
+              <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+                Merve Uçar
+              </span>
+            </h1>
+
+            {/* Typing Animation */}
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 h-20">
+              <TypeAnimation
+                sequence={[
+                  "Full Stack Developer",
+                  2000,
+                  "MERN Stack Developer",
+                  2000,
+                  "React Specialist",
+                  2000,
+                  "Problem Solver",
+                  2000,
+                ]}
+                wrapper="span"
+                speed={50}
+                className="text-gray-700 dark:text-gray-300"
+                repeat={Infinity}
+              />
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
+            >
+              Modern web teknolojileri ile performanslı, kullanıcı odaklı ve ölçeklenebilir
+              uygulamalar geliştiriyorum. Matematik arka planım sayesinde güçlü problem çözme
+              becerileriyle kodluyorum.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="flex flex-wrap gap-4 mb-8"
+            >
+              <a
+                href="#contact"
+                className="group relative px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  İletişime Geç
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
+                </span>
+              </a>
+              <a
+                href="#experience"
+                className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium hover:bg-gray-900 dark:hover:bg-amber-400 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
+              >
+                Deneyimlerim
+              </a>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex gap-4"
+            >
+              <motion.a
+                href="https://github.com/mucarrr"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-amber-400 hover:text-gray-900 transition-all duration-300"
+              >
+                <FaGithub size={24} />
+              </motion.a>
+              <motion.a
+                href="mailto:mucar2326@gmail.com"
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-amber-400 hover:text-gray-900 transition-all duration-300"
+              >
+                <FaEnvelope size={24} />
+              </motion.a>
+            </motion.div>
+
+            {/* Code-like closing tag */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="flex items-center gap-2 text-amber-600 dark:text-amber-400 mt-8 font-mono text-sm"
+            >
+              <FaCode className="rotate-180" />
+              <span>{'</developer>'}</span>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Side - Animated Tech Stack Cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative hidden lg:block"
+          >
+            {/* Center Icon */}
+            <motion.div
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center shadow-2xl"
+            >
+              <FaLaptopCode size={64} className="text-gray-900" />
+            </motion.div>
+
+            {/* Orbiting Tech Badges */}
+            {techStack.map((tech, index) => {
+              const angle = (index * 360) / techStack.length;
+              const radius = 150;
+              const x = Math.cos((angle * Math.PI) / 180) * radius;
+              const y = Math.sin((angle * Math.PI) / 180) * radius;
+
+              return (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: tech.delay, duration: 0.5 }}
+                  className="absolute top-1/2 left-1/2"
+                  style={{
+                    transform: `translate(${x - 60}px, ${y - 20}px)`,
+                  }}
+                >
+                  <motion.div
+                    animate={{
+                      y: [0, -10, 0],
+                    }}
+                    transition={{
+                      duration: 2 + index * 0.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    className="px-6 py-3 bg-white dark:bg-gray-900 rounded-full shadow-lg border-2 border-amber-400 text-gray-900 dark:text-white font-semibold text-sm whitespace-nowrap cursor-default"
+                  >
+                    {tech.name}
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="flex flex-col items-center gap-2 text-gray-500 dark:text-gray-500"
+          >
+            <span className="text-sm">Aşağı Kaydır</span>
+            <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full p-1">
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-1.5 h-3 bg-amber-500 rounded-full mx-auto"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
