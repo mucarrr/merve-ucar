@@ -2,11 +2,29 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import useLanguage from "@/hooks/useLanguage";
+import { translations } from "@/lib/translations";
 
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { language } = useLanguage();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
+  const t = translations[currentLanguage as keyof typeof translations];
+
+  useEffect(() => {
+    setCurrentLanguage(language);
+  }, [language]);
+
+  useEffect(() => {
+    const handleLanguageChange = (event) => {
+      setCurrentLanguage(event.detail);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, []);
 
   return (
     <section
@@ -21,66 +39,49 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12">
-            Hakkımda
+            {t.aboutTitle}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                Matematik eğitimi arka planım sayesinde mantıksal düşünme ve problem çözme
-                konusunda güçlü bir temele sahibim. Bu temel, beni yazılım geliştirmeye
-                yönlendirdi ve karmaşık problemleri basit adımlara dönüştürme konusunda
-                avantaj sağladı.
+                {t.aboutDescription1}
               </p>
 
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                <strong>Full Stack Developer</strong> olarak MERN stack (MongoDB, Express.js,
-                React, Node.js) ile web uygulamaları geliştiriyorum. Next.js ile server-side
-                rendering, Docker ile containerization ve RESTful API tasarımı konularında
-                deneyimliyim.
+                {t.aboutDescription2}
               </p>
 
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                Responsive tasarım, performans optimizasyonu ve modern web standartlarına
-                önem veren bir geliştirici olarak, kullanıcı deneyimini ön planda tutarak
-                çalışıyorum. Agile/Scrum metodolojileri ile ekip çalışmasına uyumlu,
-                sürekli öğrenmeye açık ve projelerime mantıksal değer katmaya odaklıyım.
+                {t.aboutDescription3}
               </p>
             </div>
 
             <div className="space-y-6">
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                 <h3 className="text-xl font-bold mb-4 text-amber-600 dark:text-amber-400">
-                  📍 Konum
+                  📍 {t.location}
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300">
-                  Atina, Yunanistan
+                  {t.locationValue}
                 </p>
               </div>
 
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                 <h3 className="text-xl font-bold mb-4 text-amber-600 dark:text-amber-400">
-                  🎓 Eğitim
+                  🎓 {t.education}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <strong>Boğaziçi Üniversitesi</strong>
-                  <br />
-                  Matematik Eğitimi, Lisans
-                  <br />
-                  2007 - 2012
+                <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                  {t.educationValue}
                 </p>
               </div>
 
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                 <h3 className="text-xl font-bold mb-4 text-amber-600 dark:text-amber-400">
-                  🌍 Diller
+                  🌍 {t.languages}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <strong>Türkçe:</strong> Ana dil
-                  <br />
-                  <strong>İngilizce:</strong> B2
-                  <br />
-                  <strong>Yunanca:</strong> B2
+                <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                  {t.languagesValue}
                 </p>
               </div>
             </div>

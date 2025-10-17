@@ -56,13 +56,48 @@ export default function Experience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Floating shapes - Hero'daki ile aynı
+  const shapes = [
+    { size: 100, x: "10%", y: "20%", delay: 0 },
+    { size: 150, x: "80%", y: "15%", delay: 0.5 },
+    { size: 80, x: "15%", y: "70%", delay: 1 },
+    { size: 120, x: "85%", y: "75%", delay: 0.7 },
+    { size: 60, x: "50%", y: "10%", delay: 1.2 },
+  ];
+
   return (
     <section
       id="experience"
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 bg-f8f7f4 dark:bg-gray-950 min-h-screen overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Animated Background Shapes - Hero'daki ile birebir aynı */}
+      <div className="absolute inset-0 -z-10">
+        {shapes.map((shape, index) => (
+          <motion.div
+            key={index}
+            className="absolute rounded-full bg-gradient-to-br from-amber-400/10 to-orange-500/10 backdrop-blur-3xl"
+            style={{
+              width: shape.size,
+              height: shape.size,
+              left: shape.x,
+              top: shape.y,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 15, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 5 + index,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: shape.delay,
+            }}
+          />
+        ))}
+      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -81,27 +116,9 @@ export default function Experience() {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-200 dark:border-gray-800"
               >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-2">
-                      {exp.role}
-                    </h3>
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-2">
-                      <FaBriefcase />
-                      <span className="font-semibold">{exp.company}</span>
-                    </div>
-                  </div>
-                  <div className="text-gray-500 dark:text-gray-500 space-y-1 mt-2 md:mt-0 md:text-right">
-                    <div className="flex items-center gap-2 md:justify-end">
-                      <FaCalendar />
-                      <span>{exp.period}</span>
-                    </div>
-                    <div className="flex items-center gap-2 md:justify-end">
-                      <FaMapMarkerAlt />
-                      <span>{exp.location}</span>
-                    </div>
-                  </div>
-                </div>
+                <h3 className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-4">
+                  {exp.role}
+                </h3>
 
                 <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                   {exp.description}

@@ -1,35 +1,60 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCode } from "react-icons/fa";
+import LanguageSwitcher from "./LanguageSwitcher";
+import useLanguage from "@/hooks/useLanguage";
+import { translations } from "@/lib/translations";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { language } = useLanguage();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
+  const t = translations[currentLanguage as keyof typeof translations];
+
+  useEffect(() => {
+    setCurrentLanguage(language);
+  }, [language]);
+
+  useEffect(() => {
+    const handleLanguageChange = (event) => {
+      setCurrentLanguage(event.detail);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, []);
 
   const menuItems = [
-    { name: "Ana Sayfa", href: "#home" },
-    { name: "Hakkımda", href: "#about" },
-    { name: "Deneyim", href: "#experience" },
-    { name: "Yetenekler", href: "#skills" },
-    { name: "İletişim", href: "#contact" },
+    { name: t.home, href: "/" },
+    { name: t.about, href: "/#about" },
+    { name: t.experience, href: "/experience" },
+    { name: t.projects, href: "/projects" },
+    { name: t.skills, href: "/#skills" },
+    { name: t.contact, href: "/#contact" },
   ];
 
-  const scrollToSection = (href: string) => {
+  const handleNavigation = (href: string) => {
     setIsOpen(false);
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = href;
+    }
   };
 
   return (
     <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <motion.div
+          <motion.a
+            href="/"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-2xl font-bold text-gray-900 dark:text-white"
+            className="flex items-center gap-3 text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity"
           >
             <motion.div
               whileHover={{ rotate: 360, scale: 1.1 }}
@@ -39,22 +64,23 @@ export default function Navbar() {
               <FaCode className="text-gray-900 text-xl" />
             </motion.div>
             <span>Merve Uçar</span>
-          </motion.div>
+          </motion.a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((item, index) => (
               <motion.button
                 key={item.name}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavigation(item.href)}
                 className="text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium"
               >
                 {item.name}
               </motion.button>
             ))}
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
@@ -82,12 +108,15 @@ export default function Navbar() {
               {menuItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item.href)}
                   className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium py-2"
                 >
                   {item.name}
                 </button>
               ))}
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
+                <LanguageSwitcher />
+              </div>
             </div>
           </motion.div>
         )}

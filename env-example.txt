@@ -1,0 +1,7 @@
+# MongoDB Connection
+MONGODB_URI=mongodb://localhost:27017/portfolio
+# veya MongoDB Atlas için:
+# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
+
+# GitHub API Token (opsiyonel, rate limit için)
+GITHUB_TOKEN=your_github_token_here

@@ -1,10 +1,108 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaEnvelope, FaCode, FaLaptopCode } from "react-icons/fa";
+import { FaGithub, FaEnvelope, FaCode, FaLaptopCode, FaLinkedin } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
+import { useEffect, useState } from "react";
+import useLanguage from "@/hooks/useLanguage";
+import { translations } from "@/lib/translations";
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+  const { language } = useLanguage();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
+  const t = translations[currentLanguage as keyof typeof translations];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    setCurrentLanguage(language);
+  }, [language]);
+
+  useEffect(() => {
+    const handleLanguageChange = (event) => {
+      setCurrentLanguage(event.detail);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section
+        id="home"
+        className="relative min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      >
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 mb-4 font-mono text-sm">
+                <FaCode />
+                <span>{'<developer>'}</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+                <span className="text-gray-900 dark:text-white">{t.heroGreeting}</span>
+                <br />
+                <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+                  {t.heroName}
+                </span>
+              </h1>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 h-20">
+                <span className="text-gray-700 dark:text-gray-300">{t.heroRoles[0]}</span>
+              </div>
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl">
+                {t.heroDescription}
+              </p>
+              <div className="flex flex-wrap gap-4 mb-8">
+                <a
+                  href="#contact"
+                  className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium"
+                >
+                  {t.ctaGetQuote}
+                </a>
+                <a
+                  href="/projects"
+                  className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium"
+                >
+                  {t.ctaViewProjects}
+                </a>
+              </div>
+              <div className="flex gap-4">
+                <a
+                  href="https://github.com/mucarrr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300"
+                >
+                  <FaGithub size={24} />
+                </a>
+                <a
+                  href="mailto:mucar2326@gmail.com"
+                  className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300"
+                >
+                  <FaEnvelope size={24} />
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 mt-8 font-mono text-sm">
+                <FaCode className="rotate-180" />
+                <span>{'</developer>'}</span>
+              </div>
+            </div>
+            <div className="hidden lg:block">
+              <div className="relative w-full h-96 flex items-center justify-center">
+                <div className="w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center shadow-2xl">
+                  <FaLaptopCode size={64} className="text-gray-900" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
   // Tech stack badges with icons
   const techStack = [
     { name: "React", delay: 0.2 },
@@ -76,10 +174,10 @@ export default function Hero() {
             </motion.div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-              <span className="text-gray-900 dark:text-white">Merhaba, Ben</span>
+              <span className="text-gray-900 dark:text-white">{t.heroGreeting}</span>
               <br />
               <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
-                Merve Uçar
+                {t.heroName}
               </span>
             </h1>
 
@@ -87,14 +185,12 @@ export default function Hero() {
             <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 h-20">
               <TypeAnimation
                 sequence={[
-                  "Full Stack Developer",
-                  2000,
-                  "MERN Stack Developer",
-                  2000,
-                  "React Specialist",
-                  2000,
-                  "Problem Solver",
-                  2000,
+                  t.heroRoles[0],
+                  1500,
+                  t.heroRoles[1],
+                  1500,
+                  t.heroRoles[2],
+                  1500,
                 ]}
                 wrapper="span"
                 speed={50}
@@ -103,45 +199,43 @@ export default function Hero() {
               />
             </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
-            >
-              Modern web teknolojileri ile performanslı, kullanıcı odaklı ve ölçeklenebilir
-              uygulamalar geliştiriyorum. Matematik arka planım sayesinde güçlü problem çözme
-              becerileriyle kodluyorum.
-            </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
+                >
+                  {t.heroDescription}
+                </motion.p>
 
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4 mb-8"
-            >
-              <a
-                href="#contact"
-                className="group relative px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  İletişime Geç
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="flex flex-wrap gap-4 mb-8"
+                >
+                  <a
+                    href="#contact"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium overflow-hidden"
                   >
-                    →
-                  </motion.span>
-                </span>
-              </a>
-              <a
-                href="#experience"
-                className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium hover:bg-gray-900 dark:hover:bg-amber-400 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
-              >
-                Deneyimlerim
-              </a>
-            </motion.div>
+                    <span className="relative z-10 flex items-center gap-2">
+                      {t.ctaGetQuote}
+                      <motion.span
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        →
+                      </motion.span>
+                    </span>
+                  </a>
+                  <a
+                    href="/projects"
+                    className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium hover:bg-gray-900 dark:hover:bg-amber-400 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
+                  >
+                    {t.ctaViewProjects}
+                  </a>
+                </motion.div>
 
             {/* Social Links */}
             <motion.div
@@ -167,6 +261,16 @@ export default function Hero() {
                 className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-amber-400 hover:text-gray-900 transition-all duration-300"
               >
                 <FaEnvelope size={24} />
+              </motion.a>
+              <motion.a
+                href="https://linkedin.com/in/merve-ucar"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-amber-400 hover:text-gray-900 transition-all duration-300"
+              >
+                <FaLinkedin size={24} />
               </motion.a>
             </motion.div>
 
@@ -199,7 +303,10 @@ export default function Hero() {
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center shadow-2xl"
+              className="absolute top-1/2 left-1/2 w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center shadow-2xl"
+              style={{
+                transform: 'translate(-50%, -50%)',
+              }}
             >
               <FaLaptopCode size={64} className="text-gray-900" />
             </motion.div>
@@ -207,7 +314,7 @@ export default function Hero() {
             {/* Orbiting Tech Badges */}
             {techStack.map((tech, index) => {
               const angle = (index * 360) / techStack.length;
-              const radius = 150;
+              const radius = 180;
               const x = Math.cos((angle * Math.PI) / 180) * radius;
               const y = Math.sin((angle * Math.PI) / 180) * radius;
 
@@ -217,14 +324,16 @@ export default function Hero() {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: tech.delay, duration: 0.5 }}
-                  className="absolute top-1/2 left-1/2"
+                  className="absolute"
                   style={{
-                    transform: `translate(${x - 60}px, ${y - 20}px)`,
+                    left: `calc(50% + ${x}px)`,
+                    top: `calc(50% + ${y}px)`,
+                    transform: 'translate(-50%, -50%)',
                   }}
                 >
                   <motion.div
                     animate={{
-                      y: [0, -10, 0],
+                      y: [0, -15, 0],
                     }}
                     transition={{
                       duration: 2 + index * 0.2,
@@ -254,7 +363,7 @@ export default function Hero() {
             transition={{ duration: 1.5, repeat: Infinity }}
             className="flex flex-col items-center gap-2 text-gray-500 dark:text-gray-500"
           >
-            <span className="text-sm">Aşağı Kaydır</span>
+            <span className="text-sm">{t.scrollDown}</span>
             <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full p-1">
               <motion.div
                 animate={{ y: [0, 12, 0] }}

@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import useLanguage from "@/hooks/useLanguage";
+import { translations } from "@/lib/translations";
 import {
   FaReact,
   FaNodeJs,
@@ -23,9 +25,9 @@ import {
   SiPostgresql,
 } from "react-icons/si";
 
-const skillCategories = [
+const getSkillCategories = (t: any) => [
   {
-    title: "Frontend",
+    title: t.frontend,
     skills: [
       { name: "React", icon: FaReact, color: "#61DAFB" },
       { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
@@ -38,7 +40,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Backend",
+    title: t.backend,
     skills: [
       { name: "Node.js", icon: FaNodeJs, color: "#339933" },
       { name: "Express.js", icon: SiExpress, color: "#000000" },
@@ -47,7 +49,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Araçlar & Diğer",
+    title: t.tools,
     skills: [
       { name: "Git", icon: FaGitAlt, color: "#F05032" },
       { name: "Docker", icon: FaDocker, color: "#2496ED" },
@@ -56,20 +58,38 @@ const skillCategories = [
   },
 ];
 
-const softSkills = [
-  "Problem Çözme",
-  "Takım Çalışması",
-  "Agile/Scrum",
-  "İletişim",
-  "Eleştirel Düşünme",
-  "Hızlı Öğrenme",
-  "Zaman Yönetimi",
-  "Adaptasyon",
+const getSoftSkills = (t: any) => [
+  t.problemSolving,
+  t.teamwork,
+  t.agile,
+  t.communication,
+  t.criticalThinking,
+  t.fastLearning,
+  t.timeManagement,
+  t.adaptation,
 ];
 
 export default function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { language } = useLanguage();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
+  const t = translations[currentLanguage as keyof typeof translations];
+  const skillCategories = getSkillCategories(t);
+  const softSkills = getSoftSkills(t);
+
+  useEffect(() => {
+    setCurrentLanguage(language);
+  }, [language]);
+
+  useEffect(() => {
+    const handleLanguageChange = (event) => {
+      setCurrentLanguage(event.detail);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, []);
 
   return (
     <section
@@ -84,7 +104,7 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">
-            Yeteneklerim
+            {t.skillsTitle}
           </h2>
 
           {/* Technical Skills */}
