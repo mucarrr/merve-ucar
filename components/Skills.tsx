@@ -83,8 +83,9 @@ export default function Skills() {
   }, [language]);
 
   useEffect(() => {
-    const handleLanguageChange = (event) => {
-      setCurrentLanguage(event.detail);
+    const handleLanguageChange = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      setCurrentLanguage(customEvent.detail);
     };
     
     window.addEventListener('languageChanged', handleLanguageChange);
