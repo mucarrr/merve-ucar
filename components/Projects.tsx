@@ -135,18 +135,21 @@ Projects() {
     }
   };
 
-  // Proje başlığını ve açıklamasını Türkçe'ye çevir
-  const getTurkishProject = (project: Project) => {
-    const translation = turkishTranslations[project.title];
-    if (translation) {
-      return {
-        ...project,
-        title: translation.title,
-        description: translation.description,
-        longDescription: translation.longDescription
-      };
+  // Proje başlığını ve açıklamasını dile göre çevir
+  const getTranslatedProject = (project: Project) => {
+    // Eğer dil Türkçe ise çeviri yap, değilse orijinal İngilizce'yi döndür
+    if (currentLanguage === 'tr') {
+      const translation = turkishTranslations[project.title];
+      if (translation) {
+        return {
+          ...project,
+          title: translation.title,
+          description: translation.description,
+          longDescription: translation.longDescription
+        };
+      }
     }
-    return project;
+    return project; // İngilizce için orijinal veriyi döndür
   };
 
   useEffect(() => {
@@ -273,8 +276,7 @@ Projects() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Modern teknolojilerle geliştirdiğim, kullanıcı deneyimini ön planda tutan 
-            web uygulamaları ve dijital çözümler.
+            {t.projectsDescription}
           </p>
           <div className="flex items-center justify-center gap-2 text-amber-600 dark:text-amber-400 mt-8 font-mono text-sm">
             <FaCode className="rotate-180" />
@@ -292,7 +294,7 @@ Projects() {
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => {
-              const turkishProject = getTurkishProject(project);
+              const translatedProject = getTranslatedProject(project);
               return (
               <motion.div
                 key={project._id}
@@ -304,10 +306,10 @@ Projects() {
               >
                 {/* Project Image */}
                 <div className="relative h-56 overflow-hidden">
-                  {turkishProject.image ? (
+                  {translatedProject.image ? (
                     <img
-                      src={turkishProject.image}
-                      alt={`${turkishProject.title} demo`}
+                      src={translatedProject.image}
+                      alt={`${translatedProject.title} demo`}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                   ) : (
@@ -317,10 +319,10 @@ Projects() {
                           <FaCode size={40} className="text-gray-900" />
                         </div>
                         <p className="text-gray-700 dark:text-gray-300 text-lg font-bold">
-                          {turkishProject.title}
+                          {translatedProject.title}
                         </p>
                         <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                          {turkishProject.category}
+                          {translatedProject.category}
                         </p>
                       </div>
                     </div>
@@ -333,7 +335,7 @@ Projects() {
                   {/* GitHub Icon */}
                   <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110">
                     <a
-                      href={turkishProject.githubUrl}
+                      href={translatedProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
@@ -348,13 +350,13 @@ Projects() {
                   {/* Project Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3 flex-1">
-                      <div className={`w-3 h-3 rounded-full ${getLanguageColor(turkishProject.language)} shadow-sm`}></div>
+                      <div className={`w-3 h-3 rounded-full ${getLanguageColor(translatedProject.language)} shadow-sm`}></div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                        {turkishProject.title}
+                        {translatedProject.title}
                       </h3>
                     </div>
                     {/* Featured Badge */}
-                    {turkishProject.featured && (
+                    {translatedProject.featured && (
                       <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 px-1 py-0.5 rounded-full text-xs font-normal shadow-sm ml-2 flex-shrink-0">
                         {t.featured}
                       </div>
@@ -365,13 +367,13 @@ Projects() {
                 <div className="flex flex-col flex-grow">
                   {/* Project Description */}
                   <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed flex-grow">
-                    {turkishProject.longDescription || turkishProject.description || 'Açıklama bulunmuyor.'}
+                    {translatedProject.longDescription || translatedProject.description || 'Açıklama bulunmuyor.'}
                   </p>
 
                   {/* Technologies */}
-                  {turkishProject.technologies.length > 0 && (
+                  {translatedProject.technologies.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {turkishProject.technologies.slice(0, 4).map((tech, techIndex) => (
+                      {translatedProject.technologies.slice(0, 4).map((tech, techIndex) => (
                         <span
                           key={techIndex}
                           className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm rounded-full font-medium"
@@ -385,20 +387,20 @@ Projects() {
                   {/* Category */}
                   <div className="mb-6">
                     <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full font-medium">
-                      {turkishProject.category}
+                      {translatedProject.category}
                     </span>
                   </div>
                 </div>
 
                   {/* GitHub Link Button - Always at bottom */}
                   <a
-                    href={turkishProject.githubUrl}
+                    href={translatedProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full px-4 py-3 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-700 dark:text-gray-300 rounded-2xl font-medium hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:shadow-lg hover:shadow-amber-500/20 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 mt-auto group/btn"
                   >
                     <FaGithub className="group-hover/btn:rotate-12 transition-transform duration-300" />
-                    <span>{t.viewOnGithub}</span>
+                    <span>{t.viewOnGitHub}</span>
                   </a>
                 </div>
               </motion.div>
@@ -424,7 +426,7 @@ Projects() {
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             <FaGithub size={20} />
-            GitHub Profilim
+            {t.visitProfile}
           </a>
         </motion.div>
       </div>

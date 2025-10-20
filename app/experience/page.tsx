@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata = {
-  title: "İş Deneyimlerim - Merve Uçar",
-  description: "Merve Uçar'ın web geliştirme alanındaki iş deneyimleri ve çalıştığı projeler.",
+  title: "Work Experience - Merve Uçar",
+  description: "Merve Uçar's work experience in web development and projects she has worked on.",
 };
 
 export default function ExperiencePage() {

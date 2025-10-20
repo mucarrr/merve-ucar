@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata = {
-  title: "Projelerim - Merve Uçar",
-  description: "Merve Uçar'ın geliştirdiği web projeleri ve çalışmaları.",
+  title: "My Projects - Merve Uçar",
+  description: "Web projects and works developed by Merve Uçar.",
 };
 
 export default function ProjectsPage() {

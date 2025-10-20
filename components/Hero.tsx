@@ -265,7 +265,7 @@ export default function Hero() {
                 <FaEnvelope size={24} />
               </motion.a>
               <motion.a
-                href="https://linkedin.com/in/merve-ucar"
+                href="https://www.linkedin.com/in/ucar-merve/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, rotate: 5 }}
