@@ -172,7 +172,7 @@ Projects() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('/api/projects');
+      const response = await fetch('https://myportfolio-react-yxw7.onrender.com/api/projects');
       const data = await response.json();
       
       if (data.success && data.projects) {
