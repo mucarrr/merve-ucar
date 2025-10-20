@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { FaGithub, FaCode, FaCalendar, FaStar, FaCodeBranch } from "react-icons/fa";
+import useLanguage from "@/hooks/useLanguage";
+import { translations } from "@/lib/translations";
 
 interface Project {
   _id: string;
@@ -25,6 +27,9 @@ export default function
 Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
+  const t = translations[currentLanguage as keyof typeof translations];
 
   // Türkçe çeviriler
   const turkishTranslations: { [key: string]: { title: string; description: string; longDescription: string } } = {
@@ -145,6 +150,20 @@ Projects() {
   };
 
   useEffect(() => {
+    setCurrentLanguage(language);
+  }, [language]);
+
+  useEffect(() => {
+    const handleLanguageChange = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      setCurrentLanguage(customEvent.detail);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, []);
+
+  useEffect(() => {
     fetchProjects();
   }, []);
 
@@ -187,7 +206,7 @@ Projects() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">
-            Projelerim
+            {t.projectsTitle}
           </h2>
           <div className="text-center">
             <p className="text-xl text-gray-600 dark:text-gray-400">
@@ -250,7 +269,7 @@ Projects() {
           </div>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
             <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent gradient-animate">
-              Projelerim
+              {t.projectsTitle}
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
@@ -337,7 +356,7 @@ Projects() {
                     {/* Featured Badge */}
                     {turkishProject.featured && (
                       <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 px-1 py-0.5 rounded-full text-xs font-normal shadow-sm ml-2 flex-shrink-0">
-                        Öne Çıkan
+                        {t.featured}
                       </div>
                     )}
                   </div>
@@ -379,7 +398,7 @@ Projects() {
                     className="w-full px-4 py-3 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-700 dark:text-gray-300 rounded-2xl font-medium hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:shadow-lg hover:shadow-amber-500/20 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 mt-auto group/btn"
                   >
                     <FaGithub className="group-hover/btn:rotate-12 transition-transform duration-300" />
-                    <span>GitHub'da Görüntüle</span>
+                    <span>{t.viewOnGithub}</span>
                   </a>
                 </div>
               </motion.div>
@@ -396,7 +415,7 @@ Projects() {
           className="text-center mt-16"
         >
           <p className="text-gray-600 dark:text-gray-400 mb-6 text-lg">
-            Daha fazla proje ve kod örneği için GitHub profilimi ziyaret edin
+            {t.moreProjects}
           </p>
           <a
             href="https://github.com/mucarrr"

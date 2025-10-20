@@ -161,7 +161,7 @@ export default function Skills() {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-center text-amber-600 dark:text-amber-400">
-              Kişisel Beceriler
+              {currentLanguage === 'tr' ? 'Kişisel Beceriler' : 'Soft Skills'}
             </h3>
             <div className="flex flex-wrap gap-4 justify-center">
               {softSkills.map((skill, index) => (

@@ -185,6 +185,7 @@ export default function Hero() {
             {/* Typing Animation */}
             <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 h-20">
               <TypeAnimation
+                key={currentLanguage} // Force re-render when language changes
                 sequence={[
                   t.heroRoles[0],
                   1500,

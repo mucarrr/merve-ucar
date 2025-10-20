@@ -42,8 +42,13 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Basit bir mailto link ile form gönderimi
-    const subject = `Portfolio İletişim: ${formData.name}`;
-    const body = `İsim: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0AMesaj:%0D%0A${formData.message}`;
+    const subject = currentLanguage === 'tr' 
+      ? `Portfolio İletişim: ${formData.name}`
+      : `Portfolio Contact: ${formData.name}`;
+    const nameLabel = currentLanguage === 'tr' ? 'İsim' : 'Name';
+    const emailLabel = currentLanguage === 'tr' ? 'Email' : 'Email';
+    const messageLabel = currentLanguage === 'tr' ? 'Mesaj' : 'Message';
+    const body = `${nameLabel}: ${formData.name}%0D%0A${emailLabel}: ${formData.email}%0D%0A%0D%0A${messageLabel}:%0D%0A${formData.message}`;
     window.location.href = `mailto:mucar2326@gmail.com?subject=${subject}&body=${body}`;
     setStatus("success");
     setFormData({ name: "", email: "", message: "" });
