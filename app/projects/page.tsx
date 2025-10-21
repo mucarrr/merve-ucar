@@ -4,8 +4,17 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata = {
-  title: "My Projects - Merve Uçar",
-  description: "Web projects and works developed by Merve Uçar.",
+  title: "Projelerim - Merve Uçar | Full Stack Developer",
+  description: "Modern teknolojilerle geliştirdiğim web uygulamaları ve dijital çözümler. React, Next.js, TypeScript, MERN Stack projeleri.",
+  keywords: ["Web Projeleri", "React Projeleri", "Next.js Projeleri", "Full Stack Projeler", "Portfolio"],
+  openGraph: {
+    title: "Projelerim - Merve Uçar",
+    description: "Modern teknolojilerle geliştirdiğim web uygulamaları ve dijital çözümler.",
+    type: "website",
+  },
+  alternates: {
+    canonical: '/projects',
+  },
 };
 
 export default function ProjectsPage() {

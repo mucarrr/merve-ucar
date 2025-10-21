@@ -4,8 +4,17 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata = {
-  title: "Work Experience - Merve Uçar",
-  description: "Merve Uçar's work experience in web development and projects she has worked on.",
+  title: "Deneyimlerim - Merve Uçar | Full Stack Developer",
+  description: "Web geliştirme alanındaki iş deneyimlerim ve çalıştığım projeler. MERN Stack, React, Next.js deneyimi.",
+  keywords: ["İş Deneyimi", "Web Developer Experience", "Full Stack Deneyim", "React Developer"],
+  openGraph: {
+    title: "Deneyimlerim - Merve Uçar",
+    description: "Web geliştirme alanındaki iş deneyimlerim ve çalıştığım projeler.",
+    type: "website",
+  },
+  alternates: {
+    canonical: '/experience',
+  },
 };
 
 export default function ExperiencePage() {
