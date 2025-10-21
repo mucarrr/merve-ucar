@@ -28,6 +28,20 @@ export const metadata: Metadata = {
     title: "Merve Uçar - Full Stack Developer",
     description: "Full Stack Developer - MERN Stack, Next.js, TypeScript",
     type: "website",
+    images: [
+      {
+        url: "/favicon.svg",
+        width: 32,
+        height: 32,
+        alt: "Merve Uçar Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Merve Uçar - Full Stack Developer",
+    description: "Full Stack Developer - MERN Stack, Next.js, TypeScript",
+    images: ["/favicon.svg"],
   },
 };
 
