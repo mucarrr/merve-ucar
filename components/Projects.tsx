@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { FaGithub, FaCode, FaCalendar, FaStar, FaCodeBranch } from "react-icons/fa";
+import { FaGithub, FaCode, FaCalendar, FaStar, FaCodeBranch, FaHourglassHalf } from "react-icons/fa";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/lib/translations";
 
@@ -27,9 +27,14 @@ export default function
 Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const { language } = useLanguage();
   const [currentLanguage, setCurrentLanguage] = useState(language);
   const t = translations[currentLanguage as keyof typeof translations];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Türkçe çeviriler
   const turkishTranslations: { [key: string]: { title: string; description: string; longDescription: string } } = {
@@ -157,16 +162,6 @@ Projects() {
   }, [language]);
 
   useEffect(() => {
-    const handleLanguageChange = (event: Event) => {
-      const customEvent = event as CustomEvent;
-      setCurrentLanguage(customEvent.detail);
-    };
-    
-    window.addEventListener('languageChanged', handleLanguageChange);
-    return () => window.removeEventListener('languageChanged', handleLanguageChange);
-  }, []);
-
-  useEffect(() => {
     fetchProjects();
   }, []);
 
@@ -204,23 +199,6 @@ Projects() {
     }
   };
 
-  if (loading) {
-    return (
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">
-            {t.projectsTitle}
-          </h2>
-          <div className="text-center">
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              Projeler yükleniyor... 🚀
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   // Floating shapes - Hero'daki ile aynı
   const shapes = [
     { size: 100, x: "10%", y: "20%", delay: 0 },
@@ -229,6 +207,77 @@ Projects() {
     { size: 120, x: "75%", y: "75%", delay: 0.7 },
     { size: 60, x: "50%", y: "10%", delay: 1.2 },
   ];
+
+  // Loading state için de currentLanguage güncellenmesini bekle
+  useEffect(() => {
+    const handleLanguageChange = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      setCurrentLanguage(customEvent.detail);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, []);
+
+  if (loading || !mounted) {
+    return (
+      <section className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-f8f7f4 dark:bg-gray-950 min-h-screen overflow-hidden">
+        {/* Animated Background Shapes */}
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          {shapes.map((shape, index) => (
+            <motion.div
+              key={index}
+              className="absolute rounded-full bg-gradient-to-br from-amber-400/30 to-orange-500/30 backdrop-blur-3xl"
+              style={{
+                width: shape.size,
+                height: shape.size,
+                left: shape.x,
+                top: shape.y,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                x: [0, 10, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 5 + index,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: shape.delay,
+              }}
+            />
+          ))}
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <FaCode className="text-4xl text-amber-500" />
+              <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+                {mounted ? t.projectsTitle : 'Projects'}
+              </h1>
+            </div>
+          </motion.div>
+
+          <div className="text-center flex flex-col items-center gap-4 py-20">
+            <motion.div
+              animate={{ rotate: 180 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            >
+              <FaHourglassHalf className="text-5xl text-amber-500" />
+            </motion.div>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              {mounted ? t.projectsLoading : 'Loading...'}
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-f8f7f4 dark:bg-gray-950 min-h-screen overflow-hidden">
