@@ -118,9 +118,9 @@ export default function Hero() {
   // Floating shapes
   const shapes = [
     { size: 100, x: "10%", y: "20%", delay: 0 },
-    { size: 150, x: "80%", y: "15%", delay: 0.5 },
+    { size: 150, x: "75%", y: "15%", delay: 0.5 },
     { size: 80, x: "15%", y: "70%", delay: 1 },
-    { size: 120, x: "85%", y: "75%", delay: 0.7 },
+    { size: 120, x: "75%", y: "75%", delay: 0.7 },
     { size: 60, x: "50%", y: "10%", delay: 1.2 },
   ];
 
