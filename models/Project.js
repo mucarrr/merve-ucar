@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const ProjectSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     required: true,
   },
@@ -9,7 +9,11 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
-  html_url: {
+  longDescription: {
+    type: String,
+    default: '',
+  },
+  githubUrl: {
     type: String,
     required: true,
   },
@@ -17,34 +21,34 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     default: 'JavaScript',
   },
-  updated_at: {
-    type: Date,
-    required: true,
+  updatedAt: {
+    type: String,
+    default: new Date().toISOString(),
   },
-  topics: [{
+  technologies: [{
     type: String,
   }],
-  gif_url: {
+  image: {
     type: String,
     default: '',
   },
-  homepage: {
+  liveUrl: {
     type: String,
     default: '',
   },
-  stargazers_count: {
-    type: Number,
-    default: 0,
-  },
-  forks_count: {
-    type: Number,
-    default: 0,
-  },
-  is_featured: {
+  featured: {
     type: Boolean,
     default: false,
   },
-  created_at: {
+  category: {
+    type: String,
+    default: '',
+  },
+  order: {
+    type: Number,
+    default: 0,
+  },
+  createdAt: {
     type: Date,
     default: Date.now,
   },

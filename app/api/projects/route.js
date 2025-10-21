@@ -15,6 +15,10 @@ export async function GET() {
     const db = client.db(MONGODB_DB);
     const projects = await db.collection('projects').find({}).sort({ order: 1 }).toArray();
     
+    console.log('🔍 API Debug - İlk 3 proje:');
+    console.log(projects.slice(0, 3).map(p => ({ title: p.title, order: p.order })));
+    console.log('📊 Toplam proje sayısı:', projects.length);
+    
     await client.close();
     
     return Response.json({ success: true, projects });

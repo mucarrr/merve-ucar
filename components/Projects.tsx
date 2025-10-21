@@ -36,123 +36,114 @@ Projects() {
     setMounted(true);
   }, []);
 
-  // Türkçe çeviriler
+  // Türkçe çeviriler - Yeni projeler
   const turkishTranslations: { [key: string]: { title: string; description: string; longDescription: string } } = {
-    'Education Website Udemig': {
-      title: 'Eğitim Platformu Udemig',
-      description: 'Kurs yönetimi ile eğitim platformu.',
-      longDescription: 'Kurs listeleri, kullanıcı kaydı ve öğrenme yönetim sistemi ile kapsamlı eğitim web sitesi. Modern web teknolojileri ile geliştirildi.'
+    'Premium Car Rental Service': {
+      title: 'Premium Araç Kiralama Hizmeti',
+      description: 'Kolay rezervasyon ve güvenli ödemeli modern araç kiralama platformu',
+      longDescription: 'TypeScript ile geliştirilmiş modern araç kiralama platformu. Kullanıcılar kolayca araç arayabilir, rezervasyon yapabilir ve güvenli ödeme gerçekleştirebilir. Responsive tasarım ve kullanıcı dostu arayüz.'
     },
-    'Map Integration App': {
-      title: 'Harita Entegrasyon Uygulaması',
-      description: 'Konum servisleri ile interaktif harita uygulaması.',
-      longDescription: 'Konum takibi, işaretçiler ve rota planlama ile interaktif harita uygulaması. Gerçek zamanlı konum güncellemeleri ve özel işaretçiler içerir.'
+    'Smart QR Menu System': {
+      title: 'Akıllı QR Menü Sistemi',
+      description: 'QR kod teknolojisi ile temassız dijital menü sistemi',
+      longDescription: 'QR kod teknolojisi kullanarak restoranların dijital menü sistemini oluşturan uygulama. Müşteriler QR kod okutarak menüyü görüntüleyebilir ve sipariş verebilir. Temassız hizmet deneyimi sunar.'
     },
-    'MERN Stack Post Actions': {
-      title: 'MERN Stack Sosyal Medya',
-      description: 'MERN stack ile sosyal medya platformu.',
-      longDescription: 'Gönderiler, beğeniler, yorumlar ve kullanıcı etkileşimleri ile tam özellikli sosyal medya platformu. Tam MERN stack ile geliştirildi.'
+    'Complete Restaurant Management': {
+      title: 'Komple Restoran Yönetimi',
+      description: 'Stok ve müşteri takipli kapsamlı restoran yönetim sistemi',
+      longDescription: 'Restoranlar için geliştirilmiş kapsamlı yönetim sistemi. Sipariş yönetimi, stok takibi, müşteri veritabanı ve raporlama özellikleri içerir. Modern web teknolojileri ile geliştirildi.'
     },
-    'Filmboxx Movie Website': {
-      title: 'Filmboxx Film Sitesi',
-      description: 'Gelişmiş film izleme platformu.',
-      longDescription: 'Kullanıcı kimlik doğrulama, film önerileri ve izleme özellikleri ile sofistike film izleme platformu. Modern web teknolojileri ile geliştirildi.'
+    'Property Search Platform': {
+      title: 'Emlak Arama Platformu',
+      description: 'Akıllı arama ve gelişmiş filtreleme ile emlak platformu',
+      longDescription: 'Emlak sektörü için geliştirilmiş modern platform. Akıllı arama algoritmaları, gelişmiş filtreleme seçenekleri ve harita entegrasyonu ile kullanıcıların ideal evlerini bulmasını kolaylaştırır.'
     },
-    'Job Application Tracker Redux': {
-      title: 'İş Başvuru Takip Sistemi',
-      description: 'Redux ile iş başvuru yönetim sistemi.',
-      longDescription: 'Durum yönetimi, mülakat planlama ve ilerleme takibi ile kapsamlı iş başvuru takip sistemi. Durum yönetimi için Redux ile geliştirildi.'
+    'Modern E-commerce Store': {
+      title: 'Modern E-ticaret Mağazası',
+      description: 'Güvenli ödeme ve hızlı teslimat ile tam donanımlı online mağaza',
+      longDescription: 'Modern e-ticaret deneyimi sunan kapsamlı online mağaza. Güvenli ödeme sistemleri, stok yönetimi, kullanıcı hesapları ve sipariş takibi özellikleri ile tam donanımlı e-ticaret çözümü.'
     },
-    'E-commerce Website React': {
-      title: 'E-ticaret Sitesi React',
-      description: 'React ve Redux ile modern e-ticaret platformu.',
-      longDescription: 'Alışveriş sepeti, kullanıcı kimlik doğrulama, ürün yönetimi ve ödeme işleme ile özellik açısından zengin e-ticaret web sitesi. Durum yönetimi için React ve Redux ile geliştirildi.'
+    'Interactive Learning Platform': {
+      title: 'İnteraktif Öğrenme Platformu',
+      description: 'İnteraktif dersler ve ilerleme takipli online eğitim platformu',
+      longDescription: 'Öğrenciler ve eğitmenler için tasarlanmış kapsamlı online eğitim platformu. Video dersler, quizler, ödev sistemi ve detaylı ilerleme raporları ile modern eğitim deneyimi sunar.'
     },
-    'E-commerce Webpage': {
-      title: 'E-ticaret Web Sayfası',
-      description: 'Modern tasarım ile responsive e-ticaret web sitesi.',
-      longDescription: 'Ürün kataloğu, alışveriş sepeti ve kullanıcı kimlik doğrulama ile güzel ve responsive e-ticaret web sitesi. Modern web teknolojileri ile geliştirildi.'
+    'Ice Cream Business Manager': {
+      title: 'Dondurma İşletme Yöneticisi',
+      description: 'Ürün ve sipariş takipli dondurma dükkanı yönetim sistemi',
+      longDescription: 'Dondurma dükkanları için özel olarak tasarlanmış yönetim sistemi. Ürün kataloğu, sipariş yönetimi, müşteri takibi ve satış raporları ile işletme verimliliğini artırır.'
     },
-    'Tour Project Backend': {
-      title: 'Tur Projesi Backend',
-      description: 'Tur rezervasyon platformu için backend API.',
-      longDescription: 'Kullanıcı kimlik doğrulama, tur yönetimi ve rezervasyon sistemi ile tur rezervasyon için sağlam backend sistemi.'
+    'Premium Shoe Store': {
+      title: 'Premium Ayakkabı Mağazası',
+      description: 'Gelişmiş filtrelerle modern ayakkabı alışveriş deneyimi',
+      longDescription: 'Ayakkabı severler için tasarlanmış modern e-ticaret platformu. Gelişmiş filtreleme, ürün karşılaştırma ve güvenli ödeme seçenekleri ile mükemmel alışveriş deneyimi sunar.'
     },
-    'Film Website': {
-      title: 'Film Web Sitesi',
-      description: 'Film veritabanı ve bilgi web sitesi.',
-      longDescription: 'Film veritabanı, puanlar, incelemeler ve kullanıcı etkileşimleri ile kapsamlı film web sitesi. Arama, filtreleme ve detaylı film bilgileri özelliklerini içerir.'
+    'Professional Tech Services': {
+      title: 'Profesyonel Teknoloji Hizmetleri',
+      description: 'Teknoloji hizmet şirketleri için kurumsal web sitesi',
+      longDescription: 'Teknoloji şirketleri için profesyonel kurumsal web sitesi. Hizmet tanıtımları, proje portföyü, iletişim formları ve modern tasarım ile güvenilir kurumsal imaj oluşturur.'
     },
-    'Recipe App Fullstack': {
-      title: 'Tarif Uygulaması Fullstack',
-      description: 'Full-stack tarif paylaşım platformu.',
-      longDescription: 'Kullanıcı kimlik doğrulama, tarif yönetimi ve sosyal özellikler ile kapsamlı tarif paylaşım platformu.'
+    'Fast Food Delivery App': {
+      title: 'Hızlı Yemek Teslimat Uygulaması',
+      description: 'Gerçek zamanlı takip ve hızlı teslimatla yemek sipariş platformu',
+      longDescription: 'Restoranlar ve müşteriler arasında köprü kuran yemek sipariş platformu. Gerçek zamanlı sipariş takibi, güvenli ödeme ve hızlı teslimat seçenekleri ile modern yemek sipariş deneyimi.'
     },
-    'Gmail Clone': {
-      title: 'Gmail Klonu',
-      description: 'Gmail benzeri arayüz ile e-posta istemci uygulaması.',
-      longDescription: 'Gelen kutusu yönetimi, e-posta oluşturma ve gerçek zamanlı güncellemeler ile Gmail ilhamlı tasarıma sahip modern e-posta istemcisi.'
+    'Smart Hotel Reservation': {
+      title: 'Akıllı Otel Rezervasyonu',
+      description: 'Dinamik fiyatlandırma ve kolay rezervasyon ile otel sistemi',
+      longDescription: 'Otel işletmeleri için geliştirilmiş rezervasyon yönetim sistemi. Oda müsaitlik takibi, dinamik fiyatlandırma, müşteri yönetimi ve detaylı raporlama özellikleri ile kapsamlı çözüm.'
     },
-    'Hotel App TanStack': {
-      title: 'Otel Uygulaması TanStack',
-      description: 'TanStack Query ile otel rezervasyon uygulaması.',
-      longDescription: 'Gerçek zamanlı müsaitlik, rezervasyon yönetimi ve kullanıcı kimlik doğrulama ile modern otel rezervasyon platformu. Verimli veri yönetimi için TanStack Query ile geliştirildi.'
+    'Video Sharing Network': {
+      title: 'Video Paylaşım Ağı',
+      description: 'YouTube benzeri modern arayüzlü video platformu',
+      longDescription: 'YouTube benzeri video paylaşım ve izleme platformu. Video yükleme, kategorilere ayırma, beğeni/yorum sistemi ve kullanıcı kanalları ile kapsamlı video deneyimi sunar.'
     },
-    'Car Rental TypeScript': {
-      title: 'Araç Kiralama TypeScript',
-      description: 'TypeScript ile full-stack araç kiralama uygulaması.',
-      longDescription: 'Kullanıcı kimlik doğrulama, araç rezervasyon sistemi, ödeme entegrasyonu ve admin paneli ile tam araç kiralama platformu. Modern TypeScript stack ile geliştirildi.'
+    'Travel Map API Service': {
+      title: 'Seyahat Haritası API Servisi',
+      description: 'Konum ve rota yönetimi için backend servisi',
+      longDescription: 'Seyahat uygulamaları için geliştirilmiş backend servisi. Konum veritabanı, rota hesaplama, gezi planlama ve kullanıcı etkileşimleri için API servisleri sunar.'
     },
-    'JS Issue Tracker': {
-      title: 'JS Sorun Takip Sistemi',
-      description: 'Sorun takibi ve proje yönetim aracı.',
-      longDescription: 'Proje yönetimi, hata takibi ve ekip işbirliği özellikleri ile yazılım geliştirme ekipleri için güçlü sorun takip sistemi.'
+    'Live Chat Messenger': {
+      title: 'Canlı Sohbet Messenger',
+      description: 'WebSocket teknolojisi ile gerçek zamanlı mesajlaşma',
+      longDescription: 'WebSocket teknolojisi kullanarak geliştirilmiş gerçek zamanlı mesajlaşma uygulaması. Anlık mesaj gönderimi, grup sohbetleri, dosya paylaşımı ve kullanıcı durumu takibi özellikleri.'
     },
-    'Chat App WebSocket': {
-      title: 'WebSocket Chat Uygulaması',
-      description: 'WebSocket teknolojisi ile gerçek zamanlı sohbet.',
-      longDescription: 'Anlık mesajlaşma için WebSocket ile geliştirilmiş gerçek zamanlı sohbet uygulaması. Özel sohbetler, grup mesajlaşması ve gerçek zamanlı bildirimler özelliklerini içerir.'
+    'Social Recipe Network': {
+      title: 'Sosyal Tarif Ağı',
+      description: 'Sosyal özelliklerle tarif paylaşım platformu',
+      longDescription: 'Yemek severler için tasarlanmış tarif paylaşım platformu. Tarif yayınlama, kategorilere ayırma, beğeni sistemi, yorumlar ve kullanıcı profilleri ile sosyal yemek deneyimi.'
     },
-    'Admin Dashboard Next.js': {
-      title: 'Admin Dashboard Next.js',
-      description: 'Next.js ve TypeScript ile modern admin dashboard.',
-      longDescription: 'Kullanıcı yönetimi, analitik, veri görselleştirme ve responsive tasarım özellikleri ile kapsamlı admin dashboard. Next.js 14, TypeScript ve modern UI bileşenleri ile geliştirildi.'
+    'COVID-19 Data Tracker': {
+      title: 'COVID-19 Veri Takipçisi',
+      description: 'Gerçek zamanlı pandemi verisi görselleştirme haritası',
+      longDescription: 'COVID-19 salgın verilerini görselleştiren interaktif harita uygulaması. Gerçek zamanlı veri güncellemeleri, bölgesel istatistikler ve trend analizleri ile kapsamlı salgın takibi.'
     },
-    'Fiverr Clone Fullstack': {
-      title: 'Fiverr Klonu Fullstack',
-      description: 'Full-stack freelance pazar yeri platformu.',
-      longDescription: 'Kullanıcı profilleri, hizmet listeleri, mesajlaşma sistemi ve ödeme entegrasyonu ile Fiverr benzeri tam freelance pazar yeri.'
+    'Business Admin Panel': {
+      title: 'İşletme Yönetim Paneli',
+      description: 'Analitik ve raporlamalı kapsamlı yönetim paneli',
+      longDescription: 'İşletmeler için geliştirilmiş kapsamlı yönetim paneli. Kullanıcı yönetimi, veri analizi, raporlama, sistem ayarları ve gerçek zamanlı dashboard ile tam kontrol sağlar.'
     },
-    'Travel Map Backend': {
-      title: 'Seyahat Haritası Backend',
-      description: 'Seyahat haritalama uygulaması için backend.',
-      longDescription: 'Konum servisleri, rota planlama ve seyahat önerileri ile seyahat haritalama için backend servisi.'
+    'React Shopping Store': {
+      title: 'React Alışveriş Mağazası',
+      description: 'Kusursuz kullanıcı deneyimli modern e-ticaret',
+      longDescription: 'React teknolojisi ile geliştirilmiş modern e-ticaret mağazası. Responsive tasarım, hızlı yükleme, güvenli ödeme ve kullanıcı dostu arayüz ile mükemmel alışveriş deneyimi.'
     },
-    'Car Project Backend': {
-      title: 'Araç Projesi Backend',
-      description: 'Araç kiralama sistemi için backend.',
-      longDescription: 'Rezervasyon yönetimi, kullanıcı kimlik doğrulama ve ödeme işleme ile araç kiralama için backend servisi.'
+    'Online Bookstore Hub': {
+      title: 'Online Kitap Mağazası Merkezi',
+      description: 'Akıllı önerilerle kitap pazarı',
+      longDescription: 'Kitap severler için tasarlanmış kapsamlı online mağaza. Geniş kitap kataloğu, akıllı öneri sistemi, yazar bilgileri ve kullanıcı yorumları ile zengin kitap alışveriş deneyimi.'
     },
-    'Guitar Worlds': {
-      title: 'Gitar Dünyaları',
-      description: 'Gitar mağazası ve öğrenme platformu.',
-      longDescription: 'Ürün kataloğu, dersler ve topluluk özellikleri ile kapsamlı gitar mağazası web sitesi. Gitar meraklıları için geliştirildi.'
-    }
   };
 
-  // Proje başlığını ve açıklamasını dile göre çevir
-  const getTranslatedProject = (project: Project) => {
-    // Eğer dil Türkçe ise çeviri yap, değilse orijinal İngilizce'yi döndür
-    if (currentLanguage === 'tr') {
-      const translation = turkishTranslations[project.title];
-      if (translation) {
-        return {
-          ...project,
-          title: translation.title,
-          description: translation.description,
-          longDescription: translation.longDescription
-        };
-      }
+  const getTranslatedProject = (project: Project, lang: string) => {
+    if (lang === 'tr' && turkishTranslations[project.title]) {
+      const translated = turkishTranslations[project.title];
+      return {
+        ...project,
+        title: translated.title,
+        description: translated.description,
+        longDescription: translated.longDescription,
+      };
     }
     return project; // İngilizce için orijinal veriyi döndür
   };
@@ -169,33 +160,11 @@ Projects() {
     try {
       const response = await fetch('/api/projects');
       const data = await response.json();
-      
-      if (data.success && data.projects) {
-        setProjects(data.projects);
-      } else {
-        throw new Error('API response error');
-      }
+      setProjects(data.projects);
     } catch (error) {
-      console.error('Error fetching projects:', error);
+      console.error("Failed to fetch projects:", error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const getLanguageColor = (language: string) => {
-    switch (language) {
-      case "TypeScript":
-        return "bg-blue-500";
-      case "JavaScript":
-        return "bg-yellow-500";
-      case "React":
-        return "bg-cyan-500";
-      case "Next.js":
-        return "bg-gray-800";
-      case "Node.js":
-        return "bg-green-500";
-      default:
-        return "bg-gray-500";
     }
   };
 
@@ -310,172 +279,126 @@ Projects() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-2 text-amber-600 dark:text-amber-400 mb-4 font-mono text-sm">
             <FaCode />
             <span>{'<projects>'}</span>
           </div>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent gradient-animate">
-              {t.projectsTitle}
-            </span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t.projectsTitle}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t.projectsDescription}
           </p>
-          <div className="flex items-center justify-center gap-2 text-amber-600 dark:text-amber-400 mt-8 font-mono text-sm">
-            <FaCode className="rotate-180" />
-            <span>{'</projects>'}</span>
-          </div>
         </motion.div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => {
+            const translatedProject = getTranslatedProject(project, currentLanguage);
+            const updatedAt = new Date(project.updatedAt).toLocaleDateString(currentLanguage === 'tr' ? 'tr-TR' : 'en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            });
 
-        {projects.length === 0 ? (
-          <div className="text-center">
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
-              Henüz proje bulunamadı.
-            </p>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => {
-              const translatedProject = getTranslatedProject(project);
-              return (
+            return (
               <motion.div
                 key={project._id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md p-0 rounded-3xl shadow-xl hover:shadow-2xl hover:shadow-amber-500/25 transition-all duration-500 border border-white/20 dark:border-gray-800/50 group flex flex-col h-full overflow-hidden"
+                className="bg-gradient-to-br from-white/90 to-amber-50/50 dark:from-gray-800/90 dark:to-gray-900/50 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-amber-200/30 dark:border-amber-700/30 overflow-hidden flex flex-col h-full"
               >
-                {/* Project Image */}
-                <div className="relative h-56 overflow-hidden">
-                  {translatedProject.image ? (
+                <div className="relative h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+                  {project.image ? (
                     <img
-                      src={translatedProject.image}
-                      alt={`${translatedProject.title} demo`}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      src={project.image}
+                      alt={translatedProject.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-amber-100 via-orange-100 to-amber-200 dark:from-amber-900/30 dark:via-orange-900/30 dark:to-amber-800/30 flex items-center justify-center">
-                      <div className="text-center p-6">
-                        <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                          <FaCode size={40} className="text-gray-900" />
-                        </div>
-                        <p className="text-gray-700 dark:text-gray-300 text-lg font-bold">
-                          {translatedProject.title}
-                        </p>
-                        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                          {translatedProject.category}
-                        </p>
+                    <div className="text-center p-6">
+                      <div className="text-gray-500 dark:text-gray-400 text-6xl mb-4">
+                        <FaCode />
                       </div>
+                      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        {translatedProject.title}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {project.category}
+                      </p>
                     </div>
                   )}
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  
-                  {/* GitHub Icon */}
-                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110">
+                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-start mb-3">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white flex-1">
+                      {translatedProject.title}
+                    </h3>
+                    {project.featured && (
+                      <span className="ml-2 px-1.5 py-0.5 rounded-full text-xs font-normal bg-amber-500 text-white flex-shrink-0">
+                        {t.featured}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow">
+                    {translatedProject.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {translatedProject.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm font-medium text-gray-700 dark:text-gray-200"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6">
+                    <FaCalendar className="mr-2" />
+                    <span>{updatedAt}</span>
+                  </div>
+                  <div className="flex gap-4 mt-auto">
                     <a
-                      href={translatedProject.githubUrl}
+                      href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+                      className="flex-1 flex items-center justify-center px-6 py-3 bg-gray-800 text-white rounded-full font-medium hover:bg-gradient-to-r from-amber-400 to-orange-500 hover:text-gray-900 transition-all duration-300 shadow-md hover:shadow-amber-500/20 group"
                     >
-                      <FaGithub size={18} />
+                      <motion.div
+                        className="flex items-center"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <FaGithub className="mr-2" />
+                        <span>{t.viewOnGitHub}</span>
+                      </motion.div>
                     </a>
                   </div>
                 </div>
-
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  {/* Project Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3 flex-1">
-                      <div className={`w-3 h-3 rounded-full ${getLanguageColor(translatedProject.language)} shadow-sm`}></div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                        {translatedProject.title}
-                      </h3>
-                    </div>
-                    {/* Featured Badge */}
-                    {translatedProject.featured && (
-                      <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 px-1 py-0.5 rounded-full text-xs font-normal shadow-sm ml-2 flex-shrink-0">
-                        {t.featured}
-                      </div>
-                    )}
-                  </div>
-
-                {/* Project Content - Flex grow to push button to bottom */}
-                <div className="flex flex-col flex-grow">
-                  {/* Project Description */}
-                  <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed flex-grow">
-                    {translatedProject.longDescription || translatedProject.description || 'Açıklama bulunmuyor.'}
-                  </p>
-
-                  {/* Technologies */}
-                  {translatedProject.technologies.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {translatedProject.technologies.slice(0, 4).map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm rounded-full font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Category */}
-                  <div className="mb-6">
-                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full font-medium">
-                      {translatedProject.category}
-                    </span>
-                  </div>
-                </div>
-
-                  {/* GitHub Link Button - Always at bottom */}
-                  <a
-                    href={translatedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full px-4 py-3 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-700 dark:text-gray-300 rounded-2xl font-medium hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:shadow-lg hover:shadow-amber-500/20 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 mt-auto group/btn"
-                  >
-                    <FaGithub className="group-hover/btn:rotate-12 transition-transform duration-300" />
-                    <span>{t.viewOnGitHub}</span>
-                  </a>
-                </div>
               </motion.div>
-              );
-            })}
-          </div>
-        )}
+            );
+          })}
+        </div>
 
-        {/* GitHub Profile Link */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: projects.length * 0.1 + 0.2 }}
           className="text-center mt-16"
         >
-          <p className="text-gray-600 dark:text-gray-400 mb-6 text-lg">
-            {t.moreProjects}
-          </p>
           <a
             href="https://github.com/mucarrr"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <FaGithub size={20} />
-            {t.visitProfile}
+            <FaGithub className="mr-3" />
+            {t.moreProjects}
           </a>
         </motion.div>
       </div>
