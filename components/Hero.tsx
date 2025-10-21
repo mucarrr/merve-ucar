@@ -36,7 +36,7 @@ export default function Hero() {
     return (
       <section
         id="home"
-        className="relative min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center pt-12 sm:pt-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
       >
         <div className="max-w-7xl mx-auto w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -127,7 +127,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-20 sm:pt-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Animated Background Shapes */}
       <div className="absolute inset-0 -z-10">
@@ -143,7 +143,7 @@ export default function Hero() {
             }}
             animate={{
               y: [0, -30, 0],
-              x: [0, 15, 0],
+              x: [0, 10, 0],
               scale: [1, 1.1, 1],
             }}
             transition={{
@@ -156,7 +156,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="w-full max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Main Content */}
           <motion.div
@@ -354,29 +354,30 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 text-gray-500 dark:text-gray-500"
-          >
-            <span className="text-sm">{t.scrollDown}</span>
-            <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full p-1">
-              <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-1.5 h-3 bg-amber-500 rounded-full mx-auto"
-              />
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Scroll Indicator - Dışarıda */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="flex flex-col items-center gap-2 text-gray-500 dark:text-gray-500"
+        >
+          <span className="text-sm">{t.scrollDown}</span>
+          <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full p-1">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-1.5 h-3 bg-amber-500 rounded-full mx-auto"
+            />
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

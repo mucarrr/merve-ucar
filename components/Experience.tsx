@@ -116,7 +116,7 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="relative py-20 px-4 sm:px-6 lg:px-8 bg-f8f7f4 dark:bg-gray-950 min-h-screen overflow-hidden"
+      className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-f8f7f4 dark:bg-gray-950 min-h-screen overflow-hidden"
     >
       {/* Animated Background Shapes - Hero'daki ile birebir aynı */}
       <div className="absolute inset-0 -z-10">
@@ -132,7 +132,7 @@ export default function Experience() {
             }}
             animate={{
               y: [0, -30, 0],
-              x: [0, 15, 0],
+              x: [0, 10, 0],
               scale: [1, 1.1, 1],
             }}
             transition={{
