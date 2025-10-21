@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaCode } from "react-icons/fa";
+import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/lib/translations";
@@ -62,7 +62,7 @@ export default function Navbar() {
               transition={{ duration: 0.6 }}
               className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center shadow-md"
             >
-              <FaCode className="text-gray-900 text-xl" />
+              <Image src="/logo.svg" alt="Logo" width={20} height={20} className="text-gray-900" />
             </motion.div>
             <span>Merve Uçar</span>
           </motion.a>

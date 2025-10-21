@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaEnvelope, FaCode, FaLaptopCode, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaEnvelope, FaLinkedin, FaCode } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/lib/translations";
 
@@ -95,7 +96,7 @@ export default function Hero() {
             <div className="hidden lg:block">
               <div className="relative w-full h-96 flex items-center justify-center">
                 <div className="w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center shadow-2xl">
-                  <FaLaptopCode size={64} className="text-gray-900" />
+                  <Image src="/laptop.svg" alt="Laptop" width={64} height={64} className="text-gray-900" />
                 </div>
               </div>
             </div>
@@ -310,7 +311,7 @@ export default function Hero() {
                 transform: 'translate(-50%, -50%)',
               }}
             >
-              <FaLaptopCode size={64} className="text-gray-900" />
+              <Image src="/laptop.svg" alt="Laptop" width={64} height={64} className="text-gray-900" />
             </motion.div>
 
             {/* Orbiting Tech Badges */}
