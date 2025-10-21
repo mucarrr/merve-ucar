@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Merve Uçar - Full Stack Developer",
-  description: "Junior Full Stack Developer - MERN Stack, Next.js, TypeScript, React ve modern web teknolojileri ile web uygulamaları geliştiriyorum.",
+  description: "Full Stack Developer - MERN Stack, Next.js, TypeScript, React ve modern web teknolojileri ile web uygulamaları geliştiriyorum.",
   keywords: ["Full Stack Developer", "MERN Stack", "Next.js", "React", "TypeScript", "Node.js", "MongoDB"],
   authors: [{ name: "Merve Uçar" }],
   icons: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Merve Uçar - Full Stack Developer",
-    description: "Junior Full Stack Developer - MERN Stack, Next.js, TypeScript",
+    description: "Full Stack Developer - MERN Stack, Next.js, TypeScript",
     type: "website",
   },
 };
