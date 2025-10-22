@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/_next/', '/admin/'],
     },
-    sitemap: 'https://merve-ucar.vercel.app/sitemap.xml',
+    sitemap: 'https://merveucar.dev/sitemap.xml',
   };
 }
 
