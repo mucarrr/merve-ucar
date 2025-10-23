@@ -46,21 +46,49 @@ export default function Navbar() {
 
   const menuItems = [
     { name: t.home, href: "/" },
-    { name: t.about, href: "/#about" },
+    { name: t.about, href: "#about" },
     { name: t.experience, href: "/experience" },
     { name: t.projects, href: "/projects" },
-    { name: t.skills, href: "/#skills" },
-    { name: t.contact, href: "/#contact" },
+    { name: t.skills, href: "#skills" },
+    { name: t.contact, href: "#contact" },
   ];
 
   const handleNavigation = (href: string) => {
+    const wasOpen = isOpen;
     setIsOpen(false);
-    if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = href;
+    // "#section" ve "/#section" durumlarını normalize et
+    const isHashLink = href.startsWith('#') || href.startsWith('/#');
+    if (isHashLink) {
+      const id = href.replace('/#', '#');
+      // Anasayfada değilsek doğrudan '/#id' ile anasayfaya git
+      if (window.location.pathname !== '/') {
+        window.location.href = `/${id}`; // '/#about' gibi
+        return;
+      }
+      // Anasayfadaysak smooth scroll + offset uygula
+      const doScroll = () => {
+        const element = document.querySelector(id);
+        if (element) {
+          const navbarHeight = 64; // h-16
+          const rect = (element as HTMLElement).getBoundingClientRect();
+          const absoluteY = window.scrollY + rect.top - navbarHeight - 8;
+          window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+        } else {
+          window.location.hash = id.substring(1);
+        }
+      };
+      // Mobilde menü kapanış animasyonu sonrasına ertele
+      if (wasOpen) {
+        setTimeout(() => {
+          // iki kere rAF ile layout otursun
+          requestAnimationFrame(() => requestAnimationFrame(doScroll));
+        }, 220); // exit animasyonu ~200ms
+      } else {
+        doScroll();
+      }
+      return;
     }
+    window.location.href = href;
   };
 
   return (
@@ -136,7 +164,7 @@ export default function Navbar() {
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href)}
-                    className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium py-2"
+                    className="block w-full text-left text-gray-700 dark:text-gray-300 md:hover:text-amber-500 md:dark:hover:text-amber-400 transition-colors font-medium py-2 focus:outline-none"
                   >
                     {item.name}
                   </button>

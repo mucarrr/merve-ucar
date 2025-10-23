@@ -96,7 +96,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50"
+      className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
