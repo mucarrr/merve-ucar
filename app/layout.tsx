@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
+  verification: {
+    google: "3y5tXxF34nFYZe_KVWKuYy_v2iAiDuJYSL1Cfp2dmqU",
+  },
   openGraph: {
     title: "Merve Uçar - Full Stack Developer",
     description: "Full Stack Developer - MERN Stack, Next.js, TypeScript",
