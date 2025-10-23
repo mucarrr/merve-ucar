@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Cover - Merve Uçar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f2ef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .cover-container {
+            width: 1128px;
+            height: 300px;
+            background: #f8f7f4;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Geometric shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(249, 115, 22, 0.3));
+            backdrop-filter: blur(10px);
+        }
+
+        .shape-1 {
+            width: 120px;
+            height: 120px;
+            top: 20px;
+            right: 80px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 80px;
+            height: 80px;
+            bottom: 30px;
+            right: 200px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            right: 40px;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        /* Code elements */
+        .code-element {
+            position: absolute;
+            color: rgba(245, 158, 11, 0.6);
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .code-1 {
+            top: 40px;
+            right: 50px;
+            transform: rotate(-15deg);
+        }
+
+        .code-2 {
+            bottom: 60px;
+            right: 150px;
+            transform: rotate(10deg);
+        }
+
+        .code-3 {
+            top: 60%;
+            right: 100px;
+            transform: rotate(-5deg);
+        }
+
+        /* Main content */
+        .content {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title {
+            color: #1f2937;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Grid pattern overlay */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(245, 158, 11, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 158, 11, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .cover-container {
+                width: 100%;
+                max-width: 1128px;
+                height: 250px;
+            }
+            
+            .title {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cover-container {
+                height: 200px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .tech-stack {
+                gap: 8px;
+            }
+            
+            .tech-item {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-container">
+        <div class="grid-overlay"></div>
+        
+        <!-- Geometric shapes -->
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        
+        <!-- Code elements -->
+        <div class="code-element code-1">&lt;/&gt;</div>
+        <div class="code-element code-2">{ }</div>
+        <div class="code-element code-3">const</div>
+        
+        <!-- Main content -->
+        <div class="content">
+            <h1 class="title">Merve Uçar</h1>
+            <p class="subtitle">Full Stack Developer</p>
+            <div class="tech-stack">
+                <span class="tech-item">React</span>
+                <span class="tech-item">Next.js</span>
+                <span class="tech-item">TypeScript</span>
+                <span class="tech-item">Node.js</span>
+                <span class="tech-item">MongoDB</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
