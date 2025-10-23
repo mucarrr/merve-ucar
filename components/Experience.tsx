@@ -32,7 +32,7 @@ const getExperiences = (currentLanguage: string) => [
   },
   {
     company: "Juniors",
-    role: "Frontend Developer (Part-Time)",
+    role: "Frontend Developer",
     period: currentLanguage === 'tr' ? "Aralık 2024 - Temmuz 2025" : "December 2024 - July 2025",
     location: currentLanguage === 'tr' ? "İstanbul, Türkiye" : "Istanbul, Turkey",
     description: currentLanguage === 'tr'

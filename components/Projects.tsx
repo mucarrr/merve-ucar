@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { FaGithub, FaCode, FaCalendar, FaStar, FaCodeBranch, FaHourglassHalf } from "react-icons/fa";
@@ -28,6 +28,7 @@ Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [previewProject, setPreviewProject] = useState<Project | null>(null);
   const { language } = useLanguage();
   const [currentLanguage, setCurrentLanguage] = useState(language);
   const t = translations[currentLanguage as keyof typeof translations];
@@ -147,6 +148,8 @@ Projects() {
     }
     return project; // İngilizce için orijinal veriyi döndür
   };
+
+  const translatedPreview = previewProject ? getTranslatedProject(previewProject, currentLanguage) : null;
 
   useEffect(() => {
     setCurrentLanguage(language);
@@ -313,12 +316,15 @@ Projects() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-gradient-to-br from-white/90 to-amber-50/50 dark:from-gray-800/90 dark:to-gray-900/50 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-amber-200/30 dark:border-amber-700/30 overflow-hidden flex flex-col h-full"
               >
-                <div className="relative h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+                <div
+                  className="relative h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden cursor-pointer group"
+                  onClick={() => setPreviewProject(project)}
+                >
                   {project.image ? (
                     <img
                       src={project.image}
                       alt={translatedProject.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   ) : (
                     <div className="text-center p-6">
@@ -402,6 +408,102 @@ Projects() {
           </a>
         </motion.div>
       </div>
+
+    {/* Preview Modal */}
+    <AnimatePresence>
+      {previewProject && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 z-[60]"
+            onClick={() => setPreviewProject(null)}
+          />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98, y: 10 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+            aria-modal="true"
+            role="dialog"
+          >
+            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-auto border border-amber-200/30 dark:border-amber-700/30">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  {translatedPreview?.title || previewProject.title}
+                </h3>
+                <button
+                  onClick={() => setPreviewProject(null)}
+                  className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  aria-label="Close"
+                >
+                  ×
+                </button>
+              </div>
+
+              {previewProject.image && (
+                <div className="w-full h-64 md:h-80 bg-gray-100 dark:bg-gray-800">
+                  <img
+                    src={previewProject.image}
+                    alt={translatedPreview?.title || previewProject.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+
+              <div className="p-5 space-y-4">
+                <p className="text-gray-700 dark:text-gray-300">
+                  {translatedPreview?.description || previewProject.description}
+                </p>
+                {previewProject.longDescription && (
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {translatedPreview?.longDescription || previewProject.longDescription}
+                  </p>
+                )}
+
+                {!!previewProject.technologies?.length && (
+                  <div className="flex flex-wrap gap-2">
+                    {previewProject.technologies.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm font-medium text-gray-700 dark:text-gray-200"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="flex gap-3 pt-2">
+                  {previewProject.liveUrl && (
+                    <a
+                      href={previewProject.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 font-medium shadow-md hover:shadow-amber-500/20 transition"
+                    >
+                      Live Preview
+                    </a>
+                  )}
+                  {previewProject.githubUrl && (
+                    <a
+                      href={previewProject.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gray-800 text-white font-medium hover:bg-gray-900 transition"
+                    >
+                      {t.viewOnGitHub}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -10,6 +10,8 @@ import { translations } from "@/lib/translations";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
   const { language } = useLanguage();
   const [currentLanguage, setCurrentLanguage] = useState(language);
   const t = translations[currentLanguage as keyof typeof translations];
@@ -27,6 +29,20 @@ export default function Navbar() {
     window.addEventListener('languageChanged', handleLanguageChange);
     return () => window.removeEventListener('languageChanged', handleLanguageChange);
   }, []);
+
+  // Dışarı tıklayınca menüyü kapat
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!isOpen) return;
+      const target = event.target as Node;
+      if (menuRef.current && menuRef.current.contains(target)) return;
+      if (toggleRef.current && toggleRef.current.contains(target)) return;
+      setIsOpen(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside, true);
+    return () => document.removeEventListener('mousedown', handleClickOutside, true);
+  }, [isOpen]);
 
   const menuItems = [
     { name: t.home, href: "/" },
@@ -87,6 +103,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
+              ref={toggleRef}
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-700 dark:text-gray-300 hover:text-amber-500 transition-colors"
             >
@@ -99,27 +116,37 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
-          >
-            <div className="px-4 py-4 space-y-3">
-              {menuItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavigation(item.href)}
-                  className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium py-2"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
-                <LanguageSwitcher />
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/40 md:hidden z-40"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              ref={menuRef}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="relative md:hidden z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+            >
+              <div className="px-4 py-4 space-y-3">
+                {menuItems.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href)}
+                    className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium py-2"
+                  >
+                    {item.name}
+                  </button>
+                ))}
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
+                  <LanguageSwitcher />
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
