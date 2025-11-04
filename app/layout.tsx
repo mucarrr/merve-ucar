@@ -16,9 +16,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://merveucar.dev'),
-  title: "Merve Uçar - Full Stack Developer",
-  description: "Full Stack Developer - MERN Stack, Next.js, TypeScript, React ve modern web teknolojileri ile web uygulamaları geliştiriyorum.",
-  keywords: ["Full Stack Developer", "MERN Stack", "Next.js", "React", "TypeScript", "Node.js", "MongoDB"],
+  title: "Merve Uçar - Freelance Full Stack Developer | Hire Web Developer | React & Next.js Expert",
+  description: "Freelance Full Stack Developer available for hire. Merve Uçar specializes in React, Next.js, TypeScript, MERN Stack. Professional web development services, custom web applications, and modern solutions. Hire a freelance web developer today.",
+  keywords: [
+    "Merve Uçar", "Merve Ucar", 
+    "Freelance Full Stack Developer", "Freelance Web Developer", "Hire Web Developer", "Hire Developer", "Freelance Developer",
+    "React Developer", "Next.js Developer", "React Freelancer", "Next.js Freelancer", "TypeScript Developer",
+    "Full Stack Developer", "Web Developer", "MERN Stack Developer", "Node.js Developer",
+    "Custom Web Development", "Professional Web Developer", "Web Development Services",
+    "Remote Developer", "Freelance Programmer", "Hire Programmer", "Web Developer for Hire",
+    "MERN Stack", "Next.js", "React", "TypeScript", "Node.js", "MongoDB", "Portfolio"
+  ],
   authors: [{ name: "Merve Uçar" }],
   alternates: {
     canonical: '/',
@@ -34,22 +42,23 @@ export const metadata: Metadata = {
     google: "3y5tXxF34nFYZe_KVWKuYy_v2iAiDuJYSL1Cfp2dmqU",
   },
   openGraph: {
-    title: "Merve Uçar - Full Stack Developer",
-    description: "Full Stack Developer - MERN Stack, Next.js, TypeScript",
+    title: "Merve Uçar - Freelance Full Stack Developer | Hire Web Developer",
+    description: "Freelance Full Stack Developer available for hire. Specializes in React, Next.js, TypeScript, MERN Stack. Professional web development services.",
     type: "website",
+    url: "https://merveucar.dev",
     images: [
       {
         url: "/favicon.svg",
         width: 32,
         height: 32,
-        alt: "Merve Uçar Logo",
+        alt: "Merve Uçar - Freelance Full Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "Merve Uçar - Full Stack Developer",
-    description: "Full Stack Developer - MERN Stack, Next.js, TypeScript",
+    title: "Merve Uçar - Freelance Full Stack Developer | Hire Web Developer",
+    description: "Freelance Full Stack Developer available for hire. React, Next.js, TypeScript, MERN Stack expert.",
     images: ["/favicon.svg"],
   },
 };
