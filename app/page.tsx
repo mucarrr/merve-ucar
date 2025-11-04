@@ -15,7 +15,7 @@ export default function Home() {
     "@type": "Person",
     "name": "Merve Uçar",
     "alternateName": "Merve Ucar",
-    "jobTitle": "Freelance Full Stack Developer",
+    "jobTitle": ["Freelance Frontend Developer", "Freelance Backend Developer", "Freelance Full Stack Developer"],
     "url": "https://merveucar.dev",
     "image": "https://merveucar.dev/favicon.svg",
     "sameAs": [
@@ -23,16 +23,14 @@ export default function Home() {
       "https://www.linkedin.com/in/ucar-merve/"
     ],
     "knowsAbout": [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Node.js",
-      "MongoDB",
-      "Full Stack Development",
-      "Web Development",
-      "MERN Stack",
-      "Freelance Web Development",
-      "Custom Web Applications"
+      // Frontend
+      "React", "Next.js", "TypeScript", "Frontend Development", "UI Development", "Client-side Development",
+      // Backend
+      "Node.js", "MongoDB", "Backend Development", "API Development", "Server-side Development", "Database Design",
+      // Full Stack
+      "Full Stack Development", "MERN Stack", "Web Development",
+      // General
+      "Freelance Web Development", "Custom Web Applications", "Responsive Design", "RESTful APIs"
     ],
     "email": "mucar2326@gmail.com",
     "address": {
@@ -40,7 +38,7 @@ export default function Home() {
       "addressLocality": "Athens",
       "addressCountry": "GR"
     },
-    "description": "Merve Uçar - Freelance Full Stack Developer. MERN Stack, Next.js, TypeScript, React ve modern web teknolojileri ile profesyonel web uygulamaları geliştiriyorum. Available for hire.",
+    "description": "Merve Uçar - Freelance Frontend Developer, Backend Developer & Full Stack Developer. React, Next.js (Frontend), Node.js, MongoDB (Backend), MERN Stack (Full Stack). Available for hire as frontend developer, backend developer, or full stack developer.",
     "alumniOf": {
       "@type": "EducationalOrganization",
       "name": "Boğaziçi University"
@@ -50,8 +48,8 @@ export default function Home() {
   const serviceData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Freelance Web Development Services",
-    "description": "Professional freelance web development services. Full stack web applications, React, Next.js, TypeScript, MERN Stack development. Custom web solutions, responsive design, and modern web applications.",
+    "name": "Freelance Frontend, Backend & Full Stack Development Services",
+    "description": "Professional freelance web development services. Frontend development (React, Next.js, TypeScript), Backend development (Node.js, MongoDB, APIs), Full Stack development (MERN Stack). Custom web solutions, responsive design, and modern web applications.",
     "provider": {
       "@type": "Person",
       "name": "Merve Uçar",
@@ -59,14 +57,14 @@ export default function Home() {
       "email": "mucar2326@gmail.com"
     },
     "serviceType": [
-      "Web Development",
-      "Full Stack Development",
-      "React Development",
-      "Next.js Development",
-      "Custom Web Applications",
-      "Responsive Web Design",
-      "API Development",
-      "Database Design"
+      // Frontend Services
+      "Frontend Development", "React Development", "Next.js Development", "UI Development", "Client-side Development",
+      // Backend Services
+      "Backend Development", "Node.js Development", "API Development", "Server-side Development", "Database Design", "MongoDB Development",
+      // Full Stack Services
+      "Full Stack Development", "Web Development", "MERN Stack Development",
+      // General Services
+      "Custom Web Applications", "Responsive Web Design", "TypeScript Development"
     ],
     "areaServed": "Worldwide",
     "availableChannel": {
