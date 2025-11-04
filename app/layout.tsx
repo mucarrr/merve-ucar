@@ -42,6 +42,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Merve Uçar" }],
   alternates: {
     canonical: '/',
+    languages: {
+      'en': 'https://merveucar.dev',
+      'tr': 'https://merveucar.dev',
+    },
   },
   icons: {
     icon: [
@@ -81,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
