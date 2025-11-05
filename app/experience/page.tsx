@@ -2,30 +2,64 @@ import Navbar from "@/components/Navbar";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Deneyimlerim - Merve Uçar | Full Stack Developer",
-  description: "Web geliştirme alanındaki iş deneyimlerim ve çalıştığım projeler. MERN Stack, React, Next.js deneyimi.",
-  keywords: ["İş Deneyimi", "Web Developer Experience", "Full Stack Deneyim", "React Developer"],
+export const metadata: Metadata = {
+  metadataBase: new URL('https://merveucar.dev'),
+  title: "Experience - Merve Uçar | Work Experience & Professional Background | Full Stack Developer",
+  description: "My professional work experience and background in web development. Experience with MERN Stack, React, Next.js, TypeScript, Node.js, MongoDB. Freelance developer experience, full stack development projects. İş deneyimi, web geliştirme deneyimi.",
+  keywords: [
+    "Work Experience", "Professional Experience", "Developer Experience", "Full Stack Experience",
+    "Merve Uçar Experience", "Freelance Developer Experience", "Web Developer Background",
+    "İş Deneyimi", "Profesyonel Deneyim", "Geliştirici Deneyimi", "Full Stack Deneyim",
+    "Web Developer Experience", "React Developer Experience", "Next.js Experience",
+    "MERN Stack Experience", "Software Developer Experience", "Career Background"
+  ],
+  authors: [{ name: "Merve Uçar" }],
   openGraph: {
-    title: "Deneyimlerim - Merve Uçar",
-    description: "Web geliştirme alanındaki iş deneyimlerim ve çalıştığım projeler.",
+    title: "Experience - Merve Uçar | Professional Background",
+    description: "My professional work experience and background in web development. MERN Stack, React, Next.js experience.",
     type: "website",
+    url: "https://merveucar.dev/experience",
+    locale: "en_US",
+    alternateLocale: "tr_TR",
+    images: [
+      {
+        url: "/favicon.svg",
+        width: 32,
+        height: 32,
+        alt: "Merve Uçar Experience",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Experience - Merve Uçar | Professional Background",
+    description: "Professional work experience in web development. MERN Stack, React, Next.js experience.",
+    images: ["/favicon.svg"],
   },
   alternates: {
     canonical: '/experience',
+    languages: {
+      'en': 'https://merveucar.dev/experience',
+      'tr': 'https://merveucar.dev/experience',
+    },
   },
 };
 
 export default function ExperiencePage() {
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <div className="pt-16">
-        <Experience />
-      </div>
+    <>
+      <header>
+        <Navbar />
+      </header>
+      <main className="min-h-screen">
+        <div className="pt-16">
+          <Experience />
+        </div>
+      </main>
       <Footer />
       <ScrollToTop />
-    </main>
+    </>
   );
 }

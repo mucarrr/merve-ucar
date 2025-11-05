@@ -311,7 +311,7 @@ export default function Hero() {
                 transform: 'translate(-50%, -50%)',
               }}
             >
-              <Image src="/laptop.svg" alt="Laptop" width={64} height={64} className="text-gray-900" />
+              <Image src="/laptop.svg" alt="Merve Uçar - Freelance Full Stack Developer" width={64} height={64} className="text-gray-900" />
             </motion.div>
 
             {/* Orbiting Tech Badges */}

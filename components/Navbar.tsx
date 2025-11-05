@@ -106,7 +106,7 @@ export default function Navbar() {
               transition={{ duration: 0.6 }}
               className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center shadow-md"
             >
-              <Image src="/logo.svg" alt="Logo" width={20} height={20} className="text-gray-900" />
+              <Image src="/logo.svg" alt="Merve Uçar - Full Stack Developer Logo" width={20} height={20} className="text-gray-900" />
             </motion.div>
             <span>Merve Uçar</span>
           </motion.a>

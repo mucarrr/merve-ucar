@@ -309,7 +309,7 @@ Projects() {
             });
 
             return (
-              <motion.div
+              <motion.article
                 key={project._id}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -323,8 +323,9 @@ Projects() {
                   {project.image ? (
                     <img
                       src={project.image}
-                      alt={translatedProject.title}
+                      alt={`${translatedProject.title} - ${translatedProject.description} - Merve Uçar Portfolio Project`}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="text-center p-6">
@@ -386,7 +387,7 @@ Projects() {
                     </a>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>
@@ -447,8 +448,9 @@ Projects() {
                 <div className="w-full h-64 md:h-80 bg-gray-100 dark:bg-gray-800">
                   <img
                     src={previewProject.image}
-                    alt={translatedPreview?.title || previewProject.title}
+                    alt={`${translatedPreview?.title || previewProject.title} - ${translatedPreview?.description || previewProject.description} - Merve Uçar Portfolio Project Screenshot`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
               )}
