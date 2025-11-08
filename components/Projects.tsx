@@ -319,6 +319,7 @@ Projects() {
                 <div
                   className="relative h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden cursor-pointer group"
                   onClick={() => setPreviewProject(project)}
+                  style={{ aspectRatio: '16/9' }}
                 >
                   {project.image ? (
                     <img
@@ -326,6 +327,9 @@ Projects() {
                       alt={`${translatedProject.title} - ${translatedProject.description} - Merve Uçar Portfolio Project`}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
+                      width={400}
+                      height={225}
+                      style={{ aspectRatio: '16/9' }}
                     />
                   ) : (
                     <div className="text-center p-6">
@@ -374,6 +378,7 @@ Projects() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View ${translatedProject.title} project on GitHub`}
                       className="flex-1 flex items-center justify-center px-6 py-3 bg-gray-800 text-white rounded-full font-medium hover:bg-gradient-to-r from-amber-400 to-orange-500 hover:text-gray-900 transition-all duration-300 shadow-md hover:shadow-amber-500/20 group"
                     >
                       <motion.div
@@ -381,7 +386,7 @@ Projects() {
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <FaGithub className="mr-2" />
+                        <FaGithub className="mr-2" aria-hidden="true" />
                         <span>{t.viewOnGitHub}</span>
                       </motion.div>
                     </a>
@@ -402,9 +407,10 @@ Projects() {
             href="https://github.com/mucarrr"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit Merve Uçar's GitHub profile to see more projects and code examples"
             className="inline-flex items-center px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <FaGithub className="mr-3" />
+            <FaGithub className="mr-3" aria-hidden="true" />
             {t.moreProjects}
           </a>
         </motion.div>
@@ -445,12 +451,15 @@ Projects() {
               </div>
 
               {previewProject.image && (
-                <div className="w-full h-64 md:h-80 bg-gray-100 dark:bg-gray-800">
+                <div className="w-full h-64 md:h-80 bg-gray-100 dark:bg-gray-800" style={{ aspectRatio: '16/9' }}>
                   <img
                     src={previewProject.image}
                     alt={`${translatedPreview?.title || previewProject.title} - ${translatedPreview?.description || previewProject.description} - Merve Uçar Portfolio Project Screenshot`}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    width={800}
+                    height={450}
+                    style={{ aspectRatio: '16/9' }}
                   />
                 </div>
               )}
@@ -484,6 +493,7 @@ Projects() {
                       href={previewProject.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View live preview of ${translatedPreview?.title || previewProject.title} project`}
                       className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 font-medium shadow-md hover:shadow-amber-500/20 transition"
                     >
                       Live Preview
@@ -494,6 +504,7 @@ Projects() {
                       href={previewProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View ${translatedPreview?.title || previewProject.title} project source code on GitHub`}
                       className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gray-800 text-white font-medium hover:bg-gray-900 transition"
                     >
                       {t.viewOnGitHub}

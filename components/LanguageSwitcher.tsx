@@ -17,9 +17,12 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button 
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={`Switch language. Current language: ${language === 'tr' ? 'Turkish' : 'English'}`}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
         className="flex items-center gap-2 px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium"
       >
-        <FaGlobe size={16} />
+        <FaGlobe size={16} aria-hidden="true" />
         <span className="text-sm">
           {language === 'tr' ? 'TR' : 'EN'}
         </span>

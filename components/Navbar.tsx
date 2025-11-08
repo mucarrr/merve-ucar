@@ -106,7 +106,14 @@ export default function Navbar() {
               transition={{ duration: 0.6 }}
               className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center shadow-md"
             >
-              <Image src="/logo.svg" alt="Merve Uçar - Full Stack Developer Logo" width={20} height={20} className="text-gray-900" />
+              <Image 
+                src="/logo.svg" 
+                alt="Merve Uçar - Full Stack Developer Logo" 
+                width={20} 
+                height={20} 
+                priority
+                className="text-gray-900" 
+              />
             </motion.div>
             <span>Merve Uçar</span>
           </motion.a>
@@ -120,6 +127,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => handleNavigation(item.href)}
+                aria-label={`Navigate to ${item.name}`}
                 className="text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium"
               >
                 {item.name}
@@ -133,9 +141,12 @@ export default function Navbar() {
             <button
               ref={toggleRef}
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
               className="text-gray-700 dark:text-gray-300 hover:text-amber-500 transition-colors"
             >
-              {isOpen ? <HiX size={28} /> : <HiMenu size={28} />}
+              {isOpen ? <HiX size={28} aria-hidden="true" /> : <HiMenu size={28} aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -154,6 +165,7 @@ export default function Navbar() {
             />
             <motion.div
               ref={menuRef}
+              id="mobile-menu"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -164,6 +176,7 @@ export default function Navbar() {
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href)}
+                    aria-label={`Navigate to ${item.name}`}
                     className="block w-full text-left text-gray-700 dark:text-gray-300 md:hover:text-amber-500 md:dark:hover:text-amber-400 transition-colors font-medium py-2 focus:outline-none"
                   >
                     {item.name}

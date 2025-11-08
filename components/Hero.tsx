@@ -220,6 +220,7 @@ export default function Hero() {
                 >
                   <a
                     href="#contact"
+                    aria-label="Get free quote - Navigate to contact section"
                     className="group relative px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium overflow-hidden"
                   >
                     <span className="relative z-10 flex items-center gap-2">
@@ -227,6 +228,7 @@ export default function Hero() {
                       <motion.span
                         animate={{ x: [0, 5, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
+                        aria-hidden="true"
                       >
                         →
                       </motion.span>
@@ -234,6 +236,7 @@ export default function Hero() {
                   </a>
                   <a
                     href="/projects"
+                    aria-label="View my projects portfolio"
                     className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium hover:bg-gray-900 dark:hover:bg-amber-400 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
                   >
                     {t.ctaViewProjects}
@@ -251,29 +254,32 @@ export default function Hero() {
                 href="https://github.com/mucarrr"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit Merve Uçar's GitHub profile"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-amber-400 hover:text-gray-900 transition-all duration-300"
               >
-                <FaGithub size={24} />
+                <FaGithub size={24} aria-hidden="true" />
               </motion.a>
               <motion.a
                 href="mailto:mucar2326@gmail.com"
+                aria-label="Send email to Merve Uçar"
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-amber-400 hover:text-gray-900 transition-all duration-300"
               >
-                <FaEnvelope size={24} />
+                <FaEnvelope size={24} aria-hidden="true" />
               </motion.a>
               <motion.a
                 href="https://www.linkedin.com/in/ucar-merve/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit Merve Uçar's LinkedIn profile"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-amber-400 hover:text-gray-900 transition-all duration-300"
               >
-                <FaLinkedin size={24} />
+                <FaLinkedin size={24} aria-hidden="true" />
               </motion.a>
             </motion.div>
 
@@ -311,7 +317,14 @@ export default function Hero() {
                 transform: 'translate(-50%, -50%)',
               }}
             >
-              <Image src="/laptop.svg" alt="Merve Uçar - Freelance Full Stack Developer" width={64} height={64} className="text-gray-900" />
+              <Image 
+                src="/laptop.svg" 
+                alt="Merve Uçar - Freelance Full Stack Developer" 
+                width={64} 
+                height={64} 
+                priority
+                className="text-gray-900" 
+              />
             </motion.div>
 
             {/* Orbiting Tech Badges */}

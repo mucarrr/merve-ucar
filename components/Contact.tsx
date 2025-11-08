@@ -131,25 +131,28 @@ export default function Contact() {
                 <div className="flex gap-4">
                   <a
                     href="mailto:mucar2326@gmail.com"
+                    aria-label="Send email to Merve Uçar"
                     className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors"
                   >
-                    <FaEnvelope className="text-gray-700 dark:text-gray-300" />
+                    <FaEnvelope className="text-gray-700 dark:text-gray-300" aria-hidden="true" />
                   </a>
                   <a
                     href="https://github.com/mucarrr"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Visit Merve Uçar's GitHub profile"
                     className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors"
                   >
-                    <FaGithub className="text-gray-700 dark:text-gray-300" />
+                    <FaGithub className="text-gray-700 dark:text-gray-300" aria-hidden="true" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/ucar-merve/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Visit Merve Uçar's LinkedIn profile"
                     className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors"
                   >
-                    <FaLinkedin className="text-gray-700 dark:text-gray-300" />
+                    <FaLinkedin className="text-gray-700 dark:text-gray-300" aria-hidden="true" />
                   </a>
                 </div>
               </div>

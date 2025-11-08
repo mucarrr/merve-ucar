@@ -37,9 +37,10 @@ export default function ScrollToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
+          aria-label="Scroll to top of page"
           className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 flex items-center justify-center"
         >
-          <FaArrowUp size={20} />
+          <FaArrowUp size={20} aria-hidden="true" />
         </motion.button>
       )}
     </AnimatePresence>
