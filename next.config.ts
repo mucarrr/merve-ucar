@@ -17,9 +17,6 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   
-  // Mobile optimizations
-  swcMinify: true,
-  
   // Headers for better caching and performance
   async headers() {
     return [
