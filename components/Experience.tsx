@@ -150,33 +150,9 @@ export default function Experience() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-8">
+          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-16">
             {t.experienceTitle}
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 text-center max-w-3xl mx-auto mb-6">
-            {currentLanguage === 'tr'
-              ? "Web geliştirme alanındaki profesyonel iş deneyimlerim. Full Stack Developer, Frontend Developer ve Backend Developer olarak çalıştığım projeler. MERN Stack, React, Next.js, TypeScript, Node.js, MongoDB deneyimi. Freelance developer experience ve full stack development projects. Work experience, professional experience ve developer experience."
-              : "My professional work experience in web development. Projects I worked on as Full Stack Developer, Frontend Developer, and Backend Developer. Experience with MERN Stack, React, Next.js, TypeScript, Node.js, MongoDB. Freelance developer experience and full stack development projects."
-            }
-          </p>
-          <div className="text-center mb-12">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-              {currentLanguage === 'tr' ? 'Daha fazla bilgi için:' : 'Learn more:'}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a href="/" className="text-amber-600 dark:text-amber-400 hover:underline">
-                {currentLanguage === 'tr' ? 'Ana Sayfa' : 'Home'}
-              </a>
-              <span className="text-gray-400">•</span>
-              <a href="/projects" className="text-amber-600 dark:text-amber-400 hover:underline">
-                {currentLanguage === 'tr' ? 'Projelerim' : 'Projects'}
-              </a>
-              <span className="text-gray-400">•</span>
-              <a href="#contact" className="text-amber-600 dark:text-amber-400 hover:underline">
-                {currentLanguage === 'tr' ? 'İletişim' : 'Contact'}
-              </a>
-            </div>
-          </div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (

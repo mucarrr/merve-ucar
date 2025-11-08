@@ -294,33 +294,9 @@ Projects() {
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {t.projectsTitle}
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">
             {t.projectsDescription}
           </p>
-          <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-4">
-            {currentLanguage === 'tr' 
-              ? "React, Next.js, TypeScript, Node.js ve MongoDB teknolojileri ile geliştirdiğim projeler. Full stack web uygulamaları, e-ticaret platformları, restoran yönetim sistemleri ve daha fazlası. Her proje modern web standartlarına uygun, responsive tasarım ve kullanıcı dostu arayüzler içerir. Projelerimde MERN Stack, React Development, Next.js Development ve TypeScript kullanıyorum. Freelance developer olarak custom software solutions ve web application development hizmetleri sunuyorum."
-              : "Projects developed with React, Next.js, TypeScript, Node.js, and MongoDB technologies. Full stack web applications, e-commerce platforms, restaurant management systems and more. Each project follows modern web standards with responsive design and user-friendly interfaces. I use MERN Stack, React Development, Next.js Development, and TypeScript in my projects. As a freelance developer, I offer custom software solutions and web application development services."
-            }
-          </p>
-          <div className="text-center mb-8">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-              {currentLanguage === 'tr' ? 'Daha fazla bilgi için:' : 'Learn more:'}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a href="/" className="text-amber-600 dark:text-amber-400 hover:underline">
-                {currentLanguage === 'tr' ? 'Ana Sayfa' : 'Home'}
-              </a>
-              <span className="text-gray-400">•</span>
-              <a href="/experience" className="text-amber-600 dark:text-amber-400 hover:underline">
-                {currentLanguage === 'tr' ? 'Deneyimlerim' : 'Experience'}
-              </a>
-              <span className="text-gray-400">•</span>
-              <a href="#contact" className="text-amber-600 dark:text-amber-400 hover:underline">
-                {currentLanguage === 'tr' ? 'İletişim' : 'Contact'}
-              </a>
-            </div>
-          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
