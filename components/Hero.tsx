@@ -210,6 +210,17 @@ export default function Hero() {
                 >
                   {t.heroDescription}
                 </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-base text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
+                >
+                  {currentLanguage === 'tr'
+                    ? "Freelance Frontend Developer, Backend Developer ve Full Stack Developer olarak React, Next.js (Frontend), Node.js, MongoDB (Backend), MERN Stack (Full Stack) teknolojileri ile web uygulamaları, mobil uygulamalar ve özel yazılım çözümleri geliştiriyorum. Website developer ve mobil uygulama geliştirici hizmetleri sunuyorum."
+                    : "As a Freelance Frontend Developer, Backend Developer, and Full Stack Developer, I build web applications, mobile apps, and custom software solutions using React, Next.js (Frontend), Node.js, MongoDB (Backend), and MERN Stack (Full Stack). I offer website developer and mobile app developer services."
+                  }
+                </motion.p>
 
                 {/* CTA Buttons */}
                 <motion.div

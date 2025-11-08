@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL('https://merveucar.dev'),
   title: "Experience - Merve Uçar | Work Experience & Professional Background | Full Stack Developer",
-  description: "My professional work experience and background in web development. Experience with MERN Stack, React, Next.js, TypeScript, Node.js, MongoDB. Freelance developer experience, full stack development projects. İş deneyimi, web geliştirme deneyimi.",
+  description: "My professional work experience and background in web development. Experience with MERN Stack, React, Next.js, TypeScript, Node.js, MongoDB. Work experience as Full Stack Developer, Frontend Developer, and Backend Developer. Freelance developer experience, full stack development projects. Professional experience in web development. İş deneyimi, web geliştirme deneyimi.",
   keywords: [
     "Work Experience", "Professional Experience", "Developer Experience", "Full Stack Experience",
     "Merve Uçar Experience", "Freelance Developer Experience", "Web Developer Background",

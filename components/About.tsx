@@ -39,9 +39,30 @@ export default function About() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-8">
             {t.aboutTitle}
           </h2>
+          <p className="text-center text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+            {currentLanguage === 'tr'
+              ? "Hakkımda daha fazla bilgi edinmek için projelerimi inceleyebilir veya iş deneyimlerime göz atabilirsiniz."
+              : "Learn more about me by exploring my projects or checking out my work experience."
+            }
+          </p>
+          <div className="text-center mb-12">
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="/projects" className="text-amber-600 dark:text-amber-400 hover:underline text-sm">
+                {currentLanguage === 'tr' ? 'Projelerim' : 'Projects'}
+              </a>
+              <span className="text-gray-400">•</span>
+              <a href="/experience" className="text-amber-600 dark:text-amber-400 hover:underline text-sm">
+                {currentLanguage === 'tr' ? 'Deneyimlerim' : 'Experience'}
+              </a>
+              <span className="text-gray-400">•</span>
+              <a href="#contact" className="text-amber-600 dark:text-amber-400 hover:underline text-sm">
+                {currentLanguage === 'tr' ? 'İletişim' : 'Contact'}
+              </a>
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">

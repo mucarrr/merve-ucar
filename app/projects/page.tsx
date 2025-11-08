@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL('https://merveucar.dev'),
   title: "Projects - Merve Uçar | Freelance Developer Portfolio | React, Next.js, Node.js Projects",
-  description: "Explore my portfolio of web development projects. Modern web applications built with React, Next.js, TypeScript, Node.js, MongoDB. Freelance developer projects, full stack applications, and custom software solutions. Projelerim, web uygulamaları, React projeleri.",
+  description: "Explore my portfolio of web development projects. Modern web applications built with React, Next.js, TypeScript, Node.js, MongoDB. Freelance developer projects, full stack applications, and custom software solutions. Projects showcase React Development, Next.js Development, MERN Stack projects, and TypeScript projects. Projelerim, web uygulamaları, React projeleri.",
   keywords: [
     "Projects", "Portfolio", "Web Projects", "React Projects", "Next.js Projects", "Full Stack Projects",
     "Merve Uçar Projects", "Freelance Developer Projects", "Web Application Projects",

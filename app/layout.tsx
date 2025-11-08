@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://merveucar.dev'),
   title: "Merve Uçar - Freelance Frontend, Backend & Full Stack Developer | Website & Mobile App Developer | Yazılım Geliştirici",
-  description: "Freelance Frontend Developer, Backend Developer & Full Stack Developer available for hire. Software developer specializing in websites, web applications, mobile apps, React, Next.js (Frontend), Node.js, MongoDB (Backend), MERN Stack (Full Stack). Website developer, mobil uygulama geliştirici, yazılım geliştirici. Hire a freelance software developer today.",
+  description: "Freelance Frontend Developer, Backend Developer & Full Stack Developer available for hire. Software developer specializing in websites, web applications, mobile apps, React, Next.js (Frontend), Node.js, MongoDB (Backend), MERN Stack (Full Stack). Website developer, mobil uygulama geliştirici, yazılım geliştirici. Professional freelance web development services. Hire a freelance software developer today.",
   keywords: [
     // Name variations
     "Merve Uçar", "Merve Ucar", 
