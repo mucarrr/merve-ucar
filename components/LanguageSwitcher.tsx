@@ -20,20 +20,19 @@ export default function LanguageSwitcher() {
         aria-label={`Switch language. Current language: ${language === "tr" ? "Turkish" : "English"}`}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        className="flex items-center gap-2 px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium"
+        className="flex items-center gap-2 px-3 py-2 font-medium text-gray-700 transition-colors hover:text-brand dark:text-gray-300 dark:hover:text-brand-light"
       >
         <FaGlobe size={16} aria-hidden="true" />
         <span className="text-sm">{language === "tr" ? "TR" : "EN"}</span>
       </button>
 
-      {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-32 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 py-2 z-50">
+        <div className="absolute right-0 top-full z-50 mt-2 w-32 rounded-lg border border-gray-200 bg-surface-card py-2 shadow-lg dark:border-gray-800">
           <button
             onClick={() => handleLanguageChange("tr")}
-            className={`w-full text-left px-4 py-2 text-sm hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors ${
+            className={`w-full px-4 py-2 text-left text-sm transition-colors hover:bg-brand/10 dark:hover:bg-brand-dark/20 ${
               language === "tr"
-                ? "text-amber-600 dark:text-amber-400 font-medium"
+                ? "font-medium text-brand-dark dark:text-brand-light"
                 : "text-gray-700 dark:text-gray-300"
             }`}
           >
@@ -41,9 +40,9 @@ export default function LanguageSwitcher() {
           </button>
           <button
             onClick={() => handleLanguageChange("en")}
-            className={`w-full text-left px-4 py-2 text-sm hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors ${
+            className={`w-full px-4 py-2 text-left text-sm transition-colors hover:bg-brand/10 dark:hover:bg-brand-dark/20 ${
               language === "en"
-                ? "text-amber-600 dark:text-amber-400 font-medium"
+                ? "font-medium text-brand-dark dark:text-brand-light"
                 : "text-gray-700 dark:text-gray-300"
             }`}
           >

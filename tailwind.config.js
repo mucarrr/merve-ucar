@@ -13,6 +13,8 @@ module.exports = {
         mono: ["var(--font-geist-mono)"],
       },
       colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
         // Primary warm brand (refined amber/orange)
         brand: {
           light: "#fbbf24", // amber-400

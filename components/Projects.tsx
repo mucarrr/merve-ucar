@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaGithub, FaCode, FaCalendar } from "react-icons/fa";
+import { FaGithub, FaCode } from "react-icons/fa";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/lib/translations";
 import {
@@ -10,6 +10,7 @@ import {
   getGithubProjectContent,
   type GithubProject,
 } from "@/lib/githubProjects";
+import TechStack from "@/components/TechStack";
 
 const shapes = [
   { size: 100, x: "10%", y: "20%", delay: 0 },
@@ -50,12 +51,12 @@ export default function Projects() {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-f8f7f4 px-4 pb-20 pt-24 dark:bg-gray-950 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen overflow-hidden bg-surface px-4 pb-20 pt-24 sm:px-6 lg:px-8">
       <div className="pointer-events-none absolute inset-0 -z-10">
         {shapes.map((shape, index) => (
           <motion.div
             key={index}
-            className="absolute rounded-full bg-gradient-to-br from-amber-400/30 to-orange-500/30 backdrop-blur-3xl"
+            className="glow-effect absolute rounded-full bg-gradient-to-br from-brand-light/10 to-ember/10 backdrop-blur-3xl"
             style={{
               width: shape.size,
               height: shape.size,
@@ -84,14 +85,14 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <div className="mb-4 flex items-center justify-center gap-2 font-mono text-sm text-amber-600 dark:text-amber-400">
+          <div className="code-label mb-4 flex items-center justify-center gap-2">
             <FaCode />
             <span>{"<projects>"}</span>
           </div>
-          <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl">
+          <h1 className="section-title mb-4">
             {mounted ? t.portfolioProjectsTitle : "Portfolio Projects"}
           </h1>
-          <p className="mx-auto mb-12 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+          <p className="section-subtitle mx-auto mb-12 max-w-2xl">
             {mounted ? t.portfolioProjectsSubtitle : ""}
           </p>
         </motion.div>
@@ -99,10 +100,6 @@ export default function Projects() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => {
             const content = getGithubProjectContent(project, currentLanguage);
-            const updatedAt = new Date(project.updatedAt).toLocaleDateString(
-              currentLanguage === "tr" ? "tr-TR" : "en-US",
-              { year: "numeric", month: "long", day: "numeric" }
-            );
 
             return (
               <motion.article
@@ -110,7 +107,7 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex h-full flex-col overflow-hidden rounded-xl border border-amber-200/30 bg-gradient-to-br from-white/90 to-amber-50/50 shadow-lg backdrop-blur-md transition-all duration-300 hover:shadow-xl dark:border-amber-700/30 dark:from-gray-800/90 dark:to-gray-900/50"
+                className="flex h-full flex-col overflow-hidden rounded-xl border border-amber-200/30 bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl dark:border-amber-700/30 dark:bg-gray-900"
               >
                 <button
                   type="button"
@@ -141,32 +138,14 @@ export default function Projects() {
                 </button>
 
                 <div className="flex flex-grow flex-col p-6">
-                  <div className="mb-3 flex items-start">
-                    <h3 className="flex-1 text-xl font-semibold text-gray-900 dark:text-white">
-                      {content.title}
-                    </h3>
-                    {project.featured && (
-                      <span className="ml-2 shrink-0 rounded-full bg-amber-500 px-1.5 py-0.5 text-xs font-normal text-white">
-                        {t.featured}
-                      </span>
-                    )}
-                  </div>
+                  <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
+                    {content.title}
+                  </h3>
                   <p className="mb-4 flex-grow text-gray-700 dark:text-gray-300">
                     {content.description}
                   </p>
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mb-6 flex items-center text-sm text-gray-500 dark:text-gray-400">
-                    <FaCalendar className="mr-2" />
-                    <span>{updatedAt}</span>
+                  <div className="mb-4">
+                    <TechStack technologies={project.technologies} />
                   </div>
                   <div className="mt-auto flex gap-4">
                     <a
@@ -174,7 +153,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`View ${content.title} on GitHub`}
-                      className="group flex flex-1 items-center justify-center rounded-full bg-gray-800 px-6 py-3 font-medium text-white shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-orange-500 hover:text-gray-900 hover:shadow-amber-500/20"
+                      className="group flex flex-1 items-center justify-center rounded-full border-2 border-gray-900 px-6 py-3 font-medium text-gray-900 shadow-md transition-all duration-300 hover:bg-gray-900 hover:text-white dark:border-amber-400 dark:text-amber-400 dark:hover:bg-gray-800 dark:hover:text-white"
                     >
                       <motion.div
                         className="flex items-center"
@@ -203,7 +182,7 @@ export default function Projects() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit GitHub profile"
-            className="inline-flex items-center rounded-full border-2 border-gray-900 px-8 py-4 font-medium text-gray-900 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-amber-400 dark:text-amber-400"
+            className="btn-secondary inline-flex items-center shadow-lg hover:shadow-xl"
           >
             <FaGithub className="mr-3" aria-hidden="true" />
             {mounted ? t.moreProjects : ""}
@@ -230,7 +209,7 @@ export default function Projects() {
               aria-modal="true"
               role="dialog"
             >
-              <div className="max-h-[85vh] w-full max-w-3xl overflow-auto rounded-xl border border-amber-200/30 bg-white shadow-2xl dark:border-amber-700/30 dark:bg-gray-900">
+              <div className="max-h-[85vh] w-full max-w-3xl overflow-auto rounded-xl border border-brand/15 bg-surface-card shadow-2xl dark:border-brand-dark/25">
                 <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-800">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                     {previewContent.title}
@@ -266,18 +245,7 @@ export default function Projects() {
                     </p>
                   )}
 
-                  {!!previewProject.technologies.length && (
-                    <div className="flex flex-wrap gap-2">
-                      {previewProject.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <TechStack technologies={previewProject.technologies} collapsible={false} />
 
                   <div className="flex gap-3 pt-2">
                     {previewProject.liveUrl && (
@@ -285,7 +253,7 @@ export default function Projects() {
                         href={previewProject.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-orange-500 px-5 py-2.5 font-medium text-gray-900 shadow-md transition hover:shadow-amber-500/20"
+                        className="btn-primary inline-flex items-center justify-center px-5 py-2.5 shadow-md"
                       >
                         Live Preview
                       </a>
@@ -294,7 +262,7 @@ export default function Projects() {
                       href={previewProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-full bg-gray-800 px-5 py-2.5 font-medium text-white transition hover:bg-gray-900"
+                      className="btn-secondary inline-flex items-center justify-center px-5 py-2.5"
                     >
                       {t.viewOnGitHub}
                     </a>

@@ -24,7 +24,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t-2 border-transparent bg-gray-900 py-8 text-gray-300 [border-image:linear-gradient(90deg,#fbbf24,#ea580c)_1]">
+    <footer className="border-t-2 border-brand bg-gray-900 py-8 text-gray-300">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-sm">

@@ -60,8 +60,6 @@ interface Skill {
 interface SkillCategory {
   title: string;
   icon: IconType;
-  gradient: string;
-  accent: string;
   skills: Skill[];
   spanFull?: boolean;
 }
@@ -70,8 +68,6 @@ const getSkillCategories = (t: Translation): SkillCategory[] => [
   {
     title: t.frontend,
     icon: FaReact,
-    gradient: "from-violet-500/15 via-brand/10 to-ember/10",
-    accent: "text-violet-600 dark:text-violet-400",
     skills: [
       { name: "React", icon: FaReact, color: "#61DAFB" },
       { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
@@ -90,8 +86,6 @@ const getSkillCategories = (t: Translation): SkillCategory[] => [
   {
     title: t.backend,
     icon: FaServer,
-    gradient: "from-accent/15 via-teal-500/10 to-brand/10",
-    accent: "text-accent-dark dark:text-accent-light",
     skills: [
       { name: "Node.js", icon: FaNodeJs, color: "#339933" },
       { name: "Express.js", icon: SiExpress, color: "#000000" },
@@ -107,8 +101,6 @@ const getSkillCategories = (t: Translation): SkillCategory[] => [
   {
     title: t.mobile,
     icon: FaMobileAlt,
-    gradient: "from-sky-500/15 via-accent/10 to-teal-600/10",
-    accent: "text-sky-600 dark:text-sky-400",
     skills: [
       { name: "React Native", icon: SiReact, color: "#61DAFB" },
       { name: "Push Notifications", icon: FaMobileAlt, color: "#14b8a6" },
@@ -120,8 +112,6 @@ const getSkillCategories = (t: Translation): SkillCategory[] => [
   {
     title: t.tools,
     icon: FaTools,
-    gradient: "from-ember/15 via-brand/10 to-amber-500/10",
-    accent: "text-ember dark:text-brand-light",
     skills: [
       { name: "Git", icon: FaGitAlt, color: "#F05032" },
       { name: "Docker", icon: FaDocker, color: "#2496ED" },
@@ -134,8 +124,6 @@ const getSkillCategories = (t: Translation): SkillCategory[] => [
   {
     title: t.integrations,
     icon: FaRobot,
-    gradient: "from-fuchsia-500/15 via-violet-500/10 to-brand/10",
-    accent: "text-fuchsia-600 dark:text-fuchsia-400",
     spanFull: true,
     skills: [
       { name: "AI / RAG / LLM", icon: SiOpenai, color: "#412991" },
@@ -167,11 +155,10 @@ function SkillChip({ skill, index }: { skill: Skill; index: number }) {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.25, delay: index * 0.03 }}
-      whileHover={{ y: -2 }}
-      className="group inline-flex items-center gap-2 rounded-xl border border-gray-200/80 bg-white/70 px-3 py-2 text-sm font-medium text-gray-700 shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-brand/35 hover:shadow-md dark:border-gray-700/80 dark:bg-gray-900/50 dark:text-gray-200 dark:hover:border-brand-light/30"
+      className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-amber-300 hover:bg-amber-50 dark:border-gray-700 dark:bg-gray-800/50 dark:text-gray-200 dark:hover:border-amber-500/40"
     >
       <span
-        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-110"
+        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white dark:bg-gray-900"
         style={{ backgroundColor: `${skill.color}18` }}
       >
         <Icon size={15} style={{ color: skill.color }} className="dark:opacity-90" />
@@ -205,34 +192,21 @@ export default function Skills() {
   }, []);
 
   return (
-    <section
-      id="skills"
-      ref={ref}
-      className="relative scroll-mt-24 overflow-hidden bg-surface-alt px-4 py-20 sm:px-6 lg:px-8"
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-brand/10 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-24 bottom-10 h-64 w-64 rounded-full bg-accent/10 blur-3xl"
-      />
-
-      <div className="relative mx-auto max-w-6xl">
+    <section id="skills" ref={ref} className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">{t.skillsTitle}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 dark:text-gray-400 sm:text-lg">
+          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-4">{t.skillsTitle}</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
             {t.skillsSubtitle}
           </p>
         </motion.div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2">
           {skillCategories.map((category, categoryIndex) => {
             const CategoryIcon = category.icon;
 
@@ -242,30 +216,21 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
                 transition={{ duration: 0.45, delay: categoryIndex * 0.08 }}
-                className={`group relative overflow-hidden rounded-2xl border border-brand/15 bg-surface-card p-5 shadow-lg transition-shadow duration-300 hover:shadow-xl dark:border-brand-dark/20 sm:p-6${category.spanFull ? " sm:col-span-2" : ""}`}
+                className={`bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg${category.spanFull ? " sm:col-span-2" : ""}`}
               >
-                <div
-                  aria-hidden="true"
-                  className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
-                />
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
+                    <CategoryIcon size={18} />
+                  </span>
+                  <h3 className="text-lg font-bold text-amber-600 dark:text-amber-400">
+                    {category.title}
+                  </h3>
+                </div>
 
-                <div className="relative">
-                  <div className="mb-4 flex items-center gap-3">
-                    <span
-                      className={`flex h-10 w-10 items-center justify-center rounded-xl bg-white/80 shadow-sm dark:bg-gray-900/70 ${category.accent}`}
-                    >
-                      <CategoryIcon size={18} />
-                    </span>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      {category.title}
-                    </h3>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <SkillChip key={skill.name} skill={skill} index={skillIndex} />
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <SkillChip key={skill.name} skill={skill} index={skillIndex} />
+                  ))}
                 </div>
               </motion.div>
             );
@@ -276,19 +241,16 @@ export default function Skills() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.45, delay: 0.35 }}
-          className="relative mt-5 overflow-hidden rounded-2xl border border-brand/15 bg-surface-card p-5 shadow-lg dark:border-brand-dark/20 sm:p-6"
+          className="mt-6 bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg"
         >
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-brand/5 via-transparent to-accent/5"
-          />
-
-          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
             <div className="flex shrink-0 items-center gap-3 sm:w-48">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand/15 text-brand-dark dark:bg-brand/20 dark:text-brand-light">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
                 <FaBrain size={18} />
               </span>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">{t.softSkills}</h3>
+              <h3 className="text-lg font-bold text-amber-600 dark:text-amber-400">
+                {t.softSkills}
+              </h3>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -298,7 +260,7 @@ export default function Skills() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                   transition={{ duration: 0.3, delay: 0.4 + index * 0.04 }}
-                  className="rounded-full border border-brand/20 bg-brand/10 px-3.5 py-1.5 text-sm font-medium text-brand-dark backdrop-blur-sm dark:border-brand-light/20 dark:bg-brand/15 dark:text-brand-light"
+                  className="rounded-full bg-gray-100 px-3.5 py-1.5 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                 >
                   {skill}
                 </motion.span>

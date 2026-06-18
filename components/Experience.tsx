@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { FaBriefcase, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/lib/translations";
 
@@ -128,14 +127,14 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-f8f7f4 dark:bg-gray-950 min-h-screen overflow-hidden"
+      className="relative min-h-screen overflow-hidden bg-surface px-4 pb-20 pt-24 sm:px-6 lg:px-8"
     >
       {/* Animated Background Shapes - Hero'daki ile birebir aynı */}
       <div className="absolute inset-0 -z-10">
         {shapes.map((shape, index) => (
           <motion.div
             key={index}
-            className="absolute rounded-full bg-gradient-to-br from-amber-400/10 to-orange-500/10 backdrop-blur-3xl"
+            className="glow-effect absolute rounded-full bg-gradient-to-br from-brand-light/10 to-ember/10 backdrop-blur-3xl"
             style={{
               width: shape.size,
               height: shape.size,
@@ -156,13 +155,13 @@ export default function Experience() {
           />
         ))}
       </div>
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-16">{t.experienceTitle}</h1>
+          <h1 className="section-title mb-16">{t.experienceTitle}</h1>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -171,9 +170,9 @@ export default function Experience() {
                 initial={{ opacity: 0, x: -50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-200 dark:border-gray-800"
+                className="card p-8 transition-shadow duration-300 hover:shadow-2xl"
               >
-                <h3 className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-4">
+                <h3 className="mb-4 text-2xl font-bold text-brand-dark dark:text-brand-light">
                   {exp.role}
                 </h3>
 
@@ -184,7 +183,7 @@ export default function Experience() {
                 <ul className="space-y-2">
                   {exp.highlights.map((highlight, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                      <span className="text-amber-600 dark:text-amber-400 mt-1">▹</span>
+                      <span className="mt-1 text-brand-dark dark:text-brand-light">▹</span>
                       <span>{highlight}</span>
                     </li>
                   ))}

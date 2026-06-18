@@ -22,6 +22,7 @@ import {
   type StatusFilter,
   type TopicSlug,
 } from "@/lib/projects";
+import TechStack from "@/components/TechStack";
 
 const FILTER_KEYS: { key: ProjectFilter; labelKey: keyof (typeof translations)["tr"] }[] = [
   { key: "all", labelKey: "filterAll" },
@@ -30,7 +31,36 @@ const FILTER_KEYS: { key: ProjectFilter; labelKey: keyof (typeof translations)["
   { key: "web", labelKey: "filterWeb" },
 ];
 
-const PLACEHOLDER_MEDIA = "aspect-[16/10] min-h-[180px]";
+const PLACEHOLDER_MEDIA = "h-48 w-full";
+
+const PLACEHOLDER_PALETTES: Record<
+  string,
+  { gradient: string; iconClass: string; labelClass: string }
+> = {
+  "time-garden": {
+    gradient:
+      "from-[#d1fae5] via-[#ecfdf5] to-[#cffafe] dark:from-emerald-950/70 dark:via-teal-950/50 dark:to-cyan-950/40",
+    iconClass: "text-emerald-300 dark:text-emerald-400/70",
+    labelClass: "text-emerald-600/70 dark:text-emerald-300/80",
+  },
+  "didiyos-event": {
+    gradient:
+      "from-[#ffedd5] via-[#fff7ed] to-[#fef3c7] dark:from-orange-950/70 dark:via-amber-950/50 dark:to-yellow-950/40",
+    iconClass: "text-orange-300 dark:text-amber-400/70",
+    labelClass: "text-orange-600/70 dark:text-amber-300/80",
+  },
+};
+
+const DEFAULT_PLACEHOLDER = {
+  gradient:
+    "from-amber-50 via-orange-50 to-rose-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-950",
+  iconClass: "text-amber-300 dark:text-amber-500/50",
+  labelClass: "text-gray-500 dark:text-gray-400",
+};
+
+function getPlaceholderStyle(projectId: string) {
+  return PLACEHOLDER_PALETTES[projectId] ?? DEFAULT_PLACEHOLDER;
+}
 
 function FilterSelect({
   id,
@@ -49,7 +79,7 @@ function FilterSelect({
     <div className="w-full sm:w-auto sm:min-w-[180px]">
       <label
         htmlFor={id}
-        className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-brand-dark dark:text-brand-light"
+        className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400"
       >
         {label}
       </label>
@@ -58,7 +88,7 @@ function FilterSelect({
           id={id}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full cursor-pointer appearance-none rounded-full border border-gray-200 bg-surface-card py-2 pl-4 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-brand/40 hover:text-gray-900 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 dark:border-gray-700 dark:text-gray-300 dark:hover:border-brand-dark/40 dark:hover:text-white"
+          className="w-full cursor-pointer appearance-none rounded-full border border-gray-200 bg-white py-2 pl-4 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-amber-300 hover:text-gray-900 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/25 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-amber-500/40 dark:hover:text-white"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -68,43 +98,49 @@ function FilterSelect({
         </select>
         <FaChevronDown
           aria-hidden="true"
-          className="pointer-events-none absolute right-3.5 top-1/2 h-3 w-3 -translate-y-1/2 text-brand-dark/70 dark:text-brand-light/70"
+          className="pointer-events-none absolute right-3.5 top-1/2 h-3 w-3 -translate-y-1/2 text-amber-600/70 dark:text-amber-400/70"
         />
       </div>
     </div>
   );
 }
 
-const PLACEHOLDER_GRADIENTS: Record<string, string> = {
-  SaaS: "from-violet-500/20 via-brand/30 to-ember/20",
-  Mobile: "from-sky-500/20 via-accent/25 to-teal-600/20",
-  Web: "from-brand/25 via-amber-400/20 to-orange-500/15",
-  "E-commerce": "from-rose-500/15 via-brand/25 to-ember/20",
-};
+function PlaceholderVisual({
+  projectId,
+  category,
+  size = "card",
+}: {
+  projectId: string;
+  category?: string;
+  size?: "card" | "modal";
+}) {
+  const palette = getPlaceholderStyle(projectId);
+  const iconSize = size === "modal" ? "text-7xl" : "text-5xl mb-3";
+
+  return (
+    <div
+      className={`flex ${PLACEHOLDER_MEDIA} flex-col items-center justify-center bg-gradient-to-br ${palette.gradient}`}
+    >
+      <FaCode className={`${iconSize} ${palette.iconClass}`} />
+      {category && (
+        <p className={`text-sm font-medium ${palette.labelClass}`}>{category}</p>
+      )}
+    </div>
+  );
+}
 
 function ProjectThumbnail({
   project,
   content,
-  gradient,
 }: {
   project: Project;
   content: ReturnType<typeof getProjectContent>;
-  gradient: string;
 }) {
   const [imageFailed, setImageFailed] = useState(false);
   const showImage = Boolean(project.image) && !imageFailed;
 
   if (!showImage) {
-    return (
-      <div
-        className={`flex w-full flex-col items-center justify-center bg-gradient-to-br ${gradient} ${PLACEHOLDER_MEDIA}`}
-      >
-        <FaCode className="mb-3 text-6xl text-brand/50" />
-        <p className="text-sm font-semibold uppercase tracking-widest text-gray-600/80 dark:text-gray-300/80">
-          {project.category}
-        </p>
-      </div>
-    );
+    return <PlaceholderVisual projectId={project.id} category={project.category} />;
   }
 
   return (
@@ -112,34 +148,19 @@ function ProjectThumbnail({
     <img
       src={project.image}
       alt={`${content.title} — ${content.description}`}
-      className="block w-full h-auto"
-      loading="eager"
-      decoding="async"
+      className={`${PLACEHOLDER_MEDIA} object-cover transition-transform duration-300 group-hover:scale-105`}
+      loading="lazy"
+      width={400}
+      height={225}
       onError={() => setImageFailed(true)}
     />
   );
 }
 
-function TechStack({ technologies }: { technologies: string[] }) {
-  if (!technologies.length) return null;
-
-  return (
-    <div className="relative mb-4">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-5 bg-gradient-to-r from-surface-card to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-5 bg-gradient-to-l from-surface-card to-transparent" />
-      <div className="flex gap-1.5 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {technologies.map((tech) => (
-          <span
-            key={tech}
-            className="shrink-0 rounded-full border border-gray-200/70 bg-white/70 px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-gray-600 backdrop-blur-sm dark:border-gray-700/80 dark:bg-gray-800/50 dark:text-gray-300"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
+const liveBtnClass =
+  "flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 px-6 py-3 text-sm font-medium text-gray-900 shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/20";
+const storeBtnClass =
+  "flex flex-1 items-center justify-center gap-2 rounded-full bg-gray-800 px-4 py-3 text-sm font-medium text-white transition hover:bg-gradient-to-r hover:from-amber-400 hover:to-orange-500 hover:text-gray-900";
 
 function ProjectActions({
   project,
@@ -156,8 +177,6 @@ function ProjectActions({
 }) {
   const linkType = getProjectLinkType(project);
   const inProgressLabel = mounted ? t.inProgress : "In Development";
-  const storeBtnClass =
-    "flex flex-1 items-center justify-center gap-2 rounded-full bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600";
 
   if (linkType === "web") {
     return (
@@ -166,7 +185,7 @@ function ProjectActions({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${title} — ${t.liveDemo}`}
-        className={`flex w-full items-center justify-center gap-2 rounded-full bg-accent-gradient px-5 py-2.5 text-sm font-medium text-white shadow-md transition-all duration-300 hover:shadow-lg ${className}`}
+        className={`${liveBtnClass} ${className}`}
       >
         <FaExternalLinkAlt aria-hidden="true" />
         <span>{mounted ? t.liveDemo : "Live Demo"}</span>
@@ -209,7 +228,7 @@ function ProjectActions({
     return (
       <span
         aria-disabled="true"
-        className={`flex w-full cursor-default items-center justify-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-5 py-2.5 text-sm font-medium text-accent-dark dark:border-accent/30 dark:bg-accent/15 dark:text-accent-light ${className}`}
+        className={`${liveBtnClass} cursor-default ${className}`}
       >
         {mounted ? t.liveMobileApp : "Live · Mobile App"}
       </span>
@@ -219,7 +238,7 @@ function ProjectActions({
   return (
     <span
       aria-disabled="true"
-      className={`flex w-full cursor-default items-center justify-center gap-2 rounded-full border border-dashed border-amber-400/45 bg-amber-50/80 px-5 py-2.5 text-sm font-medium text-amber-800 dark:border-amber-500/35 dark:bg-amber-950/25 dark:text-amber-300 ${className}`}
+      className={`flex w-full cursor-default items-center justify-center gap-2 rounded-full border-2 border-dashed border-amber-500/75 bg-amber-50/80 px-6 py-3 text-sm font-medium text-amber-800 dark:border-amber-400/65 dark:bg-amber-950/25 dark:text-amber-300 ${className}`}
     >
       {inProgressLabel}
     </span>
@@ -244,8 +263,6 @@ function ProjectCard({
   onPreview: (project: Project) => void;
 }) {
   const live = isProjectLive(project);
-  const gradient =
-    PLACEHOLDER_GRADIENTS[project.category] ?? "from-brand/20 via-surface-alt to-ember/15";
   const displayBadges = project.badges.filter((badge) => normalizeBadge(badge) !== "in progress");
 
   return (
@@ -255,51 +272,45 @@ function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.35, delay: index * 0.05 }}
-      className="flex flex-col overflow-hidden rounded-xl border border-brand/15 bg-surface-card shadow-lg transition-shadow duration-300 hover:shadow-xl dark:border-brand-dark/25"
+      className="flex h-full flex-col overflow-hidden rounded-xl border border-amber-200/30 bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl dark:border-amber-700/30 dark:bg-gray-900"
     >
       <button
         type="button"
         onClick={() => onPreview(project)}
         aria-label={content.title}
-        className="group relative block w-full shrink-0 overflow-hidden"
+        className="group relative flex h-48 cursor-pointer items-center justify-center overflow-hidden bg-gray-200 dark:bg-gray-700"
       >
-        <ProjectThumbnail project={project} content={content} gradient={gradient} />
-
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/75 to-transparent" />
-
-        <div className="absolute inset-x-0 bottom-0 p-4 text-left">
-          <h3 className="text-xl font-bold text-white drop-shadow-sm sm:text-2xl">{content.title}</h3>
-        </div>
+        <ProjectThumbnail project={project} content={content} />
 
         {live && (
-          <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-accent-dark/95 px-2.5 py-1 text-xs font-semibold text-white shadow-md backdrop-blur-sm">
+          <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-amber-500 px-2.5 py-1 text-xs font-semibold text-white shadow-md">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
             Live
           </span>
         )}
       </button>
 
-      <div className="flex min-h-[220px] flex-1 flex-col p-5">
-        {!!displayBadges.length && (
-          <div className="mb-3 flex flex-wrap gap-1.5">
-            {displayBadges.map((badge) => (
+      <div className="flex flex-grow flex-col p-6">
+        <div className="mb-3 flex items-start gap-2">
+          <h3 className="flex-1 text-xl font-semibold text-gray-900 dark:text-white">
+            {content.title}
+          </h3>
+          {!!displayBadges.length &&
+            displayBadges.map((badge) => (
               <span
                 key={badge}
-                className="rounded-full bg-brand/10 px-2 py-0.5 text-xs font-medium text-brand-dark dark:bg-brand-dark/20 dark:text-brand-light"
+                className="shrink-0 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300"
               >
                 {getBadgeLabel(badge, lang)}
               </span>
             ))}
-          </div>
-        )}
+        </div>
 
-        <p className="mb-2 line-clamp-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-          {content.description}
-        </p>
+        <p className="mb-4 flex-grow text-gray-700 dark:text-gray-300">{content.description}</p>
 
-        <TechStack technologies={project.technologies} />
+        <TechStack technologies={project.technologies} className="mb-4" />
 
-        <div className="mt-auto pt-1">
+        <div className="mt-auto flex gap-4">
           <ProjectActions project={project} title={content.title} mounted={mounted} t={t} />
         </div>
       </div>
@@ -358,7 +369,7 @@ export default function LiveProjects() {
   const previewContent = previewProject ? getProjectContent(previewProject, currentLanguage) : null;
 
   return (
-    <section id="projects" className="scroll-mt-24 bg-surface px-4 py-20 sm:px-6 lg:px-8">
+    <section id="projects" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -367,7 +378,7 @@ export default function LiveProjects() {
           transition={{ duration: 0.6 }}
           className="mb-10 text-center"
         >
-          <div className="mb-4 flex items-center justify-center gap-2 font-mono text-sm text-brand-dark dark:text-brand-light">
+          <div className="mb-4 flex items-center justify-center gap-2 font-mono text-sm text-amber-600 dark:text-amber-400">
             <FaCode />
             <span>{"<projects>"}</span>
           </div>
@@ -408,8 +419,8 @@ export default function LiveProjects() {
                   onClick={() => setActiveFilter(key)}
                   className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 ${
                     active
-                      ? "bg-brand-gradient text-gray-900 shadow-md"
-                      : "border border-gray-200 bg-surface-card text-gray-600 hover:border-brand/40 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:text-white"
+                      ? "bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 shadow-md"
+                      : "border border-gray-200 bg-white text-gray-600 hover:border-amber-300 hover:text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:text-white"
                   }`}
                 >
                   {mounted ? t[labelKey] : labelKey.replace("filter", "")}
@@ -477,14 +488,14 @@ export default function LiveProjects() {
               aria-modal="true"
               role="dialog"
             >
-              <div className="max-h-[85vh] w-full max-w-3xl overflow-auto rounded-xl border border-brand/15 bg-surface-card shadow-2xl dark:border-brand-dark/25">
+              <div className="max-h-[85vh] w-full max-w-3xl overflow-auto rounded-xl border border-amber-200/30 bg-white shadow-2xl dark:border-amber-700/30 dark:bg-gray-900">
                 <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-800">
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                       {previewContent.title}
                     </h3>
                     {isProjectLive(previewProject) && (
-                      <span className="rounded-full bg-accent-dark/90 px-2 py-0.5 text-xs font-medium text-white">
+                      <span className="rounded-full bg-amber-500/90 px-2 py-0.5 text-xs font-medium text-white">
                         Live
                       </span>
                     )}
@@ -508,11 +519,7 @@ export default function LiveProjects() {
                     decoding="async"
                   />
                 ) : (
-                  <div
-                    className={`flex w-full items-center justify-center bg-gradient-to-br ${PLACEHOLDER_GRADIENTS[previewProject.category] ?? "from-brand/20 to-ember/15"} ${PLACEHOLDER_MEDIA}`}
-                  >
-                    <FaCode className="text-7xl text-brand/40" />
-                  </div>
+                  <PlaceholderVisual projectId={previewProject.id} size="modal" />
                 )}
 
                 <div className="space-y-4 p-5">
@@ -523,7 +530,7 @@ export default function LiveProjects() {
                         .map((badge) => (
                           <span
                             key={badge}
-                            className="rounded-full bg-brand/10 px-2 py-0.5 text-xs font-medium text-brand-dark dark:text-brand-light"
+                            className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300"
                           >
                             {getBadgeLabel(badge, currentLanguage)}
                           </span>
@@ -538,7 +545,7 @@ export default function LiveProjects() {
                     </p>
                   )}
 
-                  <TechStack technologies={previewProject.technologies} />
+                  <TechStack technologies={previewProject.technologies} collapsible={false} />
 
                   <div className="pt-2">
                     <ProjectActions

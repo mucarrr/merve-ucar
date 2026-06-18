@@ -38,7 +38,7 @@ export default function ScrollToTop() {
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
           aria-label="Scroll to top of page"
-          className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 flex items-center justify-center"
+          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient text-gray-900 shadow-lg transition-all duration-300 hover:shadow-xl"
         >
           <FaArrowUp size={20} aria-hidden="true" />
         </motion.button>

@@ -86,7 +86,7 @@ export const projects: Project[] = [
     liveUrl: "",
     githubUrl: "https://github.com/mucarrr/timeGarden--ReactNative-",
     technologies: ["React Native", "i18next", "Lottie", "Geolocation API", "Push Notifications"],
-    image: "/screenshots/time-garden.png",
+    image: "",
     featured: false,
     category: "Mobile",
     badges: ["mobile", "education"],
@@ -129,14 +129,14 @@ export const projects: Project[] = [
     tr: {
       title: "Cappadocia Grill",
       description:
-        "Atina Kallithea'da faaliyet gösteren grill restoranı için dijital menü, WhatsApp rezervasyonu, online sipariş ve çift dilli SEO odaklı premium restoran sitesi.",
+        "Atina'da faaliyet gösteren grill restoranı için dijital menü, WhatsApp rezervasyonu, online sipariş ve çift dilli SEO odaklı premium restoran sitesi.",
       longDescription:
         "Profesyonel vitrin ve mobil uyumlu tasarım; dijital menü, WhatsApp rezervasyonu ve Wolt / e-food sipariş entegrasyonu. Gerçek Google yorumları ile sosyal kanıt, Google Maps, sosyal medya ve platform entegrasyonları. İngilizce ve Yunanca dil desteği, yerel SEO ile hızlı ve güvenli altyapı.",
     },
     en: {
       title: "Cappadocia Grill",
       description:
-        "A premium restaurant website for a grill restaurant in Kallithea, Athens — digital menu, WhatsApp reservations, online ordering, and bilingual SEO.",
+        "A premium restaurant website for a grill restaurant in Athens — digital menu, WhatsApp reservations, online ordering, and bilingual SEO.",
       longDescription:
         "A professional, mobile-friendly storefront with a digital menu, WhatsApp reservations, and Wolt / e-food ordering integration. Social proof from real Google reviews, plus Google Maps, social media, and platform integrations. English and Greek language support with local SEO on fast, secure infrastructure.",
     },
@@ -191,21 +191,21 @@ export const projects: Project[] = [
       "Redux",
       "Push Notifications",
     ],
-    image: "/screenshots/didiyos.png",
+    image: "",
     featured: false,
     category: "Mobile",
     badges: ["mobile", "community"],
     order: 5,
     updatedAt: "2026-06-18",
     tr: {
-      title: "Didiyos (Event Mobile App)",
+      title: "Didiyos",
       description:
         "Büyük ölçekli organizasyonlar ve etkinlik yönetimi için geliştirilen, tüm dinamik içerik yönetimini, bildirim sistemini ve kullanıcı akışlarını kapsayan React Native tabanlı mobil uygulama projesi.",
       longDescription:
         "Cross-platform mobil mimariye, frontend süreçlerine ve backend/API entegrasyonlarına katkı sağlanan bir etkinlik yönetimi uygulaması (Contributor). Dinamik etkinlik yönetimi (CRUD): etkinlik ekleme, çıkarma, güncelleme ve detay yönetimi uçtan uca mobil arayüzde. Katılımcı etkileşim altyapısı, anlık bildirim sistemi (Push Notifications) ile gerçek zamanlı güncellemeler ve güvenli kayıt/giriş (Authentication) ekranları ile kullanıcı yönetimi.",
     },
     en: {
-      title: "Didiyos (Event Mobile App)",
+      title: "Didiyos",
       description:
         "A cross-platform mobile event-management application built with React Native, featuring dynamic event CRUD workflows, attendee engagement, and push-notification systems.",
       longDescription:

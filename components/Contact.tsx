@@ -59,14 +59,14 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" ref={ref} className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" ref={ref} className="section-padding bg-surface">
+      <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">{t.contactTitle}</h2>
+          <h2 className="section-title mb-16">{t.contactTitle}</h2>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* İletişim Bilgileri */}
@@ -76,7 +76,7 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-bold mb-6 text-amber-600 dark:text-amber-400">
+              <h3 className="mb-6 text-2xl font-bold text-brand-dark dark:text-brand-light">
                 {t.contactSubtitle}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
@@ -85,14 +85,14 @@ export default function Contact() {
 
               <div className="space-y-4">
                 <div className="flex items-center gap-4 text-gray-700 dark:text-gray-300">
-                  <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
-                    <FaEnvelope className="text-amber-600 dark:text-amber-400" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 dark:bg-brand-dark/20">
+                    <FaEnvelope className="text-brand-dark dark:text-brand-light" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500 dark:text-gray-500">{t.email}</p>
                     <a
                       href="mailto:mucar2326@gmail.com"
-                      className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+                      className="transition-colors hover:text-brand-dark dark:hover:text-brand-light"
                     >
                       mucar2326@gmail.com
                     </a>
@@ -100,8 +100,8 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center gap-4 text-gray-700 dark:text-gray-300">
-                  <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
-                    <FaMapMarkerAlt className="text-amber-600 dark:text-amber-400" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 dark:bg-brand-dark/20">
+                    <FaMapMarkerAlt className="text-brand-dark dark:text-brand-light" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500 dark:text-gray-500">{t.location}</p>
@@ -116,7 +116,7 @@ export default function Contact() {
                   <a
                     href="mailto:mucar2326@gmail.com"
                     aria-label="Send email to Merve Uçar"
-                    className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-brand/10 dark:bg-gray-800 dark:hover:bg-brand-dark/20"
                   >
                     <FaEnvelope className="text-gray-700 dark:text-gray-300" aria-hidden="true" />
                   </a>
@@ -125,7 +125,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Visit Merve Uçar's GitHub profile"
-                    className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-brand/10 dark:bg-gray-800 dark:hover:bg-brand-dark/20"
                   >
                     <FaGithub className="text-gray-700 dark:text-gray-300" aria-hidden="true" />
                   </a>
@@ -134,7 +134,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Visit Merve Uçar's LinkedIn profile"
-                    className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-brand/10 dark:bg-gray-800 dark:hover:bg-brand-dark/20"
                   >
                     <FaLinkedin className="text-gray-700 dark:text-gray-300" aria-hidden="true" />
                   </a>
@@ -150,7 +150,7 @@ export default function Contact() {
             >
               <form
                 onSubmit={handleSubmit}
-                className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800"
+                className="card p-8"
               >
                 <div className="space-y-6">
                   <div>
@@ -167,7 +167,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all"
+                      className="input-field"
                       placeholder={t.formNamePlaceholder}
                     />
                   </div>
@@ -186,7 +186,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all"
+                      className="input-field"
                       placeholder={t.formEmailPlaceholder}
                     />
                   </div>
@@ -205,14 +205,14 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all resize-none"
+                      className="input-field resize-none"
                       placeholder={t.formMessagePlaceholder}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-lg font-medium hover:shadow-lg hover:scale-105 transition-all duration-300"
+                    className="btn-primary w-full py-4"
                   >
                     {t.formSubmit}
                   </button>
