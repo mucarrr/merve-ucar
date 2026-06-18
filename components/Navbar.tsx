@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
+import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -10,8 +10,11 @@ import { translations } from "@/lib/translations";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [projectsOpen, setProjectsOpen] = useState(false);
+  const [mobileProjectsOpen, setMobileProjectsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
+  const projectsRef = useRef<HTMLDivElement | null>(null);
   const { language } = useLanguage();
   const [currentLanguage, setCurrentLanguage] = useState(language);
   const t = translations[currentLanguage as keyof typeof translations];
@@ -30,46 +33,55 @@ export default function Navbar() {
     return () => window.removeEventListener("languageChanged", handleLanguageChange);
   }, []);
 
-  // Dışarı tıklayınca menüyü kapat
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (!isOpen) return;
       const target = event.target as Node;
+
+      if (projectsOpen && projectsRef.current && !projectsRef.current.contains(target)) {
+        setProjectsOpen(false);
+      }
+
+      if (!isOpen) return;
       if (menuRef.current && menuRef.current.contains(target)) return;
       if (toggleRef.current && toggleRef.current.contains(target)) return;
       setIsOpen(false);
+      setMobileProjectsOpen(false);
     };
 
     document.addEventListener("mousedown", handleClickOutside, true);
     return () => document.removeEventListener("mousedown", handleClickOutside, true);
-  }, [isOpen]);
+  }, [isOpen, projectsOpen]);
 
-  const menuItems = [
+  const navLinks = [
     { name: t.home, href: "/" },
     { name: t.about, href: "#about" },
     { name: t.experience, href: "/experience" },
-    { name: t.projects, href: "/projects" },
     { name: t.skills, href: "#skills" },
     { name: t.contact, href: "#contact" },
+  ];
+
+  const projectLinks = [
+    { name: t.liveProjectsTitle, href: "/#projects" },
+    { name: t.portfolioProjectsTitle, href: "/projects" },
   ];
 
   const handleNavigation = (href: string) => {
     const wasOpen = isOpen;
     setIsOpen(false);
-    // "#section" ve "/#section" durumlarını normalize et
+    setProjectsOpen(false);
+    setMobileProjectsOpen(false);
+
     const isHashLink = href.startsWith("#") || href.startsWith("/#");
     if (isHashLink) {
       const id = href.replace("/#", "#");
-      // Anasayfada değilsek doğrudan '/#id' ile anasayfaya git
       if (window.location.pathname !== "/") {
-        window.location.href = `/${id}`; // '/#about' gibi
+        window.location.href = `/${id}`;
         return;
       }
-      // Anasayfadaysak smooth scroll + offset uygula
       const doScroll = () => {
         const element = document.querySelector(id);
         if (element) {
-          const navbarHeight = 64; // h-16
+          const navbarHeight = 64;
           const rect = (element as HTMLElement).getBoundingClientRect();
           const absoluteY = window.scrollY + rect.top - navbarHeight - 8;
           window.scrollTo({ top: absoluteY, behavior: "smooth" });
@@ -77,12 +89,10 @@ export default function Navbar() {
           window.location.hash = id.substring(1);
         }
       };
-      // Mobilde menü kapanış animasyonu sonrasına ertele
       if (wasOpen) {
         setTimeout(() => {
-          // iki kere rAF ile layout otursun
           requestAnimationFrame(() => requestAnimationFrame(doScroll));
-        }, 220); // exit animasyonu ~200ms
+        }, 220);
       } else {
         doScroll();
       }
@@ -90,6 +100,8 @@ export default function Navbar() {
     }
     window.location.href = href;
   };
+
+  const projectsMenuIndex = 3;
 
   return (
     <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
@@ -120,12 +132,72 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {menuItems.map((item, index) => (
+            {navLinks.slice(0, projectsMenuIndex).map((item, index) => (
               <motion.button
                 key={item.name}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
+                onClick={() => handleNavigation(item.href)}
+                aria-label={`Navigate to ${item.name}`}
+                className="text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium"
+              >
+                {item.name}
+              </motion.button>
+            ))}
+
+            <motion.div
+              ref={projectsRef}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: projectsMenuIndex * 0.1 }}
+              className="relative"
+            >
+              <button
+                type="button"
+                onClick={() => setProjectsOpen((open) => !open)}
+                aria-expanded={projectsOpen}
+                aria-haspopup="true"
+                aria-label={t.projects}
+                className="flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium"
+              >
+                {t.projects}
+                <HiChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${projectsOpen ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                />
+              </button>
+
+              <AnimatePresence>
+                {projectsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute left-1/2 top-full z-50 mt-2 w-56 -translate-x-1/2 overflow-hidden rounded-xl border border-gray-200 bg-white py-1.5 shadow-lg dark:border-gray-700 dark:bg-gray-900"
+                  >
+                    {projectLinks.map((item) => (
+                      <button
+                        key={item.href}
+                        type="button"
+                        onClick={() => handleNavigation(item.href)}
+                        className="block w-full px-4 py-2.5 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-amber-50 hover:text-amber-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-amber-400"
+                      >
+                        {item.name}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {navLinks.slice(projectsMenuIndex).map((item, index) => (
+              <motion.button
+                key={item.name}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: (projectsMenuIndex + 1 + index) * 0.1 }}
                 onClick={() => handleNavigation(item.href)}
                 aria-label={`Navigate to ${item.name}`}
                 className="text-gray-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-medium"
@@ -165,7 +237,10 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/40 md:hidden z-40"
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                setMobileProjectsOpen(false);
+              }}
             />
             <motion.div
               ref={menuRef}
@@ -176,7 +251,55 @@ export default function Navbar() {
               className="relative md:hidden z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
             >
               <div className="px-4 py-4 space-y-3">
-                {menuItems.map((item) => (
+                {navLinks.slice(0, projectsMenuIndex).map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href)}
+                    aria-label={`Navigate to ${item.name}`}
+                    className="block w-full text-left text-gray-700 dark:text-gray-300 md:hover:text-amber-500 md:dark:hover:text-amber-400 transition-colors font-medium py-2 focus:outline-none"
+                  >
+                    {item.name}
+                  </button>
+                ))}
+
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileProjectsOpen((open) => !open)}
+                    aria-expanded={mobileProjectsOpen}
+                    className="flex w-full items-center justify-between text-left text-gray-700 dark:text-gray-300 font-medium py-2 focus:outline-none"
+                  >
+                    {t.projects}
+                    <HiChevronDown
+                      className={`h-5 w-5 transition-transform duration-200 ${mobileProjectsOpen ? "rotate-180" : ""}`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileProjectsOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        {projectLinks.map((item) => (
+                          <button
+                            key={item.href}
+                            type="button"
+                            onClick={() => handleNavigation(item.href)}
+                            aria-label={`Navigate to ${item.name}`}
+                            className="block w-full py-2 pl-3 text-left text-gray-700 dark:text-gray-300 font-medium transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus:outline-none"
+                          >
+                            {item.name}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {navLinks.slice(projectsMenuIndex).map((item) => (
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href)}

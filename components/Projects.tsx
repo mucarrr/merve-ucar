@@ -89,10 +89,10 @@ export default function Projects() {
             <span>{"<projects>"}</span>
           </div>
           <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl">
-            {mounted ? t.projectsTitle : "Projects"}
+            {mounted ? t.portfolioProjectsTitle : "Portfolio Projects"}
           </h1>
           <p className="mx-auto mb-12 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-            {mounted ? t.projectsDescription : ""}
+            {mounted ? t.portfolioProjectsSubtitle : ""}
           </p>
         </motion.div>
 

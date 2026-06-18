@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://merveucar.dev"),
-  title: "Projects - Merve Uçar | Freelance Developer Portfolio | React, Next.js, Node.js Projects",
+  title: "Portfolio Projects - Merve Uçar | Freelance Developer Portfolio | React, Next.js, Node.js",
   description:
     "Explore my portfolio of web development projects. Modern web applications built with React, Next.js, TypeScript, Node.js, MongoDB. Freelance developer projects, full stack applications, and custom software solutions. Projects showcase React Development, Next.js Development, MERN Stack projects, and TypeScript projects. Projelerim, web uygulamaları, React projeleri.",
   keywords: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Merve Uçar" }],
   openGraph: {
-    title: "Projects - Merve Uçar | Freelance Developer Portfolio",
+    title: "Portfolio Projects - Merve Uçar | Freelance Developer Portfolio",
     description:
       "Explore my portfolio of web development projects. Modern web applications built with React, Next.js, TypeScript, Node.js, MongoDB.",
     type: "website",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Projects - Merve Uçar | Developer Portfolio",
+    title: "Portfolio Projects - Merve Uçar | Developer Portfolio",
     description:
       "Web development projects portfolio. React, Next.js, TypeScript, Node.js projects.",
     images: ["/favicon.svg"],
