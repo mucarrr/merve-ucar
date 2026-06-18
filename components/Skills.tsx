@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/lib/translations";
@@ -15,10 +14,17 @@ import {
   SiMongodb,
   SiExpress,
 } from "react-icons/si";
+import type { IconType } from "react-icons";
 
 type Translation = (typeof translations)[keyof typeof translations];
 
-const getSkillCategories = (t: Translation) => [
+interface Skill {
+  name: string;
+  icon: IconType;
+  color: string;
+}
+
+const getSkillCategories = (t: Translation): { title: string; skills: Skill[] }[] => [
   {
     title: t.frontend,
     skills: [
@@ -64,7 +70,7 @@ const getSoftSkills = (t: Translation) => [
 
 export default function Skills() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { language } = useLanguage();
   const [currentLanguage, setCurrentLanguage] = useState(language);
   const t = translations[currentLanguage as keyof typeof translations];
@@ -89,81 +95,69 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50"
+      className="scroll-mt-24 bg-surface-alt px-4 py-16 sm:px-6 lg:px-8"
     >
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.6 }}
+      <div className="mx-auto max-w-5xl">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 text-center text-3xl font-bold sm:text-4xl"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">{t.skillsTitle}</h2>
+          {t.skillsTitle}
+        </motion.h2>
 
-          {/* Technical Skills */}
-          <div className="space-y-12 mb-16">
-            {skillCategories.map((category, categoryIndex) => (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
+        {/* Technical skills as compact chips, grouped by category */}
+        <div className="space-y-6">
+          {skillCategories.map((category, categoryIndex) => (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
+              className="flex flex-col gap-3 sm:flex-row sm:items-start"
+            >
+              <h3 className="w-full shrink-0 text-sm font-semibold uppercase tracking-wide text-brand-dark dark:text-brand-light sm:w-28 sm:pt-1.5">
+                {category.title}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill) => {
+                  const Icon = skill.icon;
+                  return (
+                    <span
+                      key={skill.name}
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-surface-card px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-md dark:border-gray-700 dark:text-gray-200"
+                    >
+                      <Icon size={16} style={{ color: skill.color }} className="dark:opacity-90" />
+                      {skill.name}
+                    </span>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Soft skills */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="mt-8 flex flex-col gap-3 border-t border-gray-200 pt-6 sm:flex-row sm:items-start dark:border-gray-700"
+        >
+          <h3 className="w-full shrink-0 text-sm font-semibold uppercase tracking-wide text-brand-dark dark:text-brand-light sm:w-28 sm:pt-1">
+            {currentLanguage === "tr" ? "Kişisel" : "Soft"}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {softSkills.map((skill) => (
+              <span
+                key={skill}
+                className="rounded-full bg-brand/10 px-3 py-1.5 text-sm font-medium text-brand-dark dark:bg-brand/15 dark:text-brand-light"
               >
-                <h3 className="text-2xl font-bold mb-6 text-center text-amber-600 dark:text-amber-400">
-                  {category.title}
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                  {category.skills.map((skill, index) => {
-                    const Icon = skill.icon;
-                    return (
-                      <motion.div
-                        key={skill.name}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                        transition={{
-                          duration: 0.4,
-                          delay: categoryIndex * 0.2 + index * 0.05,
-                        }}
-                        className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center gap-3 border border-gray-200 dark:border-gray-800"
-                      >
-                        <Icon
-                          size={48}
-                          style={{ color: skill.color }}
-                          className="dark:opacity-90"
-                        />
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
-                          {skill.name}
-                        </span>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </motion.div>
+                {skill}
+              </span>
             ))}
           </div>
-
-          {/* Soft Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 text-center text-amber-600 dark:text-amber-400">
-              {currentLanguage === "tr" ? "Kişisel Beceriler" : "Soft Skills"}
-            </h3>
-            <div className="flex flex-wrap gap-4 justify-center">
-              {softSkills.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4, delay: 0.6 + index * 0.05 }}
-                  className="px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                >
-                  {skill}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

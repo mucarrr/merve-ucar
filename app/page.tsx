@@ -1,9 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import LiveProjects from "@/components/LiveProjects";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
-import Stats from "@/components/Stats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -122,9 +122,9 @@ export default function Home() {
         <main className="min-h-screen">
           <Hero />
           <Services />
+          <LiveProjects />
           <About />
           <Skills />
-          <Stats />
           <Contact />
         </main>
         <Footer />
