@@ -30,7 +30,7 @@ const FILTER_KEYS: { key: ProjectFilter; labelKey: keyof (typeof translations)["
   { key: "web", labelKey: "filterWeb" },
 ];
 
-const IMAGE_ASPECT = "aspect-[16/10]";
+const PLACEHOLDER_MEDIA = "aspect-[16/10] min-h-[180px]";
 
 function FilterSelect({
   id,
@@ -85,17 +85,21 @@ const PLACEHOLDER_GRADIENTS: Record<string, string> = {
 function ProjectThumbnail({
   project,
   content,
+  gradient,
 }: {
   project: Project;
   content: ReturnType<typeof getProjectContent>;
+  gradient: string;
 }) {
   const [imageFailed, setImageFailed] = useState(false);
   const showImage = Boolean(project.image) && !imageFailed;
 
   if (!showImage) {
     return (
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <FaCode className="mb-3 text-6xl text-brand/50 transition-transform duration-300 group-hover:scale-110" />
+      <div
+        className={`flex w-full flex-col items-center justify-center bg-gradient-to-br ${gradient} ${PLACEHOLDER_MEDIA}`}
+      >
+        <FaCode className="mb-3 text-6xl text-brand/50" />
         <p className="text-sm font-semibold uppercase tracking-widest text-gray-600/80 dark:text-gray-300/80">
           {project.category}
         </p>
@@ -108,11 +112,9 @@ function ProjectThumbnail({
     <img
       src={project.image}
       alt={`${content.title} — ${content.description}`}
-      className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+      className="block w-full h-auto"
       loading="eager"
       decoding="async"
-      width={480}
-      height={300}
       onError={() => setImageFailed(true)}
     />
   );
@@ -253,18 +255,17 @@ function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.35, delay: index * 0.05 }}
-      className="flex h-full flex-col overflow-hidden rounded-xl border border-brand/15 bg-surface-card shadow-lg transition-shadow duration-300 hover:shadow-xl dark:border-brand-dark/25"
+      className="flex flex-col overflow-hidden rounded-xl border border-brand/15 bg-surface-card shadow-lg transition-shadow duration-300 hover:shadow-xl dark:border-brand-dark/25"
     >
-      {/* Fixed-ratio media — same height on every card */}
       <button
         type="button"
         onClick={() => onPreview(project)}
         aria-label={content.title}
-        className={`group relative block w-full shrink-0 overflow-hidden bg-gradient-to-br ${gradient} ${IMAGE_ASPECT}`}
+        className="group relative block w-full shrink-0 overflow-hidden"
       >
-        <ProjectThumbnail project={project} content={content} />
+        <ProjectThumbnail project={project} content={content} gradient={gradient} />
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/75 to-transparent" />
 
         <div className="absolute inset-x-0 bottom-0 p-4 text-left">
           <h3 className="text-xl font-bold text-white drop-shadow-sm sm:text-2xl">{content.title}</h3>
@@ -432,7 +433,7 @@ export default function LiveProjects() {
           />
         </div>
 
-        <motion.div layout className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <ProjectCard
@@ -454,6 +455,7 @@ export default function LiveProjects() {
             {mounted ? "Bu kategoride proje yok." : "No projects in this category."}
           </p>
         )}
+
       </div>
 
       <AnimatePresence>
@@ -497,21 +499,17 @@ export default function LiveProjects() {
                 </div>
 
                 {previewProject.image ? (
-                  <div className={`relative w-full bg-surface-alt ${IMAGE_ASPECT}`}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={previewProject.image}
-                      alt={`${previewContent.title} — ${previewContent.description}`}
-                      className="h-full w-full object-cover object-top"
-                      loading="eager"
-                      decoding="async"
-                      width={800}
-                      height={500}
-                    />
-                  </div>
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={previewProject.image}
+                    alt={`${previewContent.title} — ${previewContent.description}`}
+                    className="block w-full h-auto"
+                    loading="eager"
+                    decoding="async"
+                  />
                 ) : (
                   <div
-                    className={`flex w-full items-center justify-center bg-gradient-to-br ${PLACEHOLDER_GRADIENTS[previewProject.category] ?? "from-brand/20 to-ember/15"} ${IMAGE_ASPECT}`}
+                    className={`flex w-full items-center justify-center bg-gradient-to-br ${PLACEHOLDER_GRADIENTS[previewProject.category] ?? "from-brand/20 to-ember/15"} ${PLACEHOLDER_MEDIA}`}
                   >
                     <FaCode className="text-7xl text-brand/40" />
                   </div>
