@@ -48,11 +48,11 @@ export default function About() {
               </p>
 
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                {t.aboutDescription2}
+                {t.aboutDescription3}
               </p>
 
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                {t.aboutDescription3}
+                {t.aboutServices}
               </p>
             </div>
 

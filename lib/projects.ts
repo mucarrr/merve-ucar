@@ -1,13 +1,8 @@
 /**
  * Live projects shown on the /projects page.
- *
- * This file is the single source of truth for portfolio projects — it replaces
- * the old MongoDB-backed `/api/projects` data source. To add or edit a project,
- * just edit the `projects` array below; it is version-controlled and type-checked.
- *
- * Each project carries both Turkish (tr) and English (en) copy so the language
- * switcher works without a separate translation map.
  */
+
+import { translations } from "./translations";
 
 export interface ProjectContent {
   title: string;
@@ -20,6 +15,12 @@ export interface Project {
   id: string;
   /** Public URL of the deployed, live site. Empty when not yet published. */
   liveUrl: string;
+  /** iOS App Store link (mobile projects). */
+  appStoreUrl?: string;
+  /** Google Play link (mobile projects). */
+  playStoreUrl?: string;
+  /** Live mobile app without a public store link (e.g. corporate / contributor work). */
+  isLive?: boolean;
   /** Source code URL. Leave empty if the repo is private. */
   githubUrl: string;
   /** Tech stack badges. */
@@ -30,7 +31,7 @@ export interface Project {
   featured: boolean;
   /** Short category label (e.g. "E-commerce", "SaaS"). */
   category: string;
-  /** Status/category tags shown as small pills (e.g. "saas", "in progress"). */
+  /** Topic tags shown as small pills (e.g. "saas", "education"). Status is derived from liveUrl. */
   badges: string[];
   /** Lower numbers appear first. */
   order: number;
@@ -59,10 +60,10 @@ export const projects: Project[] = [
       "Playwright",
       "Vercel",
     ],
-    image: "",
+    image: "/screenshots/logos-speechy.png",
     featured: true,
     category: "SaaS",
-    badges: ["in progress", "saas"],
+    badges: ["saas", "education"],
     order: 1,
     updatedAt: "2026-06-18",
     tr: {
@@ -88,11 +89,11 @@ export const projects: Project[] = [
     image: "",
     featured: false,
     category: "Mobile",
-    badges: ["in progress", "mobile"],
+    badges: ["mobile", "education"],
     order: 2,
     updatedAt: "2026-06-18",
     tr: {
-      title: "Time Garden (Vakit Bahçesi)",
+      title: "Time Garden",
       description:
         "Çocukların namaz vakitlerini oyunlaştırarak takip etmesini sağlayan mobil uygulama — sticker & bahçe sistemi, namaz rehberi, konum bazlı vakit hatırlatıcıları ve çift dilli çocuk dostu arayüz.",
       longDescription:
@@ -108,7 +109,7 @@ export const projects: Project[] = [
   },
   {
     id: "cappadocia-grill",
-    liveUrl: "",
+    liveUrl: "https://www.cappadociagrill.com",
     githubUrl: "https://github.com/mucarrr/Cappadocia-restaurant",
     technologies: [
       "Next.js 16",
@@ -119,7 +120,7 @@ export const projects: Project[] = [
       "Resend",
       "Vercel",
     ],
-    image: "",
+    image: "/screenshots/cappadocia.png",
     featured: false,
     category: "Web",
     badges: ["web", "gastronomy"],
@@ -155,10 +156,10 @@ export const projects: Project[] = [
       "Resend",
       "Vercel",
     ],
-    image: "",
+    image: "/screenshots/smyrni.png",
     featured: true,
     category: "E-commerce",
-    badges: ["web", "e-commerce"],
+    badges: ["web", "e-commerce", "gastronomy"],
     order: 4,
     updatedAt: "2026-06-18",
     tr: {
@@ -179,6 +180,7 @@ export const projects: Project[] = [
   {
     id: "didiyos-event",
     liveUrl: "",
+    isLive: true,
     githubUrl: "",
     technologies: [
       "React Native",
@@ -192,7 +194,7 @@ export const projects: Project[] = [
     image: "",
     featured: false,
     category: "Mobile",
-    badges: ["mobile", "community app"],
+    badges: ["mobile", "community"],
     order: 5,
     updatedAt: "2026-06-18",
     tr: {
@@ -215,7 +217,7 @@ export const projects: Project[] = [
     liveUrl: "https://www.lifelongguidance.com",
     githubUrl: "https://github.com/mucarrr/Life-long-learning",
     technologies: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Vercel"],
-    image: "",
+    image: "/screenshots/lifelong.png",
     featured: true,
     category: "Web",
     badges: ["web", "education"],
@@ -257,10 +259,10 @@ export const projects: Project[] = [
       "Vitest",
       "Vercel",
     ],
-    image: "",
+    image: "/screenshots/ratio-mind.png",
     featured: true,
     category: "SaaS",
-    badges: ["saas", "mental health"],
+    badges: ["saas", "mental-health"],
     order: 7,
     updatedAt: "2026-06-18",
     tr: {
@@ -292,10 +294,10 @@ export const projects: Project[] = [
       "Resend",
       "Vercel",
     ],
-    image: "",
+    image: "/screenshots/daylight.png",
     featured: true,
     category: "Web",
-    badges: ["web", "interior design"],
+    badges: ["web", "interior-design"],
     order: 8,
     updatedAt: "2026-06-18",
     tr: {
@@ -318,10 +320,10 @@ export const projects: Project[] = [
     liveUrl: "https://www.juniorscenter.com",
     githubUrl: "",
     technologies: ["React", "JavaScript", "CSS3", "HTML5"],
-    image: "",
+    image: "/screenshots/juniors.png",
     featured: false,
     category: "Web",
-    badges: ["web", "community app"],
+    badges: ["web", "community"],
     order: 9,
     updatedAt: "2026-06-18",
     tr: {
@@ -340,6 +342,111 @@ export const projects: Project[] = [
     },
   },
 ];
+
+export type ProjectFilter = "all" | "saas" | "mobile" | "web";
+
+/** Maps project category to homepage filter tabs (E-commerce → web). */
+export function getProjectFilterGroup(project: Project): Exclude<ProjectFilter, "all"> {
+  if (project.category === "SaaS") return "saas";
+  if (project.category === "Mobile") return "mobile";
+  return "web";
+}
+
+export type ProjectLinkType = "web" | "stores" | "mobile-live" | "none";
+
+export function getProjectLinkType(project: Project): ProjectLinkType {
+  if (project.liveUrl) return "web";
+  if (project.appStoreUrl || project.playStoreUrl) return "stores";
+  if (project.isLive) return "mobile-live";
+  return "none";
+}
+
+export function isProjectLive(project: Project): boolean {
+  return getProjectLinkType(project) !== "none";
+}
+
+export type StatusFilter = "all" | "live" | "in-development";
+
+/** Filterable topic slugs (excludes platform tags: saas, web, mobile). */
+export const TOPIC_SLUGS = [
+  "education",
+  "gastronomy",
+  "e-commerce",
+  "community",
+  "mental-health",
+  "interior-design",
+] as const;
+
+export type TopicSlug = (typeof TOPIC_SLUGS)[number];
+
+const LEGACY_BADGE_ALIASES: Record<string, string> = {
+  "community app": "community",
+  "mental health": "mental-health",
+  "interior design": "interior-design",
+};
+
+const TOPIC_LABEL_KEYS: Record<TopicSlug, keyof (typeof translations)["tr"]> = {
+  education: "topicEducation",
+  gastronomy: "topicGastronomy",
+  "e-commerce": "topicEcommerce",
+  community: "topicCommunity",
+  "mental-health": "topicMentalHealth",
+  "interior-design": "topicInteriorDesign",
+};
+
+const PLATFORM_LABEL_KEYS: Record<string, keyof (typeof translations)["tr"]> = {
+  saas: "filterSaas",
+  web: "filterWeb",
+  mobile: "filterMobile",
+};
+
+export function normalizeBadge(badge: string): string {
+  return LEGACY_BADGE_ALIASES[badge] ?? badge;
+}
+
+export function isTopicSlug(value: string): value is TopicSlug {
+  return (TOPIC_SLUGS as readonly string[]).includes(value);
+}
+
+/** Topics that appear in at least one project, in display order. */
+export function getProjectTopics(projects: Project[]): TopicSlug[] {
+  const found = new Set<TopicSlug>();
+  for (const project of projects) {
+    for (const badge of project.badges) {
+      const slug = normalizeBadge(badge);
+      if (isTopicSlug(slug)) found.add(slug);
+    }
+  }
+  return TOPIC_SLUGS.filter((topic) => found.has(topic));
+}
+
+export function projectHasTopic(project: Project, topic: TopicSlug): boolean {
+  return project.badges.some((badge) => normalizeBadge(badge) === topic);
+}
+
+export function getTopicLabel(topic: TopicSlug, lang: string): string {
+  const t = translations[lang as keyof typeof translations] ?? translations.en;
+  const label = t[TOPIC_LABEL_KEYS[topic]];
+  return typeof label === "string" ? label : topic;
+}
+
+export function getBadgeLabel(badge: string, lang: string): string {
+  const normalized = normalizeBadge(badge);
+  if (normalized === "in progress") return "";
+
+  const t = translations[lang as keyof typeof translations] ?? translations.en;
+
+  if (isTopicSlug(normalized)) {
+    const label = t[TOPIC_LABEL_KEYS[normalized]];
+    return typeof label === "string" ? label : normalized;
+  }
+  if (normalized in PLATFORM_LABEL_KEYS) {
+    const label = t[PLATFORM_LABEL_KEYS[normalized]];
+    return typeof label === "string" ? label : normalized;
+  }
+
+  return normalized;
+}
 
 /** Returns the projects sorted by their `order` field. */
 export function getProjects(): Project[] {

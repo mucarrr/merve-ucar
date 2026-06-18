@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
 import LiveProjects from "@/components/LiveProjects";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -121,7 +120,6 @@ export default function Home() {
         </header>
         <main className="min-h-screen">
           <Hero />
-          <Services />
           <LiveProjects />
           <About />
           <Skills />
