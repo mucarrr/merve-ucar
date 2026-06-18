@@ -24,13 +24,13 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-gray-900 text-gray-300 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="border-t-2 border-transparent bg-gray-900 py-8 text-gray-300 [border-image:linear-gradient(90deg,#fbbf24,#ea580c)_1]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-sm">
             © {new Date().getFullYear()} Merve Uçar. {t.footerText.split("© 2024 Merve Uçar. ")[1]}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="mt-2 text-xs text-gray-500">
             Next.js, React, TypeScript ve Tailwind CSS ile ❤️ ile yapıldı.
           </p>
         </div>

@@ -4,14 +4,21 @@
 
 @layer base {
   :root {
-    --background: #f8f7f4;
-    --foreground: #171717;
+    --background: #faf9f6;
+    --foreground: #18181b;
+    /* Layered surfaces for cards / alternating sections */
+    --surface: #faf9f6;
+    --surface-alt: #f3f1ec;
+    --surface-card: #ffffff;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: #0a0a0a;
+      --background: #0b0b0c;
       --foreground: #ededed;
+      --surface: #0b0b0c;
+      --surface-alt: #141416;
+      --surface-card: #18181b;
     }
   }
 
@@ -97,5 +104,17 @@
   .gradient-animate {
     background-size: 200% 200%;
     animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Respect users who prefer reduced motion (accessibility) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
