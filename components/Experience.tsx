@@ -11,72 +11,84 @@ const getExperiences = (currentLanguage: string) => [
   {
     company: "Finaghy Consultancy",
     role: "Full Stack Developer",
-    period: currentLanguage === 'tr' ? "Haziran 2025 - Devam Ediyor" : "June 2025 - Present",
-    location: currentLanguage === 'tr' ? "Toronto, Kanada" : "Toronto, Canada",
-    description: currentLanguage === 'tr' 
-      ? "MERN stack ve Next.js ile full stack web uygulamaları geliştiriyorum. RESTful API'ler, responsive arayüzler ve Docker ile containerization üzerine çalışıyorum."
-      : "I develop full stack web applications with MERN stack and Next.js. I work on RESTful APIs, responsive interfaces and containerization with Docker.",
-    highlights: currentLanguage === 'tr' ? [
-      "MongoDB, Express.js, React.js, Node.js (MERN) ile web uygulamaları geliştirme",
-      "Next.js ile server-side rendering implementasyonu",
-      "RESTful API tasarımı ve geliştirmesi",
-      "Docker ile containerization ve environment yönetimi",
-      "Git ve Agile/Scrum metodolojileri ile ekip çalışması",
-    ] : [
-      "Web application development with MongoDB, Express.js, React.js, Node.js (MERN)",
-      "Server-side rendering implementation with Next.js",
-      "RESTful API design and development",
-      "Containerization and environment management with Docker",
-      "Team collaboration with Git and Agile/Scrum methodologies",
-    ],
+    period: currentLanguage === "tr" ? "Haziran 2025 - Devam Ediyor" : "June 2025 - Present",
+    location: currentLanguage === "tr" ? "Toronto, Kanada" : "Toronto, Canada",
+    description:
+      currentLanguage === "tr"
+        ? "MERN stack ve Next.js ile full stack web uygulamaları geliştiriyorum. RESTful API'ler, responsive arayüzler ve Docker ile containerization üzerine çalışıyorum."
+        : "I develop full stack web applications with MERN stack and Next.js. I work on RESTful APIs, responsive interfaces and containerization with Docker.",
+    highlights:
+      currentLanguage === "tr"
+        ? [
+            "MongoDB, Express.js, React.js, Node.js (MERN) ile web uygulamaları geliştirme",
+            "Next.js ile server-side rendering implementasyonu",
+            "RESTful API tasarımı ve geliştirmesi",
+            "Docker ile containerization ve environment yönetimi",
+            "Git ve Agile/Scrum metodolojileri ile ekip çalışması",
+          ]
+        : [
+            "Web application development with MongoDB, Express.js, React.js, Node.js (MERN)",
+            "Server-side rendering implementation with Next.js",
+            "RESTful API design and development",
+            "Containerization and environment management with Docker",
+            "Team collaboration with Git and Agile/Scrum methodologies",
+          ],
   },
   {
     company: "Juniors",
     role: "Frontend Developer",
-    period: currentLanguage === 'tr' ? "Aralık 2024 - Temmuz 2025" : "December 2024 - July 2025",
-    location: currentLanguage === 'tr' ? "İstanbul, Türkiye" : "Istanbul, Turkey",
-    description: currentLanguage === 'tr'
-      ? "JWT authentication, Redux Toolkit state management ve Tailwind CSS ile responsive arayüzler geliştirdim."
-      : "I developed responsive interfaces with JWT authentication, Redux Toolkit state management and Tailwind CSS.",
-    highlights: currentLanguage === 'tr' ? [
-      "JWT tabanlı authentication sistemi ve token refresh mekanizması",
-      "Tailwind CSS ile responsive UI tasarımı",
-      "Redux Toolkit ile state management",
-      "Proje yönetim sistemi (CRUD operasyonları)",
-      "Axios ile RESTful API entegrasyonu ve custom interceptors",
-      "Error boundary ve merkezi hata yönetimi",
-    ] : [
-      "JWT-based authentication system and token refresh mechanism",
-      "Responsive UI design with Tailwind CSS",
-      "State management with Redux Toolkit",
-      "Project management system (CRUD operations)",
-      "RESTful API integration with Axios and custom interceptors",
-      "Error boundary and centralized error management",
-    ],
+    period: currentLanguage === "tr" ? "Aralık 2024 - Temmuz 2025" : "December 2024 - July 2025",
+    location: currentLanguage === "tr" ? "İstanbul, Türkiye" : "Istanbul, Turkey",
+    description:
+      currentLanguage === "tr"
+        ? "JWT authentication, Redux Toolkit state management ve Tailwind CSS ile responsive arayüzler geliştirdim."
+        : "I developed responsive interfaces with JWT authentication, Redux Toolkit state management and Tailwind CSS.",
+    highlights:
+      currentLanguage === "tr"
+        ? [
+            "JWT tabanlı authentication sistemi ve token refresh mekanizması",
+            "Tailwind CSS ile responsive UI tasarımı",
+            "Redux Toolkit ile state management",
+            "Proje yönetim sistemi (CRUD operasyonları)",
+            "Axios ile RESTful API entegrasyonu ve custom interceptors",
+            "Error boundary ve merkezi hata yönetimi",
+          ]
+        : [
+            "JWT-based authentication system and token refresh mechanism",
+            "Responsive UI design with Tailwind CSS",
+            "State management with Redux Toolkit",
+            "Project management system (CRUD operations)",
+            "RESTful API integration with Axios and custom interceptors",
+            "Error boundary and centralized error management",
+          ],
   },
   {
     company: "Didiyos",
     role: "Frontend Developer",
-    period: currentLanguage === 'tr' ? "Ocak 2024 - Mayıs 2025" : "January 2024 - May 2025",
-    location: currentLanguage === 'tr' ? "Stockholm, İsveç" : "Stockholm, Sweden",
-    description: currentLanguage === 'tr'
-      ? "React, TypeScript ve Redux ile ölçeklenebilir frontend uygulamaları geliştirdim. TanStack Query ile server-state yönetimi ve performans optimizasyonları yaptım."
-      : "I developed scalable frontend applications with React, TypeScript and Redux. I implemented server-state management with TanStack Query and performance optimizations.",
-    highlights: currentLanguage === 'tr' ? [
-      "JavaScript, React ve Redux ile scalable frontend geliştirme",
-      "TypeScript migrasyon ve type safety iyileştirmeleri",
-      "TanStack Query ile server-state management ve caching",
-      "Tailwind CSS ile modern UX/UI implementasyonu",
-      "Code splitting, lazy loading ve memoization ile performans optimizasyonu",
-      "Code review ve reusable component geliştirme",
-    ] : [
-      "Scalable frontend development with JavaScript, React and Redux",
-      "TypeScript migration and type safety improvements",
-      "Server-state management and caching with TanStack Query",
-      "Modern UX/UI implementation with Tailwind CSS",
-      "Performance optimization with code splitting, lazy loading and memoization",
-      "Code review and reusable component development",
-    ],
+    period: currentLanguage === "tr" ? "Ocak 2024 - Mayıs 2025" : "January 2024 - May 2025",
+    location: currentLanguage === "tr" ? "Stockholm, İsveç" : "Stockholm, Sweden",
+    description:
+      currentLanguage === "tr"
+        ? "React, TypeScript ve Redux ile ölçeklenebilir frontend uygulamaları geliştirdim. TanStack Query ile server-state yönetimi ve performans optimizasyonları yaptım."
+        : "I developed scalable frontend applications with React, TypeScript and Redux. I implemented server-state management with TanStack Query and performance optimizations.",
+    highlights:
+      currentLanguage === "tr"
+        ? [
+            "JavaScript, React ve Redux ile scalable frontend geliştirme",
+            "TypeScript migrasyon ve type safety iyileştirmeleri",
+            "TanStack Query ile server-state management ve caching",
+            "Tailwind CSS ile modern UX/UI implementasyonu",
+            "Code splitting, lazy loading ve memoization ile performans optimizasyonu",
+            "Code review ve reusable component geliştirme",
+          ]
+        : [
+            "Scalable frontend development with JavaScript, React and Redux",
+            "TypeScript migration and type safety improvements",
+            "Server-state management and caching with TanStack Query",
+            "Modern UX/UI implementation with Tailwind CSS",
+            "Performance optimization with code splitting, lazy loading and memoization",
+            "Code review and reusable component development",
+          ],
   },
 ];
 
@@ -96,9 +108,9 @@ export default function Experience() {
       const customEvent = event as CustomEvent;
       setCurrentLanguage(customEvent.detail);
     };
-    
-    window.addEventListener('languageChanged', handleLanguageChange);
-    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () => window.removeEventListener("languageChanged", handleLanguageChange);
   }, []);
 
   const experiences = getExperiences(currentLanguage);
@@ -150,9 +162,7 @@ export default function Experience() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-16">
-            {t.experienceTitle}
-          </h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-16">{t.experienceTitle}</h1>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -173,10 +183,7 @@ export default function Experience() {
 
                 <ul className="space-y-2">
                   {exp.highlights.map((highlight, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
-                    >
+                    <li key={i} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
                       <span className="text-amber-600 dark:text-amber-400 mt-1">▹</span>
                       <span>{highlight}</span>
                     </li>
@@ -190,4 +197,3 @@ export default function Experience() {
     </section>
   );
 }
-

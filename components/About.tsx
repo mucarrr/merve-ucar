@@ -22,9 +22,9 @@ export default function About() {
       const customEvent = event as CustomEvent;
       setCurrentLanguage(customEvent.detail);
     };
-    
-    window.addEventListener('languageChanged', handleLanguageChange);
-    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () => window.removeEventListener("languageChanged", handleLanguageChange);
   }, []);
 
   return (
@@ -39,9 +39,7 @@ export default function About() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12">
-            {t.aboutTitle}
-          </h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12">{t.aboutTitle}</h2>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -63,9 +61,7 @@ export default function About() {
                 <h3 className="text-xl font-bold mb-4 text-amber-600 dark:text-amber-400">
                   📍 {t.location}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  {t.locationValue}
-                </p>
+                <p className="text-gray-700 dark:text-gray-300">{t.locationValue}</p>
               </div>
 
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
@@ -92,4 +88,3 @@ export default function About() {
     </section>
   );
 }
-

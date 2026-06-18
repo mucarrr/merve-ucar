@@ -5,20 +5,38 @@ import ScrollToTop from "@/components/ScrollToTop";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://merveucar.dev'),
+  metadataBase: new URL("https://merveucar.dev"),
   title: "Projects - Merve Uçar | Freelance Developer Portfolio | React, Next.js, Node.js Projects",
-  description: "Explore my portfolio of web development projects. Modern web applications built with React, Next.js, TypeScript, Node.js, MongoDB. Freelance developer projects, full stack applications, and custom software solutions. Projects showcase React Development, Next.js Development, MERN Stack projects, and TypeScript projects. Projelerim, web uygulamaları, React projeleri.",
+  description:
+    "Explore my portfolio of web development projects. Modern web applications built with React, Next.js, TypeScript, Node.js, MongoDB. Freelance developer projects, full stack applications, and custom software solutions. Projects showcase React Development, Next.js Development, MERN Stack projects, and TypeScript projects. Projelerim, web uygulamaları, React projeleri.",
   keywords: [
-    "Projects", "Portfolio", "Web Projects", "React Projects", "Next.js Projects", "Full Stack Projects",
-    "Merve Uçar Projects", "Freelance Developer Projects", "Web Application Projects",
-    "Projelerim", "Web Projeleri", "React Projeleri", "Next.js Projeleri", "Full Stack Projeler",
-    "Portfolio", "Yazılım Projeleri", "Web Uygulama Projeleri",
-    "TypeScript Projects", "Node.js Projects", "MERN Stack Projects", "Custom Software Projects"
+    "Projects",
+    "Portfolio",
+    "Web Projects",
+    "React Projects",
+    "Next.js Projects",
+    "Full Stack Projects",
+    "Merve Uçar Projects",
+    "Freelance Developer Projects",
+    "Web Application Projects",
+    "Projelerim",
+    "Web Projeleri",
+    "React Projeleri",
+    "Next.js Projeleri",
+    "Full Stack Projeler",
+    "Portfolio",
+    "Yazılım Projeleri",
+    "Web Uygulama Projeleri",
+    "TypeScript Projects",
+    "Node.js Projects",
+    "MERN Stack Projects",
+    "Custom Software Projects",
   ],
   authors: [{ name: "Merve Uçar" }],
   openGraph: {
     title: "Projects - Merve Uçar | Freelance Developer Portfolio",
-    description: "Explore my portfolio of web development projects. Modern web applications built with React, Next.js, TypeScript, Node.js, MongoDB.",
+    description:
+      "Explore my portfolio of web development projects. Modern web applications built with React, Next.js, TypeScript, Node.js, MongoDB.",
     type: "website",
     url: "https://merveucar.dev/projects",
     locale: "en_US",
@@ -35,14 +53,15 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Projects - Merve Uçar | Developer Portfolio",
-    description: "Web development projects portfolio. React, Next.js, TypeScript, Node.js projects.",
+    description:
+      "Web development projects portfolio. React, Next.js, TypeScript, Node.js projects.",
     images: ["/favicon.svg"],
   },
   alternates: {
-    canonical: '/projects',
+    canonical: "/projects",
     languages: {
-      'en': 'https://merveucar.dev/projects',
-      'tr': 'https://merveucar.dev/projects',
+      en: "https://merveucar.dev/projects",
+      tr: "https://merveucar.dev/projects",
     },
   },
 };

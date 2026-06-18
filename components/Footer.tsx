@@ -18,9 +18,9 @@ export default function Footer() {
       const customEvent = event as CustomEvent;
       setCurrentLanguage(customEvent.detail);
     };
-    
-    window.addEventListener('languageChanged', handleLanguageChange);
-    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () => window.removeEventListener("languageChanged", handleLanguageChange);
   }, []);
 
   return (
@@ -28,7 +28,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-sm">
-            © {new Date().getFullYear()} Merve Uçar. {t.footerText.split('© 2024 Merve Uçar. ')[1]}
+            © {new Date().getFullYear()} Merve Uçar. {t.footerText.split("© 2024 Merve Uçar. ")[1]}
           </p>
           <p className="text-xs text-gray-500 mt-2">
             Next.js, React, TypeScript ve Tailwind CSS ile ❤️ ile yapıldı.
@@ -38,4 +38,3 @@ export default function Footer() {
     </footer>
   );
 }
-

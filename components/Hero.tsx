@@ -27,9 +27,9 @@ export default function Hero() {
       const customEvent = event as CustomEvent;
       setCurrentLanguage(customEvent.detail);
     };
-    
-    window.addEventListener('languageChanged', handleLanguageChange);
-    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () => window.removeEventListener("languageChanged", handleLanguageChange);
   }, []);
 
   if (!mounted) {
@@ -43,7 +43,7 @@ export default function Hero() {
             <div>
               <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 mb-4 font-mono text-sm">
                 <FaCode />
-                <span>{'<developer>'}</span>
+                <span>{"<developer>"}</span>
               </div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
                 <span className="text-gray-900 dark:text-white">{t.heroGreeting}</span>
@@ -90,13 +90,19 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 mt-8 font-mono text-sm">
                 <FaCode className="rotate-180" />
-                <span>{'</developer>'}</span>
+                <span>{"</developer>"}</span>
               </div>
             </div>
             <div className="hidden lg:block">
               <div className="relative w-full h-96 flex items-center justify-center">
                 <div className="w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center shadow-2xl">
-                  <Image src="/laptop.svg" alt="Laptop" width={64} height={64} className="text-gray-900" />
+                  <Image
+                    src="/laptop.svg"
+                    alt="Laptop"
+                    width={64}
+                    height={64}
+                    className="text-gray-900"
+                  />
                 </div>
               </div>
             </div>
@@ -172,7 +178,7 @@ export default function Hero() {
               className="flex items-center gap-2 text-amber-600 dark:text-amber-400 mb-4 font-mono text-sm"
             >
               <FaCode />
-              <span>{'<developer>'}</span>
+              <span>{"<developer>"}</span>
             </motion.div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
@@ -187,14 +193,7 @@ export default function Hero() {
             <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 h-20">
               <TypeAnimation
                 key={currentLanguage} // Force re-render when language changes
-                sequence={[
-                  t.heroRoles[0],
-                  1500,
-                  t.heroRoles[1],
-                  1500,
-                  t.heroRoles[2],
-                  1500,
-                ]}
+                sequence={[t.heroRoles[0], 1500, t.heroRoles[1], 1500, t.heroRoles[2], 1500]}
                 wrapper="span"
                 speed={50}
                 className="text-gray-700 dark:text-gray-300"
@@ -202,46 +201,46 @@ export default function Hero() {
               />
             </div>
 
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
-                >
-                  {t.heroDescription}
-                </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
+            >
+              {t.heroDescription}
+            </motion.p>
 
-                {/* CTA Buttons */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="flex flex-wrap gap-4 mb-8"
-                >
-                  <a
-                    href="#contact"
-                    aria-label="Get free quote - Navigate to contact section"
-                    className="group relative px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium overflow-hidden"
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="flex flex-wrap gap-4 mb-8"
+            >
+              <a
+                href="#contact"
+                aria-label="Get free quote - Navigate to contact section"
+                className="group relative px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  {t.ctaGetQuote}
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    aria-hidden="true"
                   >
-                    <span className="relative z-10 flex items-center gap-2">
-                      {t.ctaGetQuote}
-                      <motion.span
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        aria-hidden="true"
-                      >
-                        →
-                      </motion.span>
-                    </span>
-                  </a>
-                  <a
-                    href="/projects"
-                    aria-label="View my projects portfolio"
-                    className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium hover:bg-gray-900 dark:hover:bg-amber-400 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
-                  >
-                    {t.ctaViewProjects}
-                  </a>
-                </motion.div>
+                    →
+                  </motion.span>
+                </span>
+              </a>
+              <a
+                href="/projects"
+                aria-label="View my projects portfolio"
+                className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium hover:bg-gray-900 dark:hover:bg-amber-400 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
+              >
+                {t.ctaViewProjects}
+              </a>
+            </motion.div>
 
             {/* Social Links */}
             <motion.div
@@ -291,7 +290,7 @@ export default function Hero() {
               className="flex items-center gap-2 text-amber-600 dark:text-amber-400 mt-8 font-mono text-sm"
             >
               <FaCode className="rotate-180" />
-              <span>{'</developer>'}</span>
+              <span>{"</developer>"}</span>
             </motion.div>
           </motion.div>
 
@@ -314,16 +313,16 @@ export default function Hero() {
               }}
               className="absolute top-1/2 left-1/2 w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center shadow-2xl"
               style={{
-                transform: 'translate(-50%, -50%)',
+                transform: "translate(-50%, -50%)",
               }}
             >
-              <Image 
-                src="/laptop.svg" 
-                alt="Merve Uçar - Freelance Full Stack Developer" 
-                width={64} 
-                height={64} 
+              <Image
+                src="/laptop.svg"
+                alt="Merve Uçar - Freelance Full Stack Developer"
+                width={64}
+                height={64}
                 priority
-                className="text-gray-900" 
+                className="text-gray-900"
               />
             </motion.div>
 
@@ -344,7 +343,7 @@ export default function Hero() {
                   style={{
                     left: `calc(50% + ${x}px)`,
                     top: `calc(50% + ${y}px)`,
-                    transform: 'translate(-50%, -50%)',
+                    transform: "translate(-50%, -50%)",
                   }}
                 >
                   <motion.div
@@ -366,7 +365,6 @@ export default function Hero() {
             })}
           </motion.div>
         </div>
-
       </div>
 
       {/* Scroll Indicator - Dışarıda */}

@@ -5,15 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/lib/translations";
-import {
-  FaReact,
-  FaNodeJs,
-  FaDocker,
-  FaGitAlt,
-  FaHtml5,
-  FaCss3Alt,
-  FaFigma,
-} from "react-icons/fa";
+import { FaReact, FaNodeJs, FaDocker, FaGitAlt, FaHtml5, FaCss3Alt, FaFigma } from "react-icons/fa";
 import {
   SiNextdotjs,
   SiTypescript,
@@ -22,10 +14,11 @@ import {
   SiRedux,
   SiMongodb,
   SiExpress,
-  SiPostgresql,
 } from "react-icons/si";
 
-const getSkillCategories = (t: any) => [
+type Translation = (typeof translations)[keyof typeof translations];
+
+const getSkillCategories = (t: Translation) => [
   {
     title: t.frontend,
     skills: [
@@ -58,7 +51,7 @@ const getSkillCategories = (t: any) => [
   },
 ];
 
-const getSoftSkills = (t: any) => [
+const getSoftSkills = (t: Translation) => [
   t.problemSolving,
   t.teamwork,
   t.agile,
@@ -87,9 +80,9 @@ export default function Skills() {
       const customEvent = event as CustomEvent;
       setCurrentLanguage(customEvent.detail);
     };
-    
-    window.addEventListener('languageChanged', handleLanguageChange);
-    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () => window.removeEventListener("languageChanged", handleLanguageChange);
   }, []);
 
   return (
@@ -104,9 +97,7 @@ export default function Skills() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">
-            {t.skillsTitle}
-          </h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">{t.skillsTitle}</h2>
 
           {/* Technical Skills */}
           <div className="space-y-12 mb-16">
@@ -127,11 +118,7 @@ export default function Skills() {
                       <motion.div
                         key={skill.name}
                         initial={{ opacity: 0, scale: 0.8 }}
-                        animate={
-                          isInView
-                            ? { opacity: 1, scale: 1 }
-                            : { opacity: 0, scale: 0.8 }
-                        }
+                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                         transition={{
                           duration: 0.4,
                           delay: categoryIndex * 0.2 + index * 0.05,
@@ -161,16 +148,14 @@ export default function Skills() {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-center text-amber-600 dark:text-amber-400">
-              {currentLanguage === 'tr' ? 'Kişisel Beceriler' : 'Soft Skills'}
+              {currentLanguage === "tr" ? "Kişisel Beceriler" : "Soft Skills"}
             </h3>
             <div className="flex flex-wrap gap-4 justify-center">
               {softSkills.map((skill, index) => (
                 <motion.div
                   key={skill}
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={
-                    isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-                  }
+                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.4, delay: 0.6 + index * 0.05 }}
                   className="px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-full font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                 >
@@ -184,4 +169,3 @@ export default function Skills() {
     </section>
   );
 }
-

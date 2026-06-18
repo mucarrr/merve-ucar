@@ -25,9 +25,9 @@ export default function Navbar() {
       const customEvent = event as CustomEvent;
       setCurrentLanguage(customEvent.detail);
     };
-    
-    window.addEventListener('languageChanged', handleLanguageChange);
-    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () => window.removeEventListener("languageChanged", handleLanguageChange);
   }, []);
 
   // Dışarı tıklayınca menüyü kapat
@@ -40,8 +40,8 @@ export default function Navbar() {
       setIsOpen(false);
     };
 
-    document.addEventListener('mousedown', handleClickOutside, true);
-    return () => document.removeEventListener('mousedown', handleClickOutside, true);
+    document.addEventListener("mousedown", handleClickOutside, true);
+    return () => document.removeEventListener("mousedown", handleClickOutside, true);
   }, [isOpen]);
 
   const menuItems = [
@@ -57,11 +57,11 @@ export default function Navbar() {
     const wasOpen = isOpen;
     setIsOpen(false);
     // "#section" ve "/#section" durumlarını normalize et
-    const isHashLink = href.startsWith('#') || href.startsWith('/#');
+    const isHashLink = href.startsWith("#") || href.startsWith("/#");
     if (isHashLink) {
-      const id = href.replace('/#', '#');
+      const id = href.replace("/#", "#");
       // Anasayfada değilsek doğrudan '/#id' ile anasayfaya git
-      if (window.location.pathname !== '/') {
+      if (window.location.pathname !== "/") {
         window.location.href = `/${id}`; // '/#about' gibi
         return;
       }
@@ -72,7 +72,7 @@ export default function Navbar() {
           const navbarHeight = 64; // h-16
           const rect = (element as HTMLElement).getBoundingClientRect();
           const absoluteY = window.scrollY + rect.top - navbarHeight - 8;
-          window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+          window.scrollTo({ top: absoluteY, behavior: "smooth" });
         } else {
           window.location.hash = id.substring(1);
         }
@@ -106,13 +106,13 @@ export default function Navbar() {
               transition={{ duration: 0.6 }}
               className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center shadow-md"
             >
-              <Image 
-                src="/logo.svg" 
-                alt="Merve Uçar - Full Stack Developer Logo" 
-                width={20} 
-                height={20} 
+              <Image
+                src="/logo.svg"
+                alt="Merve Uçar - Full Stack Developer Logo"
+                width={20}
+                height={20}
                 priority
-                className="text-gray-900" 
+                className="text-gray-900"
               />
             </motion.div>
             <span>Merve Uçar</span>
@@ -146,7 +146,11 @@ export default function Navbar() {
               aria-controls="mobile-menu"
               className="text-gray-700 dark:text-gray-300 hover:text-amber-500 transition-colors"
             >
-              {isOpen ? <HiX size={28} aria-hidden="true" /> : <HiMenu size={28} aria-hidden="true" />}
+              {isOpen ? (
+                <HiX size={28} aria-hidden="true" />
+              ) : (
+                <HiMenu size={28} aria-hidden="true" />
+              )}
             </button>
           </div>
         </div>
@@ -193,4 +197,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

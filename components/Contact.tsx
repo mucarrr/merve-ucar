@@ -3,12 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import {
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaGithub,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin } from "react-icons/fa";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/lib/translations";
 
@@ -34,20 +29,21 @@ export default function Contact() {
       const customEvent = event as CustomEvent;
       setCurrentLanguage(customEvent.detail);
     };
-    
-    window.addEventListener('languageChanged', handleLanguageChange);
-    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () => window.removeEventListener("languageChanged", handleLanguageChange);
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Basit bir mailto link ile form gönderimi
-    const subject = currentLanguage === 'tr' 
-      ? `Portfolio İletişim: ${formData.name}`
-      : `Portfolio Contact: ${formData.name}`;
-    const nameLabel = currentLanguage === 'tr' ? 'İsim' : 'Name';
-    const emailLabel = currentLanguage === 'tr' ? 'Email' : 'Email';
-    const messageLabel = currentLanguage === 'tr' ? 'Mesaj' : 'Message';
+    const subject =
+      currentLanguage === "tr"
+        ? `Portfolio İletişim: ${formData.name}`
+        : `Portfolio Contact: ${formData.name}`;
+    const nameLabel = currentLanguage === "tr" ? "İsim" : "Name";
+    const emailLabel = currentLanguage === "tr" ? "Email" : "Email";
+    const messageLabel = currentLanguage === "tr" ? "Mesaj" : "Message";
     const body = `${nameLabel}: ${formData.name}%0D%0A${emailLabel}: ${formData.email}%0D%0A%0D%0A${messageLabel}:%0D%0A${formData.message}`;
     window.location.href = `mailto:mucar2326@gmail.com?subject=${subject}&body=${body}`;
     setStatus("success");
@@ -55,9 +51,7 @@ export default function Contact() {
     setTimeout(() => setStatus("idle"), 3000);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -65,20 +59,14 @@ export default function Contact() {
   };
 
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8"
-    >
+    <section id="contact" ref={ref} className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">
-            {t.contactTitle}
-          </h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">{t.contactTitle}</h2>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* İletişim Bilgileri */}
@@ -91,9 +79,9 @@ export default function Contact() {
               <h3 className="text-2xl font-bold mb-6 text-amber-600 dark:text-amber-400">
                 {t.contactSubtitle}
               </h3>
-    <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-      {t.contactDescription}
-    </p>
+              <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+                {t.contactDescription}
+              </p>
 
               <div className="space-y-4">
                 <div className="flex items-center gap-4 text-gray-700 dark:text-gray-300">
@@ -111,7 +99,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-
                 <div className="flex items-center gap-4 text-gray-700 dark:text-gray-300">
                   <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
                     <FaMapMarkerAlt className="text-amber-600 dark:text-amber-400" />
@@ -123,11 +110,8 @@ export default function Contact() {
                 </div>
               </div>
 
-
               <div className="pt-6">
-                <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
-                  {t.otherChannels}
-                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">{t.otherChannels}</p>
                 <div className="flex gap-4">
                   <a
                     href="mailto:mucar2326@gmail.com"
@@ -251,4 +235,3 @@ export default function Contact() {
     </section>
   );
 }
-

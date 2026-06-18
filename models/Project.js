@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const ProjectSchema = new mongoose.Schema({
   title: {
@@ -7,11 +7,11 @@ const ProjectSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    default: '',
+    default: "",
   },
   longDescription: {
     type: String,
-    default: '',
+    default: "",
   },
   githubUrl: {
     type: String,
@@ -19,22 +19,24 @@ const ProjectSchema = new mongoose.Schema({
   },
   language: {
     type: String,
-    default: 'JavaScript',
+    default: "JavaScript",
   },
   updatedAt: {
     type: String,
     default: new Date().toISOString(),
   },
-  technologies: [{
-    type: String,
-  }],
+  technologies: [
+    {
+      type: String,
+    },
+  ],
   image: {
     type: String,
-    default: '',
+    default: "",
   },
   liveUrl: {
     type: String,
-    default: '',
+    default: "",
   },
   featured: {
     type: Boolean,
@@ -42,7 +44,7 @@ const ProjectSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    default: '',
+    default: "",
   },
   order: {
     type: Number,
@@ -54,4 +56,4 @@ const ProjectSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Project || mongoose.model('Project', ProjectSchema);
+export default mongoose.models.Project || mongoose.model("Project", ProjectSchema);

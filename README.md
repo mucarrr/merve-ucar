@@ -83,5 +83,6 @@ Bu proje kişisel kullanım içindir.
 
 **Merve Uçar** - Junior Full Stack Developer
 
-## Preview 
+## Preview
+
 ![](merveucardev.gif)
