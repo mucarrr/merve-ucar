@@ -288,22 +288,14 @@ export const metadata: Metadata = {
     url: "https://merveucar.dev",
     locale: "en_US",
     alternateLocale: "tr_TR",
-    images: [
-      {
-        url: "/favicon.svg",
-        width: 32,
-        height: 32,
-        alt: "Merve Uçar - Freelance Frontend, Backend & Full Stack Developer | Software Developer",
-      },
-    ],
+    siteName: "Merve Uçar Portfolio",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title:
       "Merve Uçar - Freelance Frontend, Backend & Full Stack Developer | Website & Mobile App Developer",
     description:
       "Freelance Frontend, Backend & Full Stack Developer available for hire. Software developer expert in websites, mobile apps, React, Next.js, Node.js, MongoDB, MERN Stack. Website developer, mobil uygulama geliştirici, yazılım geliştirici.",
-    images: ["/favicon.svg"],
   },
 };
 
