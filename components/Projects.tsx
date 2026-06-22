@@ -83,7 +83,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-8 text-center"
         >
           <div className="code-label mb-4 flex items-center justify-center gap-2">
             <FaCode />
@@ -92,9 +92,15 @@ export default function Projects() {
           <h1 className="section-title mb-4">
             {mounted ? t.portfolioProjectsTitle : "Portfolio Projects"}
           </h1>
-          <p className="section-subtitle mx-auto mb-12 max-w-2xl">
+          <p className="section-subtitle mx-auto mb-4 max-w-2xl">
             {mounted ? t.portfolioProjectsSubtitle : ""}
           </p>
+          <a
+            href="/#projects"
+            className="inline-block text-sm font-medium text-amber-600 underline decoration-amber-400 underline-offset-4 transition-colors hover:text-amber-700 dark:text-amber-400 dark:decoration-amber-500 dark:hover:text-amber-300"
+          >
+            {mounted ? t.viewLiveProjects : "View my live projects"}
+          </a>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

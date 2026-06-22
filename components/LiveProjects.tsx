@@ -376,7 +376,7 @@ export default function LiveProjects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="mb-10 text-center"
+          className="mb-8 text-center"
         >
           <div className="mb-4 flex items-center justify-center gap-2 font-mono text-sm text-amber-600 dark:text-amber-400">
             <FaCode />
@@ -385,9 +385,15 @@ export default function LiveProjects() {
           <h2 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl">
             {mounted ? t.liveProjectsTitle : "Live Projects"}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+          <p className="section-subtitle mx-auto mb-4 max-w-2xl">
             {mounted ? t.liveProjectsSubtitle : ""}
           </p>
+          <a
+            href="/projects"
+            className="inline-block text-sm font-medium text-amber-600 underline decoration-amber-400 underline-offset-4 transition-colors hover:text-amber-700 dark:text-amber-400 dark:decoration-amber-500 dark:hover:text-amber-300"
+          >
+            {mounted ? t.viewPortfolioProjects : "View my portfolio projects"}
+          </a>
         </motion.div>
 
         <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">

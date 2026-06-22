@@ -66,7 +66,7 @@ export default function Hero() {
                   {t.ctaGetQuote}
                 </a>
                 <a
-                  href="/projects"
+                  href="#projects"
                   className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium"
                 >
                   {t.ctaViewProjects}
@@ -234,8 +234,8 @@ export default function Hero() {
                 </span>
               </a>
               <a
-                href="/projects"
-                aria-label="View my projects portfolio"
+                href="#projects"
+                aria-label="View my live projects"
                 className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium hover:bg-gray-900 dark:hover:bg-amber-400 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
               >
                 {t.ctaViewProjects}
