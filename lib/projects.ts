@@ -191,7 +191,7 @@ export const projects: Project[] = [
       "Redux",
       "Push Notifications",
     ],
-    image: "",
+    image: "/screenshots/didiyoss.png",
     featured: false,
     category: "Mobile",
     badges: ["mobile", "community"],

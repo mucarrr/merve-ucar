@@ -1,3 +1,4 @@
+import HashScroll from "@/components/HashScroll";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import LiveProjects from "@/components/LiveProjects";
@@ -119,6 +120,7 @@ export default function Home() {
           <Navbar />
         </header>
         <main className="min-h-screen">
+          <HashScroll />
           <Hero />
           <LiveProjects />
           <About />

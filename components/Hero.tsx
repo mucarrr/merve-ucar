@@ -6,6 +6,7 @@ import { TypeAnimation } from "react-type-animation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import useLanguage from "@/hooks/useLanguage";
+import { scrollToSection } from "@/lib/navigation";
 import { translations } from "@/lib/translations";
 
 export default function Hero() {
@@ -67,6 +68,10 @@ export default function Hero() {
                 </a>
                 <a
                   href="#projects"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    scrollToSection("projects");
+                  }}
                   className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium"
                 >
                   {t.ctaViewProjects}
@@ -235,6 +240,10 @@ export default function Hero() {
               </a>
               <a
                 href="#projects"
+                onClick={(event) => {
+                  event.preventDefault();
+                  scrollToSection("projects");
+                }}
                 aria-label="View my live projects"
                 className="px-8 py-4 border-2 border-gray-900 dark:border-amber-400 text-gray-900 dark:text-amber-400 rounded-full font-medium hover:bg-gray-900 dark:hover:bg-amber-400 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
               >

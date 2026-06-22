@@ -1,5 +1,6 @@
 "use client";
 
+import SectionLink from "@/components/SectionLink";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaGithub, FaCode } from "react-icons/fa";
@@ -95,12 +96,12 @@ export default function Projects() {
           <p className="section-subtitle mx-auto mb-4 max-w-2xl">
             {mounted ? t.portfolioProjectsSubtitle : ""}
           </p>
-          <a
-            href="/#projects"
+          <SectionLink
+            sectionId="projects"
             className="inline-block text-sm font-medium text-amber-600 underline decoration-amber-400 underline-offset-4 transition-colors hover:text-amber-700 dark:text-amber-400 dark:decoration-amber-500 dark:hover:text-amber-300"
           >
             {mounted ? t.viewLiveProjects : "View my live projects"}
-          </a>
+          </SectionLink>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { FaCode, FaExternalLinkAlt, FaApple, FaChevronDown } from "react-icons/fa";
@@ -143,15 +144,21 @@ function ProjectThumbnail({
     return <PlaceholderVisual projectId={project.id} category={project.category} />;
   }
 
+  const isPortraitShot = project.id === "didiyos-event";
+
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={project.image}
       alt={`${content.title} — ${content.description}`}
-      className={`${PLACEHOLDER_MEDIA} object-cover transition-transform duration-300 group-hover:scale-105`}
+      className={`${PLACEHOLDER_MEDIA} ${
+        isPortraitShot
+          ? "object-contain object-center"
+          : "object-cover transition-transform duration-300 group-hover:scale-105"
+      }`}
       loading="lazy"
       width={400}
-      height={225}
+      height={isPortraitShot ? 400 : 225}
       onError={() => setImageFailed(true)}
     />
   );
@@ -388,12 +395,12 @@ export default function LiveProjects() {
           <p className="section-subtitle mx-auto mb-4 max-w-2xl">
             {mounted ? t.liveProjectsSubtitle : ""}
           </p>
-          <a
+          <Link
             href="/projects"
             className="inline-block text-sm font-medium text-amber-600 underline decoration-amber-400 underline-offset-4 transition-colors hover:text-amber-700 dark:text-amber-400 dark:decoration-amber-500 dark:hover:text-amber-300"
           >
             {mounted ? t.viewPortfolioProjects : "View my portfolio projects"}
-          </a>
+          </Link>
         </motion.div>
 
         <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">

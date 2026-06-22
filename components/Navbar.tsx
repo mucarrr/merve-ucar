@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 import useLanguage from "@/hooks/useLanguage";
+import { scrollToSection } from "@/lib/navigation";
 import { translations } from "@/lib/translations";
 
 export default function Navbar() {
@@ -73,22 +74,12 @@ export default function Navbar() {
 
     const isHashLink = href.startsWith("#") || href.startsWith("/#");
     if (isHashLink) {
-      const id = href.replace("/#", "#");
+      const sectionId = href.replace("/#", "").replace("#", "");
       if (window.location.pathname !== "/") {
-        window.location.href = `/${id}`;
+        window.location.href = `/#${sectionId}`;
         return;
       }
-      const doScroll = () => {
-        const element = document.querySelector(id);
-        if (element) {
-          const navbarHeight = 64;
-          const rect = (element as HTMLElement).getBoundingClientRect();
-          const absoluteY = window.scrollY + rect.top - navbarHeight - 8;
-          window.scrollTo({ top: absoluteY, behavior: "smooth" });
-        } else {
-          window.location.hash = id.substring(1);
-        }
-      };
+      const doScroll = () => scrollToSection(sectionId);
       if (wasOpen) {
         setTimeout(() => {
           requestAnimationFrame(() => requestAnimationFrame(doScroll));
