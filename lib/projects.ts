@@ -86,7 +86,7 @@ export const projects: Project[] = [
     liveUrl: "",
     githubUrl: "https://github.com/mucarrr/timeGarden--ReactNative-",
     technologies: ["React Native", "i18next", "Lottie", "Geolocation API", "Push Notifications"],
-    image: "",
+    image: "/screenshots/time-garden.png",
     featured: false,
     category: "Mobile",
     badges: ["mobile", "education"],

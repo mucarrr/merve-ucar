@@ -34,6 +34,8 @@ const FILTER_KEYS: { key: ProjectFilter; labelKey: keyof (typeof translations)["
 
 const PLACEHOLDER_MEDIA = "h-48 w-full";
 
+const PORTRAIT_PROJECT_IDS = new Set(["didiyos-event", "time-garden"]);
+
 const PLACEHOLDER_PALETTES: Record<
   string,
   { gradient: string; iconClass: string; labelClass: string }
@@ -144,7 +146,7 @@ function ProjectThumbnail({
     return <PlaceholderVisual projectId={project.id} category={project.category} />;
   }
 
-  const isPortraitShot = project.id === "didiyos-event";
+  const isPortraitShot = PORTRAIT_PROJECT_IDS.has(project.id);
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
