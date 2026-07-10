@@ -329,16 +329,16 @@ export const projects: Project[] = [
     tr: {
       title: "Juniors Center",
       description:
-        "Yeni mezun yazılımcıları gerçek projeler ve takımlarla buluşturarak sektörel deneyim kazandıran topluluk ve iş birliği platformunun tek başıma üstlendiğim frontend mimarisi.",
+        "Yeni mezun yazılımcıları gerçek projeler ve takımlarla buluşturan topluluk platformu — açık proje keşfi, takım eşleştirme, mentörlük eşleşmesi ve başvuru akışları.",
       longDescription:
-        "Tüm kullanıcı arayüzü, çoklu sayfa akışları ve state yönetim mimarisinin sıfırdan ve tek başıma kurulduğu solo frontend geliştirme projesi. Kullanıcıların açık projeleri inceleyip geliştirme ekiplerine katılabildiği proje ve takım eşleştirme sistemi; genç yazılımcı topluluğuna hitap eden dinamik, temiz ve tamamen responsive tasarım. Takım kayıtları ve kullanıcı başvuruları için optimize edilmiş gelişmiş form yönetimi.",
+        "Junior'ların açık projeleri inceleyip geliştirme ekiplerine başvurabildiği proje ve takım eşleştirme sistemi. Yetkinlik seçimi ve profil oluşturma, junior–senior mentörlük eşleşmesi ve haftalık mentörlük oturumları, anonim ekip içi performans değerlendirmeleri. Takım kayıtları ve kullanıcı başvuruları için optimize edilmiş form yönetimi; genç yazılımcı topluluğuna hitap eden dinamik ve tamamen responsive tasarım.",
     },
     en: {
       title: "Juniors Center",
       description:
-        "A collaborative community platform connecting junior developers with real-world projects and teams — where I solely designed and developed the entire frontend architecture.",
+        "A collaborative community platform connecting junior developers with real-world projects and teams — open project discovery, team matching, mentorship pairing, and application workflows.",
       longDescription:
-        "A solo frontend project where the entire user interface, multi-page flows, and state-management architecture were built from scratch single-handedly. A project-and-team matching system where users can browse open projects and join development teams; a dynamic, clean, fully responsive design aimed at a junior-developer community. Advanced form management optimized for team registrations and user applications.",
+        "A project-and-team matching system where juniors browse open projects and apply to join development teams. Profile and competency selection, junior–senior mentorship pairing with weekly sessions, and anonymous peer performance reviews. Advanced form management for team registrations and user applications; a dynamic, fully responsive design aimed at a junior-developer community.",
     },
   },
 ];
